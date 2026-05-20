@@ -1,0 +1,11 @@
+{
+  "name": "old-machine-revival-blog",
+  "version": "1.0.0",
+  "description": "老机复活博客小站 - 清新风格，带硬件诊断计算器与留言板功能",
+  "scripts": {
+    "dev": "http-server ./ -p 3000 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

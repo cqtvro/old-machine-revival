@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老机复活 | 让旧设备重新绽放光芒 - 清新垂直客站</title>
+    <meta name="description" content="老机复活是一个专注于旧电脑、旧手机、老游戏机等硬件的清理、升级、改装与轻量级系统优化的个人博客。用爱与技术赋予老硬件新的生命，减少电子垃圾，体验纯粹的折腾乐趣。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Progress Bar for Page Loading -->
+    <div id="page-progress" class="page-progress"></div>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#home" class="logo" id="logo-link">
+                <!-- SVG Logo: A retro monitor with a sprout growing from it -->
+                <svg viewBox="0 0 100 100" class="logo-svg" aria-hidden="true">
+                    <rect x="15" y="15" width="70" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="6" />
+                    <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-dasharray="2,2" stroke-width="2" />
+                    <path d="M35,65 L25,85 L75,85 L65,65 Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" />
+                    <path d="M50,45 C50,30 35,25 35,25 C35,25 45,35 50,45 Z" fill="currentColor" />
+                    <path d="M50,45 C50,30 65,25 65,25 C65,25 55,35 50,45 Z" fill="currentColor" />
+                    <circle cx="50" cy="45" r="3" fill="currentColor" />
+                </svg>
+                <div class="logo-text">
+                    <span class="brand-title">老机复活</span>
+                    <span class="brand-subtitle">Old Machine Revival</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="desktop-nav" aria-label="主导航">
+                <ul>
+                    <li><a href="#home" class="nav-item" id="nav-home">首页</a></li>
+                    <li><a href="#blog" class="nav-item" id="nav-blog">精选博客</a></li>
+                    <li><a href="#guestbook" class="nav-item" id="nav-guestbook">留言板</a></li>
+                    <li><a href="#about" class="nav-item" id="nav-about">关于本站</a></li>
+                </ul>
+            </nav>
+
+            <!-- Theme Toggle & Action -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="切换深色模式">
+                    <!-- Moon Icon -->
+                    <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <!-- Sun Icon -->
+                    <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <a href="#calculator" class="calc-shortcut-btn">复活指南</a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav class="mobile-nav-drawer" id="mobile-nav" aria-label="移动端导航" style="display: none;">
+        <ul>
+            <li><a href="#home" class="mobile-nav-item">首页</a></li>
+            <li><a href="#blog" class="mobile-nav-item">精选博客</a></li>
+            <li><a href="#guestbook" class="mobile-nav-item">留言板</a></li>
+            <li><a href="#about" class="mobile-nav-item">关于本站</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        <!-- 1. HOME SECTION -->
+        <section id="home-view" class="page-view active">
+            <!-- Hero Banner -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <span class="hero-badge">🌱 让闲置硬件再次起舞</span>
+                    <h1 class="hero-title">拯救旧设备，重启新可能</h1>
+                    <p class="hero-desc">
+                        在这个不断催促我们更新换代的时代，我们选择慢下来。一台十年前的笔记本、一部吃灰的主机，只需要适当的维护、合理的升级与轻量化的系统，就能在新的领域重新焕发光彩。这是属于折腾者的浪漫，也是送给地球的一份微薄礼物。
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#blog" class="btn btn-primary">探索复活案例</a>
+                        <a href="#calculator-anchor" class="btn btn-secondary">配置诊断工具</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- A beautiful illustration of dynamic retro computer -->
+                    <div class="retro-machine-artwork">
+                        <div class="monitor-wrapper">
+                            <div class="screen-glow"></div>
+                            <div class="monitor-frame">
+                                <div class="monitor-screen">
+                                    <div class="terminal-text">
+                                        <p>&gt; sudo apt update</p>
+                                        <p>&gt; Upgrading hardware...</p>
+                                        <p>&gt; System status: OK</p>
+                                        <p class="blink-cursor">&gt; 🌱 Ready to revive!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="monitor-neck"></div>
+                            <div class="monitor-base"></div>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-item item-ram">📼 RAM</div>
+                            <div class="floating-item item-ssd">💾 SSD</div>
+                            <div class="floating-item item-tux">🐧 Linux</div>
+                            <div class="floating-item item-leaf">🍃 CPU</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="section-container">
+                <h2 class="section-title text-center">核心折腾理念</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon bg-green-light">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="9" y1="3" x2="9" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3>硬件焕新</h3>
+                        <p>清理灰尘、重涂硅脂、升级固态硬盘（SSD）与加装物理内存，用最低成本突破陈旧木桶的最短板。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon bg-orange-light">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <h3>轻量系统</h3>
+                        <p>告别臃肿的 Windows 11，拥抱 Linux Mint、ChromeOS Flex 或轻量定制版系统，让 CPU 重新自由呼吸。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon bg-blue-light">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                        </div>
+                        <h3>场景再造</h3>
+                        <p>旧设备不只是“备用机”，还能变成客厅高清盒子、家用轻量 NAS、智能时钟、软路由等全新职能硬件。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Content Layout: Blog Stream + Sidebar with Calculator -->
+            <div class="section-container home-layout">
+                <div class="main-column">
+                    <div class="column-header">
+                        <h2 class="sub-section-title">最新复活日记</h2>
+                        <a href="#blog" class="link-more">查看全部文章 &rarr;</a>
+                    </div>
+                    <div id="featured-posts-list" class="posts-list-simple">
+                        <!-- Dynamic Featured Posts Will Render Here -->
+                    </div>
+                </div>
+                
+                <aside class="sidebar-column">
+                    <!-- Calculator Anchor -->
+                    <div id="calculator-anchor"></div>
+                    <!-- Calculator Card -->
+                    <div class="widget-card calc-widget" id="calculator-widget">
+                        <div class="widget-header">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                <line x1="9" y1="22" x2="9" y2="16"></line>
+                                <line x1="15" y1="22" x2="15" y2="16"></line>
+                                <line x1="12" y1="16" x2="12" y2="22"></line>
+                                <line x1="8" y1="6" x2="16" y2="6"></line>
+                                <line x1="8" y1="10" x2="16" y2="10"></line>
+                            </svg>
+                            <h3>老机复活指南计算器</h3>
+                        </div>
+                        <p class="widget-intro">拖动滑块匹配您的老设备配置，一键获取专属升级方案和适用系统！</p>
+                        
+                        <div class="calc-form">
+                            <!-- CPU cores slider -->
+                            <div class="form-group">
+                                <label for="calc-cpu">
+                                    <span>CPU 核心数</span>
+                                    <span id="cpu-value" class="calc-val">双核 (2 Cores)</span>
+                                </label>
+                                <input type="range" id="calc-cpu" min="1" max="8" value="2" step="1" class="calc-slider">
+                            </div>
+
+                            <!-- RAM size slider -->
+                            <div class="form-group">
+                                <label for="calc-ram">
+                                    <span>物理内存 (RAM)</span>
+                                    <span id="ram-value" class="calc-val">4 GB</span>
+                                </label>
+                                <input type="range" id="calc-ram" min="1" max="16" value="4" step="1" class="calc-slider">
+                            </div>
+
+                            <!-- Storage type toggle -->
+                            <div class="form-group">
+                                <label>系统盘类型</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="calc-disk" value="hdd" checked>
+                                        <span>机械硬盘 (HDD)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="calc-disk" value="ssd">
+                                        <span>固态硬盘 (SSD)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Calculate Button -->
+                            <button id="btn-calculate" class="btn btn-primary btn-block">
+                                <span>生成诊断方案</span>
+                            </button>
+                        </div>
+
+                        <!-- Result Box (Hidden initially) -->
+                        <div id="calc-result" class="calc-result-box" style="display: none;">
+                            <div class="result-header">
+                                <span class="result-badge" id="result-status">诊断建议</span>
+                                <button id="btn-reset-calc" class="close-btn" aria-label="重置">&times;</button>
+                            </div>
+                            <div class="result-content">
+                                <div class="result-item">
+                                    <strong>建议升级硬件：</strong>
+                                    <p id="result-hardware"></p>
+                                </div>
+                                <div class="result-item">
+                                    <strong>推荐系统方案：</strong>
+                                    <p id="result-os"></p>
+                                </div>
+                                <div class="result-item">
+                                    <strong>适用场景定位：</strong>
+                                    <p id="result-usage"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Author Profile Widget -->
+                    <div class="widget-card profile-widget">
+                        <div class="profile-avatar-bg"></div>
+                        <div class="profile-info">
+                            <div class="profile-avatar-container">
+                                <!-- Cute avatar showing a retro monitor icon -->
+                                <svg viewBox="0 0 60 60" class="profile-avatar">
+                                    <circle cx="30" cy="30" r="30" fill="var(--primary-light)" />
+                                    <rect x="18" y="16" width="24" height="18" rx="3" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="2"/>
+                                    <line x1="22" y1="28" x2="38" y2="28" stroke="var(--primary-dark)" stroke-width="2"/>
+                                    <path d="M25,34 L20,44 L40,44 L35,34 Z" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="2" stroke-linejoin="round" />
+                                    <circle cx="24" cy="22" r="2" fill="var(--primary)" />
+                                    <circle cx="36" cy="22" r="2" fill="var(--primary)" />
+                                </svg>
+                            </div>
+                            <h3>站长：折腾狂人小绿</h3>
+                            <p class="profile-bio">一个热爱老硬件、热衷于垃圾佬捡漏、热泪盈眶于每一次成功开机的“老机医生”。相信世上没有该报废的电脑，只有没放对地方的硬件。</p>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-num" id="stat-post-count">4</span>
+                                    <span class="stat-label">文章</span>
+                                </div>
+                                <div class="stat-item border-left">
+                                    <span class="stat-num" id="stat-comments-count">0</span>
+                                    <span class="stat-label">留言</span>
+                                </div>
+                                <div class="stat-item border-left">
+                                    <span class="stat-num">2026</span>
+                                    <span class="stat-label">起航</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 2. BLOG LIST SECTION -->
+        <section id="blog-view" class="page-view">
+            <div class="section-container">
+                <div class="view-header">
+                    <div>
+                        <h1 class="view-title">复活日记</h1>
+                        <p class="view-subtitle">用详实的步骤和生动的手记，记录每一个设备获得新生的过程。</p>
+                    </div>
+                    <!-- Search and filters -->
+                    <div class="blog-filters-container">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="blog-search" placeholder="搜索文章标题或内容...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filters Bar -->
+                <div class="categories-bar">
+                    <button class="category-btn active" data-category="all">全部文章</button>
+                    <button class="category-btn" data-category="notebook">笔记本</button>
+                    <button class="category-btn" data-category="desktop">台式机/服务器</button>
+                    <button class="category-btn" data-category="system">系统/优化</button>
+                    <button class="category-btn" data-category="others">其他改造</button>
+                </div>
+
+                <!-- Articles Grid -->
+                <div id="posts-grid" class="posts-grid">
+                    <!-- Dynamic Posts Rendered Here -->
+                </div>
+                
+                <!-- Empty Search Result State -->
+                <div id="search-empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-icon">📂</div>
+                    <h3>没有找到相关文章</h3>
+                    <p>试试其他关键词，或者随便看看吧！</p>
+                    <button id="btn-clear-search" class="btn btn-secondary">清除搜索</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. POST DETAIL SECTION -->
+        <section id="post-detail-view" class="page-view">
+            <div class="section-container article-view-container">
+                <!-- Back Button -->
+                <a href="#blog" class="back-link">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    返回文章列表
+                </a>
+
+                <article class="article-detail">
+                    <header class="article-header">
+                        <div class="article-meta-top">
+                            <span class="article-category-badge" id="detail-category">分类</span>
+                            <span class="article-date" id="detail-date">日期</span>
+                        </div>
+                        <h1 class="article-title-main" id="detail-title">文章标题加载中...</h1>
+                        <div class="article-author-info">
+                            <!-- SVG Mini Avatar -->
+                            <svg viewBox="0 0 40 40" class="mini-avatar">
+                                <circle cx="20" cy="20" r="20" fill="var(--primary-light)" />
+                                <rect x="12" y="10" width="16" height="12" rx="2" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="1.5"/>
+                                <path d="M16,22 L13,29 L27,29 L24,22 Z" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="1.5" />
+                            </svg>
+                            <span class="author-name">折腾狂人小绿</span>
+                            <span class="read-time-badge" id="detail-readtime">📖 5 分钟阅读</span>
+                        </div>
+                    </header>
+
+                    <!-- Article Banner Placeholder (CSS Stylized Image) -->
+                    <div class="article-banner" id="detail-banner">
+                        <div class="banner-overlay-text">老机复活案例手记</div>
+                    </div>
+
+                    <!-- Article Content Body -->
+                    <div class="article-content markdown-body" id="detail-content">
+                        <!-- Loaded Dynamically -->
+                    </div>
+
+                    <!-- Article Footer Interactivity -->
+                    <footer class="article-footer">
+                        <div class="article-tags" id="detail-tags">
+                            <!-- Loaded Dynamically -->
+                        </div>
+                        <div class="article-actions-row">
+                            <button id="btn-like-post" class="action-btn-like">
+                                <svg class="icon heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span>赞 (<span id="detail-likes-count">0</span>)</span>
+                            </button>
+                            <button id="btn-share-post" class="action-btn-share">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                                <span>分享链接</span>
+                            </button>
+                        </div>
+                    </footer>
+                </article>
+
+                <!-- Article Comments Section -->
+                <div class="article-comments-section">
+                    <h3 class="comments-section-title">
+                        <span>文章评论</span>
+                        <span class="comments-badge" id="detail-comments-count-badge">0 条评论</span>
+                    </h3>
+
+                    <!-- Comment Input Form -->
+                    <form id="article-comment-form" class="comment-form">
+                        <div class="form-row-grid">
+                            <div class="form-group">
+                                <label for="comment-nickname">昵称 *</label>
+                                <input type="text" id="comment-nickname" required placeholder="如何称呼您？">
+                            </div>
+                            <div class="form-group">
+                                <label>选择头像</label>
+                                <div class="avatar-selector" id="post-comment-avatars">
+                                    <!-- Dynamic Avatar Selections -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-text">评论内容 *</label>
+                            <textarea id="comment-text" required rows="4" placeholder="写下你的看法，欢迎友好交流或提出疑问..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">提交评论</button>
+                        </div>
+                    </form>
+
+                    <!-- Article Comments List -->
+                    <div id="article-comments-list" class="comments-list">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GUESTBOOK SECTION -->
+        <section id="guestbook-view" class="page-view">
+            <div class="section-container">
+                <div class="view-header text-center max-width-600">
+                    <h1 class="view-title">🌱 公共留言板</h1>
+                    <p class="view-subtitle">在这里，留下你的印记。不管是分享你复活成功的机器配置、吐槽遇到的坑，还是纯粹的友情打卡，我们都随时欢迎！</p>
+                </div>
+
+                <div class="guestbook-layout">
+                    <!-- Left: Form -->
+                    <div class="guestbook-form-card">
+                        <h3>发一条新留言</h3>
+                        <form id="guestbook-form" class="comment-form">
+                            <div class="form-group">
+                                <label for="gb-nickname">昵称 *</label>
+                                <input type="text" id="gb-nickname" required placeholder="如：拯救大兵Macbook">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>选择个性头像</label>
+                                <div class="avatar-selector" id="gb-avatars">
+                                    <!-- Populated dynamically via JS -->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gb-text">留言内容 *</label>
+                                <textarea id="gb-text" required rows="5" placeholder="想对站长或大家说点什么？关于老机复活有任何感受均可留言..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <svg class="icon-svg btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                <span>发射留言</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right: Message Wall -->
+                    <div class="guestbook-wall">
+                        <div class="wall-header">
+                            <h3>留言墙</h3>
+                            <span class="wall-count" id="gb-total-count">共 0 条留言</span>
+                        </div>
+
+                        <!-- Message List Container -->
+                        <div id="guestbook-list" class="guestbook-cards-container">
+                            <!-- Dynamic Cards -->
+                        </div>
+
+                        <!-- Empty Guestbook State -->
+                        <div id="gb-empty-state" class="empty-state" style="display: none;">
+                            <div class="empty-icon">💬</div>
+                            <h3>暂无留言</h3>
+                            <p>还没人留言呢，快来抢占沙发，写下第一句温暖的话吧！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ABOUT SECTION -->
+        <section id="about-view" class="page-view">
+            <div class="section-container article-view-container">
+                <article class="article-detail about-article">
+                    <header class="about-header text-center">
+                        <span class="about-badge">ABOUT US</span>
+                        <h1 class="view-title">关于「老机复活」</h1>
+                        <p class="view-subtitle">这不仅是一个博客，也是一场以旧换新、拒绝电子垃圾的环保折腾之旅。</p>
+                    </header>
+
+                    <div class="about-banner">
+                        <div class="about-banner-logo">
+                            <!-- Larger Retro Computer SVG logo -->
+                            <svg viewBox="0 0 100 100" class="logo-svg-large">
+                                <rect x="10" y="10" width="80" height="55" rx="12" fill="none" stroke="var(--primary)" stroke-width="5" />
+                                <rect x="18" y="18" width="64" height="39" rx="6" fill="var(--bg-base)" />
+                                <path d="M30,65 L15,90 L85,90 L70,65 Z" fill="none" stroke="var(--primary)" stroke-width="5" stroke-linejoin="round" />
+                                <path d="M50,45 C50,22 30,15 30,15 C30,15 42,28 50,45 Z" fill="var(--primary-light)" />
+                                <path d="M50,45 C50,22 70,15 70,15 C70,15 58,28 50,45 Z" fill="var(--primary-light)" />
+                                <circle cx="50" cy="45" r="4" fill="var(--primary-dark)" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="article-content markdown-body">
+                        <h2>我的初心</h2>
+                        <p>
+                            根据联合国最新的电子垃圾报告，全球每年产生数千万吨的电子垃圾，其中只有极少一部分被妥善回收。大部分依然可以工作的芯片、电路板、显示屏被遗弃，或是堆积在角落吃灰。
+                        </p>
+                        <p>
+                            <strong>「老机复活」</strong> 的建站目的，就是分享简单、实用的硬件折腾技巧。教大家用几杯咖啡的钱，升级老机器的硬件结构，安装省电、极简、轻量的替代系统，将其作为家庭 NAS、软路由、文字工作机或复古游戏终端再次利用。
+                        </p>
+                        <p>
+                            每一个被复活的设备，都是人类减缓资源消耗的一份力量。
+                        </p>
+
+                        <h2>关于站长</h2>
+                        <p>
+                            我是小绿，一名喜欢鼓捣各种二手硬件、折腾轻量级操作系统的边缘技术爱好者。我最开心的事莫过于：
+                        </p>
+                        <ul>
+                            <li>在二手市场淘到几近报废但做工精良的 ThinkPad / Macbook。</li>
+                            <li>用一个下午的时间，清灰、换硅脂、加固态，听风扇从“咆哮”到“静谧”的优雅转变。</li>
+                            <li>给只有 2G/4G 内存的旧电脑，安上 Linux 桌面，看着占用仅 300MB 的内存面板，让它重获新生。</li>
+                        </ul>
+
+                        <h2>留言交流</h2>
+                        <p>
+                            如果您在改造老旧电脑、旧智能手机的过程中遇到了不解的问题，欢迎随时到我们的 <a href="#guestbook" class="inline-link">留言板</a> 或者各文章底部的评论区进行提问与讨论。让我们一起折腾，重温纯粹的极客乐趣！
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">🌱 老机复活</span>
+                <p class="footer-tagline">用代码和螺丝刀，赋予陈旧硬件第二次春天。</p>
+            </div>
+            <div class="footer-links">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#home">回到首页</a></li>
+                    <li><a href="#blog">所有案例</a></li>
+                    <li><a href="#guestbook">公众留言</a></li>
+                    <li><a href="#about">关于小站</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 老机复活 (Old Machine Revival). Powered by HTML5 & Vanilla CSS/JS.</p>
+                <p class="eco-friendly-text">💚 绿化环境，理性升级，让闲置硬件发光发热。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Application Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
