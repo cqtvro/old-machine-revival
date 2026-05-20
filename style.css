@@ -2172,3 +2172,10 @@ button {
         height: 36px;
     }
 }
+
+/* Cusdis Widget Layout Fix */
+#cusdis_thread iframe {
+    display: block !important;
+    width: 100% !important;
+    min-height: 450px !important;
+}

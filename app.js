@@ -589,6 +589,28 @@ const App = {
                 }
             `;
             doc.head.appendChild(style);
+
+            // Direct dynamic resizer setup
+            const syncHeight = () => {
+                try {
+                    const scrollHeight = doc.body.scrollHeight;
+                    if (scrollHeight > 0) {
+                        iframe.style.height = (scrollHeight + 20) + "px";
+                    }
+                } catch (e) {}
+            };
+
+            // Run once immediately
+            syncHeight();
+
+            // Set up MutationObserver to auto-sync height whenever comments or DOM changes inside the iframe
+            if (window.MutationObserver) {
+                const observer = new MutationObserver(syncHeight);
+                observer.observe(doc.body, { childList: true, subtree: true, attributes: true });
+            } else {
+                // Fallback interval
+                setInterval(syncHeight, 500);
+            }
         };
 
         // Inject when loaded
