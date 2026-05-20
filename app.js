@@ -460,7 +460,141 @@ const App = {
             if (window.CUSDIS && typeof window.CUSDIS.setTheme === "function") {
                 window.CUSDIS.setTheme(isDark ? "dark" : "light");
             }
+            // Sync style injection
+            const iframe = cusdisThread.querySelector("iframe");
+            if (iframe) {
+                this.applyCustomIframeStyles(iframe);
+            }
         }
+    },
+
+    applyCustomIframeStyles(iframe) {
+        const injectStyles = () => {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            if (!doc) return;
+
+            // Remove existing style block if any
+            const existing = doc.getElementById("omr-custom-cusdis-style");
+            if (existing) existing.remove();
+
+            const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+            const style = doc.createElement("style");
+            style.id = "omr-custom-cusdis-style";
+            
+            // Define light / dark CSS variables inside the iframe matching our main site exactly
+            const variables = isDark ? `
+                --primary: #81c784;
+                --primary-light: #1b261d;
+                --primary-medium: #388e3c;
+                --primary-hover: #a5d6a7;
+                --bg-base: #111612;
+                --bg-card: #18201a;
+                --text-main: #edf4ec;
+                --text-muted: #b0bec5;
+                --text-light: #78909c;
+                --border: rgba(129, 199, 132, 0.12);
+                --border-strong: #37474f;
+            ` : `
+                --primary: #2e7d32;
+                --primary-light: #e8f5e9;
+                --primary-medium: #a5d6a7;
+                --primary-hover: #1b5e20;
+                --bg-base: #f7f9f6;
+                --bg-card: #ffffff;
+                --text-main: #2c3e50;
+                --text-muted: #546e7a;
+                --text-light: #90a4ae;
+                --border: rgba(46, 125, 50, 0.09);
+                --border-strong: #cfd8dc;
+            `;
+
+            style.textContent = `
+                :root {
+                    ${variables}
+                }
+                
+                /* Reset backgrounds & fonts to match site */
+                html, body {
+                    background-color: transparent !important;
+                    font-family: 'Nunito', 'Noto Sans SC', system-ui, -apple-system, sans-serif !important;
+                    color: var(--text-main) !important;
+                    font-size: 15px !important;
+                }
+
+                /* Inputs styling */
+                input, textarea {
+                    background-color: var(--bg-card) !important;
+                    border: 1px solid var(--border-strong) !important;
+                    border-radius: 8px !important;
+                    color: var(--text-main) !important;
+                    padding: 0.65rem 0.85rem !important;
+                    font-size: 0.95rem !important;
+                    outline: none !important;
+                    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+                    font-family: inherit !important;
+                }
+
+                input:focus, textarea:focus {
+                    border-color: var(--primary) !important;
+                    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important;
+                }
+
+                /* Submit Button styling */
+                button[type="submit"], .bg-blue-500 {
+                    background-color: var(--primary) !important;
+                    color: #ffffff !important;
+                    font-weight: 700 !important;
+                    font-size: 0.9rem !important;
+                    padding: 0.6rem 1.4rem !important;
+                    border-radius: 50px !important;
+                    border: none !important;
+                    cursor: pointer !important;
+                    transition: all 0.2s ease !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-family: inherit !important;
+                }
+
+                button[type="submit"]:hover, .bg-blue-500:hover {
+                    background-color: var(--primary-hover) !important;
+                    transform: translateY(-1px) !important;
+                    opacity: 0.95;
+                }
+
+                /* Meta labels & headers */
+                .text-xs, .text-sm, .text-gray-500 {
+                    color: var(--text-muted) !important;
+                }
+
+                /* Comment layout */
+                .border, .border-gray-200 {
+                    border-color: var(--border) !important;
+                }
+
+                /* Text inside comments */
+                .text-gray-900 {
+                    color: var(--text-main) !important;
+                }
+
+                /* Reply box borders */
+                .my-2 {
+                    margin-top: 0.5rem !important;
+                    margin-bottom: 0.5rem !important;
+                }
+
+                /* Customize Cusdis layout padding */
+                #root {
+                    padding: 0 !important;
+                }
+            `;
+            doc.head.appendChild(style);
+        };
+
+        // Inject when loaded
+        iframe.addEventListener("load", injectStyles);
+        // Run immediately if already loaded
+        injectStyles();
     },
 
     renderCusdis(containerId, pageId, title, urlPath) {
@@ -486,6 +620,18 @@ const App = {
         // Render
         if (window.CUSDIS && typeof window.CUSDIS.renderTo === "function") {
             window.CUSDIS.renderTo(cusdisThread);
+            
+            // Periodically check/apply custom iframe styles to handle load delay
+            let checkCount = 0;
+            const checkIframeInterval = setInterval(() => {
+                const iframe = cusdisThread.querySelector("iframe");
+                if (iframe) {
+                    this.applyCustomIframeStyles(iframe);
+                    clearInterval(checkIframeInterval);
+                }
+                checkCount++;
+                if (checkCount > 20) clearInterval(checkIframeInterval); // stop checking after 2 seconds
+            }, 100);
         }
     },
 
