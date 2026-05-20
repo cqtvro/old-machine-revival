@@ -333,23 +333,11 @@ const Store = {
     // Total stats count helper
     updateProfileStats() {
         const totalPosts = BLOG_POSTS.length;
-        
-        // Count total comments
-        const allComments = JSON.parse(localStorage.getItem("omr_comments") || "{}");
-        let commentsCount = 0;
-        for (const pid in allComments) {
-            commentsCount += allComments[pid].length;
-        }
-        
-        // Add guestbook messages count
-        const gbCount = this.getGuestbookMessages().length;
-        const totalInteractions = commentsCount + gbCount;
-
         const postNumEl = document.getElementById("stat-post-count");
         const commentNumEl = document.getElementById("stat-comments-count");
         
         if (postNumEl) postNumEl.innerText = totalPosts;
-        if (commentNumEl) commentNumEl.innerText = totalInteractions;
+        if (commentNumEl) commentNumEl.innerText = "云端";
     }
 };
 
@@ -422,9 +410,6 @@ const App = {
         this.renderFeaturedPosts();
         this.renderBlogGrid();
         
-        // Initialize Avatar Selectors
-        this.initAvatarSelectors();
-        
         // Update stats
         Store.updateProfileStats();
     },
@@ -448,6 +433,7 @@ const App = {
                 sunIcon.style.display = "none";
             }
             localStorage.setItem("omr_theme", theme);
+            this.updateCusdisTheme();
         };
 
         // Check stored theme or preferred media
@@ -463,6 +449,46 @@ const App = {
             const isDark = document.documentElement.getAttribute("data-theme") === "dark";
             setSourceTheme(isDark ? "light" : "dark");
         });
+    },
+
+    // Cusdis Dynamic Helpers
+    updateCusdisTheme() {
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        const cusdisThread = document.getElementById("cusdis_thread");
+        if (cusdisThread) {
+            cusdisThread.setAttribute("data-theme", isDark ? "dark" : "light");
+            if (window.CUSDIS && typeof window.CUSDIS.renderIp === "function") {
+                cusdisThread.innerHTML = "";
+                window.CUSDIS.renderIp(cusdisThread);
+            }
+        }
+    },
+
+    renderCusdis(containerId, pageId, title, urlPath) {
+        const container = document.getElementById(containerId);
+        const cusdisThread = document.getElementById("cusdis_thread");
+        if (!container || !cusdisThread) return;
+
+        // Move the element
+        container.appendChild(cusdisThread);
+
+        // Update attributes
+        cusdisThread.setAttribute("data-page-id", pageId);
+        cusdisThread.setAttribute("data-page-title", title);
+        
+        // Formulate correct URL
+        const fullUrl = window.location.origin + window.location.pathname + urlPath;
+        cusdisThread.setAttribute("data-page-url", fullUrl);
+
+        // Set theme
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        cusdisThread.setAttribute("data-theme", isDark ? "dark" : "light");
+
+        // Render
+        if (window.CUSDIS && typeof window.CUSDIS.renderIp === "function") {
+            cusdisThread.innerHTML = "";
+            window.CUSDIS.renderIp(cusdisThread);
+        }
     },
 
     // Router handling based on hash changes
@@ -529,7 +555,7 @@ const App = {
         if (targetViewId === "post-detail-view" && postId) {
             this.renderPostDetail(postId);
         } else if (targetViewId === "guestbook-view") {
-            this.renderGuestbook();
+            this.renderCusdis("guestbook-cusdis-container", "guestbook", "公共留言板", "#guestbook");
         }
 
         // Activate target view
@@ -678,75 +704,7 @@ const App = {
             });
         }
 
-        // Guestbook message submission
-        const gbForm = document.getElementById("guestbook-form");
-        if (gbForm) {
-            gbForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const nickname = document.getElementById("gb-nickname").value.trim();
-                const text = document.getElementById("gb-text").value.trim();
-                
-                const selectedAvatarOption = document.querySelector("#gb-avatars .avatar-option.selected");
-                const avatarIdx = selectedAvatarOption ? parseInt(selectedAvatarOption.dataset.index) : 0;
 
-                if (!nickname || !text) return;
-
-                const newMsg = {
-                    id: "gb-" + Date.now(),
-                    nickname: this.sanitizeHTML(nickname),
-                    avatarIdx: avatarIdx,
-                    text: this.sanitizeHTML(text),
-                    date: this.getFormattedDate(),
-                    likes: 0
-                };
-
-                Store.saveGuestbookMessage(newMsg);
-                
-                // Clear Form
-                document.getElementById("gb-nickname").value = "";
-                document.getElementById("gb-text").value = "";
-                this.selectAvatarOption("gb-avatars", 0);
-
-                // Re-render
-                this.renderGuestbook();
-            });
-        }
-
-        // Article comment submission
-        const commentForm = document.getElementById("article-comment-form");
-        if (commentForm) {
-            commentForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const postId = window.location.hash.replace("#blog/", "");
-                if (!postId) return;
-
-                const nickname = document.getElementById("comment-nickname").value.trim();
-                const text = document.getElementById("comment-text").value.trim();
-                
-                const selectedAvatarOption = document.querySelector("#post-comment-avatars .avatar-option.selected");
-                const avatarIdx = selectedAvatarOption ? parseInt(selectedAvatarOption.dataset.index) : 0;
-
-                if (!nickname || !text) return;
-
-                const newComment = {
-                    id: "comment-" + Date.now(),
-                    nickname: this.sanitizeHTML(nickname),
-                    avatarIdx: avatarIdx,
-                    text: this.sanitizeHTML(text),
-                    date: this.getFormattedDate()
-                };
-
-                Store.saveComment(postId, newComment);
-
-                // Reset Form
-                document.getElementById("comment-nickname").value = "";
-                document.getElementById("comment-text").value = "";
-                this.selectAvatarOption("post-comment-avatars", 0);
-
-                // Re-render comments
-                this.renderPostCommentsList(postId);
-            });
-        }
 
         // Share button helper
         const btnShare = document.getElementById("btn-share-post");
@@ -774,8 +732,6 @@ const App = {
         let html = "";
 
         featured.forEach(post => {
-            const commentsCount = Store.getComments(post.id).length;
-            
             html += `
                 <article class="post-card-simple">
                     <div class="card-meta-row">
@@ -787,7 +743,7 @@ const App = {
                     <div class="card-bottom-row">
                         <a href="#blog/${post.id}" class="card-readmore">阅读全文 &rarr;</a>
                         <div class="card-stats">
-                            <span class="card-stat-item">💬 ${commentsCount} 评论</span>
+                            <span class="card-stat-item">💬 评论</span>
                             <span class="card-stat-item">👍 ${post.likes} 赞</span>
                         </div>
                     </div>
@@ -827,8 +783,6 @@ const App = {
         let html = "";
 
         filteredPosts.forEach(post => {
-            const commentsCount = Store.getComments(post.id).length;
-            
             html += `
                 <article class="post-card">
                     <div class="post-card-banner" style="background: ${post.bannerGradient};">
@@ -844,7 +798,7 @@ const App = {
                         <div class="post-card-footer">
                             <a href="#blog/${post.id}" class="card-readmore">阅读详情 &rarr;</a>
                             <div class="card-stats">
-                                <span>💬 ${commentsCount} 评论</span>
+                                <span>💬 评论</span>
                                 <span>👍 ${post.likes} 赞</span>
                             </div>
                         </div>
@@ -903,170 +857,13 @@ const App = {
         const tagsContainer = document.getElementById("detail-tags");
         tagsContainer.innerHTML = post.tags.map(t => `<span class="tag-badge"># ${t}</span>`).join("");
 
-        // Comments List render
-        this.renderPostCommentsList(postId);
+        // Render Cusdis comments inside the article detail view
+        this.renderCusdis("article-cusdis-container", postId, post.title, "#blog/" + postId);
     },
 
-    // 4. Render Article specific comments
-    renderPostCommentsList(postId) {
-        const comments = Store.getComments(postId);
-        const countBadge = document.getElementById("detail-comments-count-badge");
-        const listContainer = document.getElementById("article-comments-list");
-
-        if (countBadge) countBadge.innerText = `${comments.length} 条评论`;
-
-        if (comments.length === 0) {
-            listContainer.innerHTML = `<div class="empty-state" style="padding: 2rem; border-radius: 8px;">
-                <p style="color: var(--text-light); margin:0;">沙发还空着，说点什么给作者一些鼓励吧！🌱</p>
-            </div>`;
-            return;
-        }
-
-        let html = "";
-        comments.forEach(comment => {
-            const avatarSvg = RETRO_AVATARS[comment.avatarIdx] || RETRO_AVATARS[0];
-            html += `
-                <div class="comment-card">
-                    <div class="comment-card-avatar">
-                        ${avatarSvg}
-                    </div>
-                    <div class="comment-card-content">
-                        <div class="comment-card-header">
-                            <span class="comment-nickname">${comment.nickname}</span>
-                            <span class="comment-date">${comment.date}</span>
-                        </div>
-                        <p class="comment-text-body">${comment.text}</p>
-                    </div>
-                </div>
-            `;
-        });
-        listContainer.innerHTML = html;
-    },
-
-    // 5. Render Message Board / Guestbook Page
-    renderGuestbook() {
-        const messages = Store.getGuestbookMessages();
-        const totalCountEl = document.getElementById("gb-total-count");
-        const listContainer = document.getElementById("guestbook-list");
-        const emptyState = document.getElementById("gb-empty-state");
-
-        if (totalCountEl) totalCountEl.innerText = `共 ${messages.length} 条留言`;
-
-        if (messages.length === 0) {
-            listContainer.innerHTML = "";
-            if (emptyState) emptyState.style.display = "block";
-            return;
-        }
-
-        if (emptyState) emptyState.style.display = "none";
-        
-        let html = "";
-        messages.forEach(msg => {
-            const avatarSvg = RETRO_AVATARS[msg.avatarIdx] || RETRO_AVATARS[0];
-            html += `
-                <div class="guestbook-card" data-id="${msg.id}">
-                    <div class="guestbook-card-avatar">
-                        ${avatarSvg}
-                    </div>
-                    <div class="guestbook-card-main">
-                        <div class="guestbook-card-meta">
-                            <span class="guestbook-card-name">${msg.nickname}</span>
-                            <span class="guestbook-card-date">${msg.date}</span>
-                        </div>
-                        <p class="guestbook-card-text">${msg.text}</p>
-                        <div class="guestbook-card-footer">
-                            <button class="btn-message-delete" onclick="App.handleDeleteMessage('${msg.id}')">删除</button>
-                            <button class="btn-message-like" onclick="App.handleLikeMessage('${msg.id}')" style="display:inline-flex; align-items:center; gap:0.25rem;">
-                                👍 <span class="like-num">${msg.likes || 0}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-
-        listContainer.innerHTML = html;
-    },
-
-    // Delete message prompt
-    handleDeleteMessage(id) {
-        if (confirm("确定要删除这条留言吗？")) {
-            Store.deleteGuestbookMessage(id);
-            this.renderGuestbook();
-        }
-    },
-
-    // Like message prompt
-    handleLikeMessage(id) {
-        Store.likeGuestbookMessage(id);
-        this.renderGuestbook();
-    },
-
-    // --- AVATAR BUBBLE SELECTORS INITIALIZATION ---
-    initAvatarSelectors() {
-        const populateSelector = (containerId) => {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            let html = "";
-            RETRO_AVATARS.forEach((svgStr, index) => {
-                const isSelected = index === 0 ? "selected" : "";
-                html += `
-                    <div class="avatar-option ${isSelected}" data-index="${index}">
-                        ${svgStr}
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-
-            // Wire selection events
-            container.querySelectorAll(".avatar-option").forEach(opt => {
-                opt.addEventListener("click", (e) => {
-                    const idx = parseInt(e.currentTarget.dataset.index);
-                    this.selectAvatarOption(containerId, idx);
-                });
-            });
-        };
-
-        populateSelector("gb-avatars");
-        populateSelector("post-comment-avatars");
-    },
-
-    selectAvatarOption(containerId, index) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        container.querySelectorAll(".avatar-option").forEach(opt => {
-            if (parseInt(opt.dataset.index) === index) {
-                opt.classList.add("selected");
-            } else {
-                opt.classList.remove("selected");
-            }
-        });
-    },
-
-    // --- HELPERS ---
-
-    // Clean text strings to avoid XSS injections
-    sanitizeHTML(str) {
-        const temp = document.createElement('div');
-        temp.textContent = str;
-        return temp.innerHTML;
-    },
-
-    // Return beautiful readable datetime
-    getFormattedDate() {
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const hr = String(now.getHours()).padStart(2, '0');
-        const min = String(now.getMinutes()).padStart(2, '0');
-        return `${y}-${m}-${d} ${hr}:${min}`;
-    }
 };
 
-// Expose handleDeleteMessage & handleLikeMessage to window object for inline onclick attributes
+// Expose App to window object
 window.App = App;
 
 // Bootstrap Application on window loaded

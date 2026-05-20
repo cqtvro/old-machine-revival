@@ -410,102 +410,33 @@
                     </footer>
                 </article>
 
-                <!-- Article Comments Section -->
                 <div class="article-comments-section">
-                    <h3 class="comments-section-title">
-                        <span>文章评论</span>
-                        <span class="comments-badge" id="detail-comments-count-badge">0 条评论</span>
-                    </h3>
-
-                    <!-- Comment Input Form -->
-                    <form id="article-comment-form" class="comment-form">
-                        <div class="form-row-grid">
-                            <div class="form-group">
-                                <label for="comment-nickname">昵称 *</label>
-                                <input type="text" id="comment-nickname" required placeholder="如何称呼您？">
-                            </div>
-                            <div class="form-group">
-                                <label>选择头像</label>
-                                <div class="avatar-selector" id="post-comment-avatars">
-                                    <!-- Dynamic Avatar Selections -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="comment-text">评论内容 *</label>
-                            <textarea id="comment-text" required rows="4" placeholder="写下你的看法，欢迎友好交流或提出疑问..."></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">提交评论</button>
-                        </div>
-                    </form>
-
-                    <!-- Article Comments List -->
-                    <div id="article-comments-list" class="comments-list">
-                        <!-- Loaded dynamically -->
+                    <h3 class="comments-section-title">文章评论</h3>
+                    <!-- Cusdis Article Container -->
+                    <div id="article-cusdis-container">
+                        <!-- Moved dynamically via JS -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. GUESTBOOK SECTION -->
         <section id="guestbook-view" class="page-view">
-            <div class="section-container">
+            <div class="section-container article-view-container">
                 <div class="view-header text-center max-width-600">
                     <h1 class="view-title">🌱 公共留言板</h1>
                     <p class="view-subtitle">在这里，留下你的印记。不管是分享你复活成功的机器配置、吐槽遇到的坑，还是纯粹的友情打卡，我们都随时欢迎！</p>
                 </div>
 
-                <div class="guestbook-layout">
-                    <!-- Left: Form -->
-                    <div class="guestbook-form-card">
-                        <h3>发一条新留言</h3>
-                        <form id="guestbook-form" class="comment-form">
-                            <div class="form-group">
-                                <label for="gb-nickname">昵称 *</label>
-                                <input type="text" id="gb-nickname" required placeholder="如：拯救大兵Macbook">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>选择个性头像</label>
-                                <div class="avatar-selector" id="gb-avatars">
-                                    <!-- Populated dynamically via JS -->
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="gb-text">留言内容 *</label>
-                                <textarea id="gb-text" required rows="5" placeholder="想对站长或大家说点什么？关于老机复活有任何感受均可留言..."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-block">
-                                <svg class="icon-svg btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                </svg>
-                                <span>发射留言</span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Right: Message Wall -->
-                    <div class="guestbook-wall">
-                        <div class="wall-header">
-                            <h3>留言墙</h3>
-                            <span class="wall-count" id="gb-total-count">共 0 条留言</span>
-                        </div>
-
-                        <!-- Message List Container -->
-                        <div id="guestbook-list" class="guestbook-cards-container">
-                            <!-- Dynamic Cards -->
-                        </div>
-
-                        <!-- Empty Guestbook State -->
-                        <div id="gb-empty-state" class="empty-state" style="display: none;">
-                            <div class="empty-icon">💬</div>
-                            <h3>暂无留言</h3>
-                            <p>还没人留言呢，快来抢占沙发，写下第一句温暖的话吧！</p>
-                        </div>
+                <!-- Cusdis Guestbook Container -->
+                <div class="guestbook-cusdis-wrapper" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);">
+                    <div id="guestbook-cusdis-container">
+                        <div id="cusdis_thread"
+                          data-host="https://cusdis.com"
+                          data-app-id="186048a7-aadf-4b6b-91f2-4b6717aabce6"
+                          data-page-id="guestbook"
+                          data-page-url="https://www.284868.xyz/#guestbook"
+                          data-page-title="公共留言板"
+                        ></div>
                     </div>
                 </div>
             </div>
@@ -592,5 +523,7 @@
 
     <!-- Main Application Logic Script -->
     <script src="app.js"></script>
+    <!-- Cusdis Comments Integration -->
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </body>
 </html>
