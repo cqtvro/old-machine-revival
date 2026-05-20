@@ -457,9 +457,8 @@ const App = {
         const cusdisThread = document.getElementById("cusdis_thread");
         if (cusdisThread) {
             cusdisThread.setAttribute("data-theme", isDark ? "dark" : "light");
-            if (window.CUSDIS && typeof window.CUSDIS.renderIp === "function") {
-                cusdisThread.innerHTML = "";
-                window.CUSDIS.renderIp(cusdisThread);
+            if (window.CUSDIS && typeof window.CUSDIS.setTheme === "function") {
+                window.CUSDIS.setTheme(isDark ? "dark" : "light");
             }
         }
     },
@@ -485,9 +484,8 @@ const App = {
         cusdisThread.setAttribute("data-theme", isDark ? "dark" : "light");
 
         // Render
-        if (window.CUSDIS && typeof window.CUSDIS.renderIp === "function") {
-            cusdisThread.innerHTML = "";
-            window.CUSDIS.renderIp(cusdisThread);
+        if (window.CUSDIS && typeof window.CUSDIS.renderTo === "function") {
+            window.CUSDIS.renderTo(cusdisThread);
         }
     },
 
