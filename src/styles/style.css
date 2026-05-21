@@ -908,7 +908,7 @@ button {
 }
 
 .profile-info {
-    padding: 0 1.5rem 2rem;
+    padding: 3rem 1.5rem 2rem;
     position: relative;
 }
 
@@ -932,7 +932,7 @@ button {
 }
 
 .profile-info h3 {
-    margin-top: 3rem;
+    margin-top: 0;
     font-size: 1.2rem;
     font-weight: 800;
 }
