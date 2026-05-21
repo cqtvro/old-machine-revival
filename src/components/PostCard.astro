@@ -1,0 +1,37 @@
+---
+// PostCard.astro - Blog post card component for listing pages
+interface Props {
+    slug: string;
+    title: string;
+    summary: string;
+    category: string;
+    categoryName: string;
+    date: string;
+    likes: number;
+    bannerGradient: string;
+    tags: string[];
+}
+
+const { slug, title, summary, categoryName, date, likes, bannerGradient, tags } = Astro.props;
+---
+
+<article class="post-card" data-category={Astro.props.category} data-title={title.toLowerCase()} data-summary={summary.toLowerCase()} data-tags={tags.join(' ').toLowerCase()}>
+    <div class="post-card-banner" style={`background: ${bannerGradient};`}>
+        <div class="card-banner-overlay"></div>
+        <div class="card-meta-row">
+            <span class="card-tag">{categoryName}</span>
+            <span class="card-date">{date}</span>
+        </div>
+    </div>
+    <div class="post-card-body">
+        <h2><a href={`/blog/${slug}`}>{title}</a></h2>
+        <p>{summary}</p>
+        <div class="post-card-footer">
+            <a href={`/blog/${slug}`} class="card-readmore">阅读详情 &rarr;</a>
+            <div class="card-stats">
+                <span>💬 评论</span>
+                <span>👍 {likes} 赞</span>
+            </div>
+        </div>
+    </div>
+</article>

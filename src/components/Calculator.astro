@@ -1,0 +1,166 @@
+---
+// Calculator.astro - Hardware diagnostic calculator widget
+---
+
+<div class="widget-card calc-widget" id="calculator-widget">
+    <div class="widget-header">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+            <line x1="9" y1="22" x2="9" y2="16"></line>
+            <line x1="15" y1="22" x2="15" y2="16"></line>
+            <line x1="12" y1="16" x2="12" y2="22"></line>
+            <line x1="8" y1="6" x2="16" y2="6"></line>
+            <line x1="8" y1="10" x2="16" y2="10"></line>
+        </svg>
+        <h3>老机复活指南计算器</h3>
+    </div>
+    <p class="widget-intro">拖动滑块匹配您的老设备配置，一键获取专属升级方案和适用系统！</p>
+
+    <div class="calc-form">
+        <div class="form-group">
+            <label for="calc-cpu">
+                <span>CPU 核心数</span>
+                <span id="cpu-value" class="calc-val">双核 (2 Cores)</span>
+            </label>
+            <input type="range" id="calc-cpu" min="1" max="8" value="2" step="1" class="calc-slider">
+        </div>
+        <div class="form-group">
+            <label for="calc-ram">
+                <span>物理内存 (RAM)</span>
+                <span id="ram-value" class="calc-val">4 GB</span>
+            </label>
+            <input type="range" id="calc-ram" min="1" max="16" value="4" step="1" class="calc-slider">
+        </div>
+        <div class="form-group">
+            <label>系统盘类型</label>
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="calc-disk" value="hdd" checked>
+                    <span>机械硬盘 (HDD)</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="calc-disk" value="ssd">
+                    <span>固态硬盘 (SSD)</span>
+                </label>
+            </div>
+        </div>
+        <button id="btn-calculate" class="btn btn-primary btn-block">
+            <span>生成诊断方案</span>
+        </button>
+    </div>
+
+    <div id="calc-result" class="calc-result-box" style="display: none;">
+        <div class="result-header">
+            <span class="result-badge" id="result-status">诊断建议</span>
+            <button id="btn-reset-calc" class="close-btn" aria-label="重置">&times;</button>
+        </div>
+        <div class="result-content">
+            <div class="result-item">
+                <strong>建议升级硬件：</strong>
+                <p id="result-hardware"></p>
+            </div>
+            <div class="result-item">
+                <strong>推荐系统方案：</strong>
+                <p id="result-os"></p>
+            </div>
+            <div class="result-item">
+                <strong>适用场景定位：</strong>
+                <p id="result-usage"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function getCalculatorAdvice(cpu: number, ram: number, disk: string) {
+    let advice = { hardware: '', os: '', usage: '' };
+    if (cpu <= 2) {
+        if (ram <= 2) {
+            advice.hardware = disk === 'hdd'
+                ? '💡 极其建议升级一块 120G SATA 固态硬盘（仅需几十元），并尽量加内存至 4GB。否则系统读写会是毁灭性的瓶颈。'
+                : '💡 固态硬盘已到位，CPU和内存是瓶颈，无需购买昂贵配件，不建议加装高规格硬件。';
+            advice.os = '🐧 推荐极轻量级 Linux 方案：**AntiX Linux**、**Puppy Linux** 或 **Tiny Core**。切勿安装 Windows 10/11。';
+            advice.usage = '📺 **轻量化场景**：老歌播放机、命令行Linux练手、单机红白机模拟器、轻量软路由（如 OpenWrt）。';
+        } else {
+            advice.hardware = disk === 'hdd'
+                ? '💡 必须升级固态硬盘 (SSD) 作为系统盘。当前内存 (' + ram + 'G) 尚可，但机械硬盘会拖垮整个体验。'
+                : '💡 当前配置 (' + ram + 'G 内存 + 固态硬盘) 较为均衡。可考虑给风扇清灰并重涂硅脂。';
+            if (ram < 8) {
+                advice.os = '🐧 推荐轻量级图形系统：**Linux Mint (XFCE Edition)**、**ChromeOS Flex** 或 **Debian + LXDE**。';
+                advice.usage = '✍️ **文字工作站/影音机**：轻度网页浏览、文档输入 (Markdown/WPS)、老游戏模拟器 (PPSSPP/RetroArch)。';
+            } else {
+                advice.os = '🐧 推荐主流 Linux：**Linux Mint (Cinnamon)** 或轻量化定制版 Windows 10 LTSC 2021。';
+                advice.usage = '💻 **日常备用机**：上网课、儿童编程学习、文档码字、作为家庭旁路由/简易文件共享服务器。';
+            }
+        }
+    } else {
+        if (ram < 8) {
+            advice.hardware = '💡 强烈建议将内存升级到 **8GB 或 16GB** 双通道，这能大幅提升多任务切换流畅度。另外必须确保系统安装在固态硬盘 (SSD) 上。';
+            advice.os = '🐧 **Linux Mint (Cinnamon)**、**Ubuntu LTS**，或 **ChromeOS Flex**；Windows 用户推荐 **Windows 10 LTSC**。';
+            advice.usage = '🖥️ **轻度办公与编程**：网页浏览、Office 办公三件套、VS Code 代码编写、运行简易 Docker 容器。';
+        } else {
+            advice.hardware = disk === 'hdd'
+                ? '💡 系统万事俱备，唯一短板是机械硬盘。**请务必换上固态硬盘 (SSD)**，你会感觉电脑速度瞬间翻倍！'
+                : '🌟 硬件配置完美！对于老机复活而言，当前性能完全溢出。仅需做日常清灰保养即可。';
+            advice.os = '💻 **Windows 10 22H2 / LTSC**，或主流 Linux 发行版（如 **Ubuntu**、**Manjaro**）；老Mac可通过 OCLP 安装 **macOS Ventura**。';
+            advice.usage = '🏠 **高性能用途**：家庭 7x24 小时低功耗 NAS 服务器、家用影音多媒体中心 (Kodi/Plex)、Linux 编程学习机、智能家居 Home Assistant 控制中心。';
+        }
+    }
+    return advice;
+}
+
+function initCalculator() {
+    const cpuSlider = document.getElementById('calc-cpu') as HTMLInputElement;
+    const ramSlider = document.getElementById('calc-ram') as HTMLInputElement;
+    const btnCalc = document.getElementById('btn-calculate');
+    const btnResetCalc = document.getElementById('btn-reset-calc');
+
+    if (cpuSlider) {
+        cpuSlider.addEventListener('input', (e) => {
+            const val = parseInt((e.target as HTMLInputElement).value);
+            const labels = ['单核 (1 Core)', '双核 (2 Cores)', '三核 (3 Cores)', '四核 (4 Cores)', '五核 (5 Cores)', '六核 (6 Cores)', '七核 (7 Cores)', '八核 (8 Cores)'];
+            const el = document.getElementById('cpu-value');
+            if (el) el.innerText = labels[val - 1] || `${val} Cores`;
+        });
+    }
+    if (ramSlider) {
+        ramSlider.addEventListener('input', (e) => {
+            const el = document.getElementById('ram-value');
+            if (el) el.innerText = `${(e.target as HTMLInputElement).value} GB`;
+        });
+    }
+    if (btnCalc) {
+        btnCalc.addEventListener('click', () => {
+            const cpuVal = parseInt((document.getElementById('calc-cpu') as HTMLInputElement).value);
+            const ramVal = parseInt((document.getElementById('calc-ram') as HTMLInputElement).value);
+            const diskVal = (document.querySelector('input[name="calc-disk"]:checked') as HTMLInputElement).value;
+            const advice = getCalculatorAdvice(cpuVal, ramVal, diskVal);
+            const hw = document.getElementById('result-hardware');
+            const os = document.getElementById('result-os');
+            const us = document.getElementById('result-usage');
+            if (hw) hw.innerText = advice.hardware;
+            if (os) os.innerHTML = advice.os;
+            if (us) us.innerText = advice.usage;
+            const result = document.getElementById('calc-result');
+            if (result) {
+                result.style.display = 'block';
+                result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    }
+    if (btnResetCalc) {
+        btnResetCalc.addEventListener('click', () => {
+            const result = document.getElementById('calc-result');
+            if (result) result.style.display = 'none';
+            const cpu = document.getElementById('calc-cpu') as HTMLInputElement;
+            const ram = document.getElementById('calc-ram') as HTMLInputElement;
+            if (cpu) { cpu.value = '2'; cpu.dispatchEvent(new Event('input')); }
+            if (ram) { ram.value = '4'; ram.dispatchEvent(new Event('input')); }
+            const hdd = document.querySelector('input[name="calc-disk"][value="hdd"]') as HTMLInputElement;
+            if (hdd) hdd.checked = true;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initCalculator);
+</script>

@@ -1,0 +1,18 @@
+# Node dependencies
+node_modules/
+
+# Astro build and cache directories
+.astro/
+dist/
+
+# IDE / Editor configuration
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# System files
+.DS_Store
+Thumbs.db

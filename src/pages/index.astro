@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Calculator from '../components/Calculator.astro';
+import ProfileCard from '../components/ProfileCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const featuredPosts = sortedPosts.slice(0, 3);
+---
+
+<Layout title="老机复活 | 让旧设备重新绽放光芒" currentPath="/">
+    <section id="home-view" class="page-view">
+        <!-- Hero Banner -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <span class="hero-badge">🌱 让闲置硬件再次起舞</span>
+                <h1 class="hero-title">拯救旧设备，重启新可能</h1>
+                <p class="hero-desc">
+                    在这个不断催促我们更新换代的时代，我们选择慢下来。一台十年前的笔记本、一部吃灰的主机，只需要适当的维护、合理的升级与轻量化的系统，就能在新的领域重新焕发光彩。这是属于折腾者的浪漫，也是送给地球的一份微薄礼物。
+                </p>
+                <div class="hero-buttons">
+                    <a href="/blog" class="btn btn-primary">探索复活案例</a>
+                    <a href="#calculator-anchor" class="btn btn-secondary">配置诊断工具</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="retro-machine-artwork">
+                    <div class="monitor-wrapper">
+                        <div class="screen-glow"></div>
+                        <div class="monitor-frame">
+                            <div class="monitor-screen">
+                                <div class="terminal-text">
+                                    <p>&gt; sudo apt update</p>
+                                    <p>&gt; Upgrading hardware...</p>
+                                    <p>&gt; System status: OK</p>
+                                    <p class="blink-cursor">&gt; 🌱 Ready to revive!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="monitor-neck"></div>
+                        <div class="monitor-base"></div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-item item-ram">📼 RAM</div>
+                        <div class="floating-item item-ssd">💾 SSD</div>
+                        <div class="floating-item item-tux">🐧 Linux</div>
+                        <div class="floating-item item-leaf">🍃 CPU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="section-container">
+            <h2 class="section-title text-center">核心折腾理念</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon bg-green-light">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>硬件焕新</h3>
+                    <p>清理灰尘、重涂硅脂、升级固态硬盘（SSD）与加装物理内存，用最低成本突破陈旧木桶的最短板。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon bg-orange-light">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>轻量系统</h3>
+                    <p>告别臃肿的 Windows 11，拥抱 Linux Mint、ChromeOS Flex 或轻量定制版系统，让 CPU 重新自由呼吸。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon bg-blue-light">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                    </div>
+                    <h3>场景再造</h3>
+                    <p>旧设备不只是"备用机"，还能变成客厅高清盒子、家用轻量 NAS、智能时钟、软路由等全新职能硬件。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Content Layout -->
+        <div class="section-container home-layout">
+            <div class="main-column">
+                <div class="column-header">
+                    <h2 class="sub-section-title">最新复活日记</h2>
+                    <a href="/blog" class="link-more">查看全部文章 &rarr;</a>
+                </div>
+                <div class="posts-list-simple">
+                    {featuredPosts.map(post => (
+                        <article class="post-card-simple">
+                            <div class="card-meta-row">
+                                <span class="card-tag">{post.data.categoryName}</span>
+                                <span class="card-date">{post.data.date}</span>
+                            </div>
+                            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+                            <p>{post.data.summary}</p>
+                            <div class="card-bottom-row">
+                                <a href={`/blog/${post.slug}`} class="card-readmore">阅读全文 &rarr;</a>
+                                <div class="card-stats">
+                                    <span class="card-stat-item">💬 评论</span>
+                                    <span class="card-stat-item">👍 {post.data.likes} 赞</span>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+
+            <aside class="sidebar-column">
+                <div id="calculator-anchor"></div>
+                <Calculator />
+                <ProfileCard postCount={allPosts.length} />
+            </aside>
+        </div>
+    </section>
+</Layout>

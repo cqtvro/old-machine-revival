@@ -1,0 +1,284 @@
+---
+interface Props {
+    title?: string;
+    description?: string;
+    currentPath?: string;
+}
+
+const {
+    title = '老机复活 | 让旧设备重新绽放光芒',
+    description = '老机复活是一个专注于旧电脑、旧手机、老游戏机等硬件的清理、升级、改装与轻量级系统优化的个人博客。用爱与技术赋予老硬件新的生命。',
+    currentPath = '/',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6537091427532367" crossorigin="anonymous"></script>
+    <!-- Inline theme init to prevent FOUC (flash of unstyled content) -->
+    <script is:inline>
+        (function() {
+            var theme = localStorage.getItem('omr_theme');
+            if (!theme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Top Progress Bar -->
+    <div id="page-progress" class="page-progress"></div>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="/" class="logo" id="logo-link">
+                <svg viewBox="0 0 100 100" class="logo-svg" aria-hidden="true">
+                    <rect x="15" y="15" width="70" height="50" rx="10" fill="none" stroke="currentColor" stroke-width="6" />
+                    <line x1="25" y1="50" x2="75" y2="50" stroke="currentColor" stroke-dasharray="2,2" stroke-width="2" />
+                    <path d="M35,65 L25,85 L75,85 L65,65 Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" />
+                    <path d="M50,45 C50,30 35,25 35,25 C35,25 45,35 50,45 Z" fill="currentColor" />
+                    <path d="M50,45 C50,30 65,25 65,25 C65,25 55,35 50,45 Z" fill="currentColor" />
+                    <circle cx="50" cy="45" r="3" fill="currentColor" />
+                </svg>
+                <div class="logo-text">
+                    <span class="brand-title">老机复活</span>
+                    <span class="brand-subtitle">Old Machine Revival</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav" aria-label="主导航">
+                <ul>
+                    <li><a href="/" class:list={["nav-item", { active: currentPath === '/' }]} id="nav-home">首页</a></li>
+                    <li><a href="/blog" class:list={["nav-item", { active: currentPath.startsWith('/blog') }]} id="nav-blog">精选博客</a></li>
+                    <li><a href="/guestbook" class:list={["nav-item", { active: currentPath === '/guestbook' }]} id="nav-guestbook">留言板</a></li>
+                    <li><a href="/about" class:list={["nav-item", { active: currentPath === '/about' }]} id="nav-about">关于本站</a></li>
+                </ul>
+            </nav>
+
+            <!-- Theme Toggle & Action -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="切换深色模式">
+                    <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <a href="/#calculator-anchor" class="calc-shortcut-btn">复活指南</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav class="mobile-nav-drawer" id="mobile-nav" aria-label="移动端导航" style="display: none;">
+        <ul>
+            <li><a href="/" class:list={["mobile-nav-item", { active: currentPath === '/' }]}>首页</a></li>
+            <li><a href="/blog" class:list={["mobile-nav-item", { active: currentPath.startsWith('/blog') }]}>精选博客</a></li>
+            <li><a href="/guestbook" class:list={["mobile-nav-item", { active: currentPath === '/guestbook' }]}>留言板</a></li>
+            <li><a href="/about" class:list={["mobile-nav-item", { active: currentPath === '/about' }]}>关于本站</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">🌱 老机复活</span>
+                <p class="footer-tagline">用代码和螺丝刀，赋予陈旧硬件第二次春天。</p>
+            </div>
+            <div class="footer-links">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="/">回到首页</a></li>
+                    <li><a href="/blog">所有案例</a></li>
+                    <li><a href="/guestbook">公众留言</a></li>
+                    <li><a href="/about">关于小站</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 老机复活 (Old Machine Revival). Powered by Astro &amp; Vanilla CSS.</p>
+                <p class="eco-friendly-text">💚 绿化环境，理性升级，让闲置硬件发光发热。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Scripts -->
+    <script>
+        // Theme Toggle
+        function initTheme() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (!themeToggle) return;
+            const moonIcon = themeToggle.querySelector('.moon-icon') as HTMLElement;
+            const sunIcon = themeToggle.querySelector('.sun-icon') as HTMLElement;
+
+            function setTheme(theme: string) {
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    if (moonIcon) moonIcon.style.display = 'none';
+                    if (sunIcon) sunIcon.style.display = 'block';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    if (moonIcon) moonIcon.style.display = 'block';
+                    if (sunIcon) sunIcon.style.display = 'none';
+                }
+                localStorage.setItem('omr_theme', theme);
+                updateCusdisTheme();
+            }
+
+            // Initialize icon state based on current theme
+            const currentTheme = localStorage.getItem('omr_theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                setTheme(isDark ? 'light' : 'dark');
+            });
+        }
+
+        // Cusdis theme sync
+        function updateCusdisTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const cusdisThread = document.getElementById('cusdis_thread');
+            if (cusdisThread) {
+                cusdisThread.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                if ((window as any).CUSDIS && typeof (window as any).CUSDIS.setTheme === 'function') {
+                    (window as any).CUSDIS.setTheme(isDark ? 'dark' : 'light');
+                }
+                const iframe = cusdisThread.querySelector('iframe');
+                if (iframe) {
+                    applyCustomIframeStyles(iframe as HTMLIFrameElement);
+                }
+            }
+        }
+
+        // Cusdis iframe style injection (matches site theme)
+        function applyCustomIframeStyles(iframe: HTMLIFrameElement) {
+            const injectStyles = () => {
+                const doc = iframe.contentDocument || iframe.contentWindow?.document;
+                if (!doc) return;
+                const existing = doc.getElementById('omr-custom-cusdis-style');
+                if (existing) existing.remove();
+
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const style = doc.createElement('style');
+                style.id = 'omr-custom-cusdis-style';
+
+                const variables = isDark ? `
+                    --primary: #81c784; --primary-light: #1b261d; --primary-medium: #388e3c;
+                    --primary-hover: #a5d6a7; --bg-base: #111612; --bg-card: #18201a;
+                    --text-main: #edf4ec; --text-muted: #b0bec5; --text-light: #78909c;
+                    --border: rgba(129, 199, 132, 0.12); --border-strong: #37474f;
+                ` : `
+                    --primary: #2e7d32; --primary-light: #ebf5ec; --primary-medium: #a5d6a7;
+                    --primary-hover: #1b5e20; --bg-base: #f7f9f6; --bg-card: #ffffff;
+                    --text-main: #2c3e50; --text-muted: #546e7a; --text-light: #90a4ae;
+                    --border: rgba(46, 125, 50, 0.09); --border-strong: #cfd8dc;
+                `;
+
+                style.textContent = `
+                    :root { ${variables} }
+                    html, body { background-color: transparent !important; font-family: 'Nunito', 'Noto Sans SC', system-ui, sans-serif !important; color: var(--text-main) !important; font-size: 15px !important; }
+                    input, textarea { background-color: var(--bg-card) !important; border: 1px solid var(--border-strong) !important; border-radius: 8px !important; color: var(--text-main) !important; padding: 0.65rem 0.85rem !important; font-size: 0.95rem !important; outline: none !important; transition: border-color 0.2s ease, box-shadow 0.2s ease !important; font-family: inherit !important; }
+                    input:focus, textarea:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important; }
+                    button[type="submit"], .bg-blue-500 { background-color: var(--primary) !important; color: #ffffff !important; font-weight: 700 !important; font-size: 0.9rem !important; padding: 0.6rem 1.4rem !important; border-radius: 50px !important; border: none !important; cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; font-family: inherit !important; }
+                    button[type="submit"]:hover, .bg-blue-500:hover { background-color: var(--primary-hover) !important; transform: translateY(-1px) !important; opacity: 0.95; }
+                    .text-xs, .text-sm, .text-gray-500 { color: var(--text-muted) !important; }
+                    .border, .border-gray-200 { border-color: var(--border) !important; }
+                    .text-gray-900 { color: var(--text-main) !important; }
+                    .my-2 { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+                    #root { padding: 0 !important; }
+                `;
+                doc.head.appendChild(style);
+
+                // Auto-resize iframe height
+                const syncHeight = () => {
+                    try {
+                        const scrollHeight = doc.body.scrollHeight;
+                        if (scrollHeight > 0) iframe.style.height = (scrollHeight + 20) + 'px';
+                    } catch (e) {}
+                };
+                syncHeight();
+                if (window.MutationObserver) {
+                    const observer = new MutationObserver(syncHeight);
+                    observer.observe(doc.body, { childList: true, subtree: true, attributes: true });
+                }
+            };
+            iframe.addEventListener('load', injectStyles);
+            injectStyles();
+        }
+
+        // Mobile Navigation
+        function initMobileNav() {
+            const mobileToggle = document.querySelector('.mobile-nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            if (mobileToggle && mobileNav) {
+                mobileToggle.addEventListener('click', () => {
+                    const isOpen = mobileToggle.classList.toggle('open');
+                    mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    (mobileNav as HTMLElement).style.display = isOpen ? 'block' : 'none';
+                });
+            }
+        }
+
+        // Expose for use by page-specific scripts
+        (window as any).applyCustomIframeStyles = applyCustomIframeStyles;
+        (window as any).updateCusdisTheme = updateCusdisTheme;
+
+        // Init on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMobileNav();
+        });
+
+        // Re-init on Astro page transitions (View Transitions)
+        document.addEventListener('astro:after-swap', () => {
+            initTheme();
+            initMobileNav();
+        });
+    </script>
+
+    <!-- Cusdis Comments Script -->
+    <script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+</body>
+</html>
+
+<style is:global>
+    @import '../styles/style.css';
+</style>

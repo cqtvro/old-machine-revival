@@ -1,11 +1,14 @@
 {
   "name": "old-machine-revival-blog",
-  "version": "1.0.0",
-  "description": "老机复活博客小站 - 清新风格，带硬件诊断计算器与留言板功能",
+  "version": "2.0.0",
+  "description": "老机复活博客小站 - Astro 静态网站架构",
+  "type": "module",
   "scripts": {
-    "dev": "http-server ./ -p 3000 -o"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
-  "devDependencies": {
-    "http-server": "^14.1.1"
+  "dependencies": {
+    "astro": "^5.8.0"
   }
 }

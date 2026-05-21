@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="关于「老机复活」 | 让旧设备重新绽放光芒" description="老机复活的建站目的与站长简介。这不仅是一个博客，也是一场以旧换新、拒绝电子垃圾的环保折腾之旅。" currentPath="/about">
+    <section id="about-view" class="page-view">
+        <div class="section-container article-view-container">
+            <article class="article-detail about-article">
+                <header class="about-header text-center">
+                    <span class="about-badge">ABOUT US</span>
+                    <h1 class="view-title">关于「老机复活」</h1>
+                    <p class="view-subtitle">这不仅是一个博客，也是一场以旧换新、拒绝电子垃圾的环保折腾之旅。</p>
+                </header>
+
+                <div class="about-banner">
+                    <div class="about-banner-logo">
+                        <!-- Larger Retro Computer SVG logo -->
+                        <svg viewBox="0 0 100 100" class="logo-svg-large">
+                            <rect x="10" y="10" width="80" height="55" rx="12" fill="none" stroke="var(--primary)" stroke-width="5" />
+                            <rect x="18" y="18" width="64" height="39" rx="6" fill="var(--bg-base)" />
+                            <path d="M30,65 L15,90 L85,90 L70,65 Z" fill="none" stroke="var(--primary)" stroke-width="5" stroke-linejoin="round" />
+                            <path d="M50,45 C50,22 30,15 30,15 C30,15 42,28 50,45 Z" fill="var(--primary-light)" />
+                            <path d="M50,45 C50,22 70,15 70,15 C70,15 58,28 50,45 Z" fill="var(--primary-light)" />
+                            <circle cx="50" cy="45" r="4" fill="var(--primary-dark)" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="article-content markdown-body">
+                    <h2>我的初心</h2>
+                    <p>
+                        根据联合国最新的电子垃圾报告，全球每年产生数千万吨的电子垃圾，其中只有极少一部分被妥善回收。大部分依然可以工作的芯片、电路板、显示屏被遗弃，或是堆积在角落吃灰。
+                    </p>
+                    <p>
+                        <strong>「老机复活」</strong> 的建站目的，就是分享简单、实用的硬件折腾技巧。教大家用几杯咖啡的钱，升级老机器的硬件结构，安装省电、极简、轻量的替代系统，将其作为家庭 NAS、软路由、文字工作机或复古游戏终端再次利用。
+                    </p>
+                    <p>
+                        每一个被复活的设备，都是人类减缓资源消耗的一份力量。
+                    </p>
+
+                    <h2>关于站长</h2>
+                    <p>
+                        我是小绿，一名喜欢鼓捣各种二手硬件、折腾轻量级操作系统的边缘技术爱好者。我最开心的事莫过于：
+                    </p>
+                    <ul>
+                        <li>在二手市场淘到几近报废但做工精良的 ThinkPad / Macbook。</li>
+                        <li>用一个下午的时间，清灰、换硅脂、加固态，听风扇从“咆哮”到“静谧”的优雅转变。</li>
+                        <li>给只有 2G/4G 内存的旧电脑，安上 Linux 桌面，看着占用仅 300MB 的内存面板，让它重获新生。</li>
+                    </ul>
+
+                    <h2>留言交流</h2>
+                    <p>
+                        如果您在改造老旧电脑、旧智能手机的过程中遇到了不解的问题，欢迎随时到我们的 <a href="/guestbook" class="inline-link">留言板</a> 或者各文章底部的评论区进行提问与讨论。让我们一起折腾，重温纯粹的极客乐趣！
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+</Layout>

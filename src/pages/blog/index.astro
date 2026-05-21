@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Layout title="复活日记 | 老机复活" currentPath="/blog">
+    <section id="blog-view" class="page-view">
+        <div class="section-container">
+            <div class="view-header">
+                <div>
+                    <h1 class="view-title">复活日记</h1>
+                    <p class="view-subtitle">用详实的步骤和生动的手记，记录每一个设备获得新生的过程。</p>
+                </div>
+                <div class="blog-filters-container">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="blog-search" placeholder="搜索文章标题或内容...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="categories-bar">
+                <button class="category-btn active" data-category="all">全部文章</button>
+                <button class="category-btn" data-category="notebook">笔记本</button>
+                <button class="category-btn" data-category="desktop">台式机/服务器</button>
+                <button class="category-btn" data-category="system">系统/优化</button>
+                <button class="category-btn" data-category="others">其他改造</button>
+            </div>
+
+            <!-- Articles Grid -->
+            <div id="posts-grid" class="posts-grid">
+                {sortedPosts.map(post => (
+                    <PostCard
+                        slug={post.slug}
+                        title={post.data.title}
+                        summary={post.data.summary}
+                        category={post.data.category}
+                        categoryName={post.data.categoryName}
+                        date={post.data.date}
+                        likes={post.data.likes}
+                        bannerGradient={post.data.bannerGradient}
+                        tags={post.data.tags}
+                    />
+                ))}
+            </div>
+
+            <!-- Empty State -->
+            <div id="search-empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">📂</div>
+                <h3>没有找到相关文章</h3>
+                <p>试试其他关键词，或者随便看看吧！</p>
+                <button id="btn-clear-search" class="btn btn-secondary">清除搜索</button>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+function initBlogFilters() {
+    const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+    const postsGrid = document.getElementById('posts-grid');
+    const emptyState = document.getElementById('search-empty-state');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const clearBtn = document.getElementById('btn-clear-search');
+
+    if (!postsGrid) return;
+    const allCards = Array.from(postsGrid.querySelectorAll('.post-card')) as HTMLElement[];
+
+    function filterPosts() {
+        const query = searchInput?.value.trim().toLowerCase() || '';
+        const activeCat = document.querySelector('.category-btn.active')?.getAttribute('data-category') || 'all';
+        let visibleCount = 0;
+
+        allCards.forEach(card => {
+            const category = card.getAttribute('data-category') || '';
+            const title = card.getAttribute('data-title') || '';
+            const summary = card.getAttribute('data-summary') || '';
+            const tags = card.getAttribute('data-tags') || '';
+
+            const matchesCat = activeCat === 'all' || category === activeCat;
+            const matchesSearch = !query || title.includes(query) || summary.includes(query) || tags.includes(query);
+
+            if (matchesCat && matchesSearch) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (emptyState) {
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', filterPosts);
+    }
+
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterPosts();
+        });
+    });
+
+    if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filterPosts();
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initBlogFilters);
+</script>

@@ -1,0 +1,39 @@
+---
+// ProfileCard.astro - Sidebar profile widget
+interface Props {
+    postCount: number;
+}
+const { postCount } = Astro.props;
+---
+
+<div class="widget-card profile-widget">
+    <div class="profile-avatar-bg"></div>
+    <div class="profile-info">
+        <div class="profile-avatar-container">
+            <svg viewBox="0 0 60 60" class="profile-avatar">
+                <circle cx="30" cy="30" r="30" fill="var(--primary-light)" />
+                <rect x="18" y="16" width="24" height="18" rx="3" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="2"/>
+                <line x1="22" y1="28" x2="38" y2="28" stroke="var(--primary-dark)" stroke-width="2"/>
+                <path d="M25,34 L20,44 L40,44 L35,34 Z" fill="var(--bg-card)" stroke="var(--primary-dark)" stroke-width="2" stroke-linejoin="round" />
+                <circle cx="24" cy="22" r="2" fill="var(--primary)" />
+                <circle cx="36" cy="22" r="2" fill="var(--primary)" />
+            </svg>
+        </div>
+        <h3>站长：折腾狂人小绿</h3>
+        <p class="profile-bio">一个热爱老硬件、热衷于垃圾佬捡漏、热泪盈眶于每一次成功开机的"老机医生"。相信世上没有该报废的电脑，只有没放对地方的硬件。</p>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-num">{postCount}</span>
+                <span class="stat-label">文章</span>
+            </div>
+            <div class="stat-item border-left">
+                <span class="stat-num">云端</span>
+                <span class="stat-label">留言</span>
+            </div>
+            <div class="stat-item border-left">
+                <span class="stat-num">2026</span>
+                <span class="stat-label">起航</span>
+            </div>
+        </div>
+    </div>
+</div>
