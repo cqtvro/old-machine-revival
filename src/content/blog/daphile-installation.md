@@ -75,8 +75,8 @@ Daphile 系统自带了一把“尚方宝剑”，可以在启动时直接把旧
 
    * 选择第一项 `1. Continue` 后回车，系统会自动继续启动，开始在屏幕上跑代码。
 
-> 📷 **【图片 5 待上传】**
-> *系统保存完清理配置后会自动继续启动并加载内核，屏幕上会快速滚动大量白色的 Linux 启动代码。*
+![Daphile 系统启动连接中](./images/daphile-installation/image5.png)
+*图注：系统选择 Continue 后会自动启动加载，若尚未建立网络连接会显示 Waiting for Network Connection... 状态。*
 
 ---
 
@@ -84,8 +84,8 @@ Daphile 系统自带了一把“尚方宝剑”，可以在启动时直接把旧
 
 当屏幕上的代码跑完，变黑，最后停留在：
 
-> 📷 **【图片 6 待上传】**
-> *启动完成后的黑屏状态，底部会显示系统当前的局域网 IP 地址，形如 `IP Address: 192.168.x.xxx`。*
+![Daphile 启动就绪并显示 IP 地址](./images/daphile-installation/image6.png)
+*图注：系统启动成功，屏幕底部会显示 Ready. Use the Web Interface 并附带系统的 IP 地址。*
 
 看到 `IP Address: 192.168.x.xxx` 后，说明系统已经在 U 盘里成功运行起来了。
 
@@ -105,14 +105,14 @@ Daphile 系统自带了一把“尚方宝剑”，可以在启动时直接把旧
 
 2. **进入设置**：看到橘红色界面后，点击左侧导航栏下方的 **Settings**（小齿轮图标）。
 
-> 📷 **【图片 8 待上传】**
-> *点击左侧菜单栏最下方的 Settings（小齿轮图标），进入系统设置页面。*
+![Daphile 进入设置界面](./images/daphile-installation/image8.png)
+*图注：点击左侧的 Settings 齿轮图标，即可在主界面右侧加载出系统设置面板。*
 
 3. **找到固件选项**：向下拉，找到 **System Firmware**（系统固件）。
 4. **选择硬盘**：
 
-> 📷 **【图片 9 待上传】**
-> *向下拉找到 System Firmware 选项，展开 New Installation 下拉框，选择你刚刚擦除的硬盘。*
+![在 New Installation 中选择目标硬盘](./images/daphile-installation/image9.png)
+*图注：在 System Firmware 的 New Installation 下拉菜单中，用鼠标选择我们刚刚擦除洗净的旧电脑硬盘。*
 
    * 在 **New Installation** 的下拉框里，你应该能看到刚才被我们用 F1 洗白的那块硬盘（通常显示为 `ATA...` 或具体的硬盘品牌名）。
    * （*注意：如果没有执行 F1 这一步，这里经常是空的，或者根本找不到硬盘*）。
@@ -129,8 +129,8 @@ Daphile 系统自带了一把“尚方宝剑”，可以在启动时直接把旧
 
 6. **拔管重启**：
 
-> 📷 **【图片 12 待上传】**
-> *安装完成后，点击左下角的 Restart System 按钮重启旧电脑。此时可以拔掉 U 盘，系统已成功落户硬盘！*
+![Daphile 硬盘安装完成并重启成功的主界面](./images/daphile-installation/image12.png)
+*图注：网页端控制台再次打开，出现 Daphile 经典音乐播放界面，说明系统已经成功落户旧电脑硬盘！*
 
    * 点击左下方的 **Restart System** 按钮，系统会自动重启。
    * 等待 2 分钟，网页界面会自动刷新打开。
