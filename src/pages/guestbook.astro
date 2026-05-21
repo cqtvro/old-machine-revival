@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import '@waline/client/style';
 ---
 
 <Layout title="公共留言板 | 老机复活" description="在这里，留下你的印记。不管是分享你复活成功的机器配置、吐槽遇到的坑，还是纯粹的友情打卡，我们都随时欢迎！" currentPath="/guestbook">
@@ -10,16 +11,10 @@ import Layout from '../layouts/Layout.astro';
                 <p class="view-subtitle">在这里，留下你的印记。不管是分享你复活成功的机器配置、吐槽遇到的坑，还是纯粹的友情打卡，我们都随时欢迎！</p>
             </div>
 
-            <!-- Cusdis Guestbook Container -->
+            <!-- Waline Guestbook Container -->
             <div class="guestbook-cusdis-wrapper" style="max-width: 800px; margin: 0 auto; padding: 1rem 0;">
                 <div id="guestbook-cusdis-container">
-                    <div id="cusdis_thread"
-                      data-host="https://cusdis.com"
-                      data-app-id="186048a7-aadf-4b6b-91f2-4b6717aabce6"
-                      data-page-id="guestbook"
-                      data-page-url="https://www.284868.xyz/guestbook"
-                      data-page-title="公共留言板"
-                    ></div>
+                    <div id="waline" data-path="/guestbook" data-title="公共留言板"></div>
                 </div>
             </div>
         </div>
@@ -27,27 +22,25 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-function initGuestbookCusdis() {
-    const cusdisThread = document.getElementById('cusdis_thread');
-    if (!cusdisThread) return;
+import { init } from '@waline/client';
 
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    cusdisThread.setAttribute('data-theme', isDark ? 'dark' : 'light');
+function initGuestbookWaline() {
+    const walineEl = document.getElementById('waline');
+    if (!walineEl) return;
 
-    if ((window as any).CUSDIS && typeof (window as any).CUSDIS.renderTo === 'function') {
-        (window as any).CUSDIS.renderTo(cusdisThread);
-        let checkCount = 0;
-        const checkIframeInterval = setInterval(() => {
-            const iframe = cusdisThread.querySelector('iframe');
-            if (iframe && (window as any).applyCustomIframeStyles) {
-                (window as any).applyCustomIframeStyles(iframe);
-                clearInterval(checkIframeInterval);
-            }
-            checkCount++;
-            if (checkCount > 20) clearInterval(checkIframeInterval);
-        }, 100);
-    }
+    const path = walineEl.getAttribute('data-path') || window.location.pathname;
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
+
+    init({
+        el: '#waline',
+        serverURL: serverURL,
+        path: path,
+        dark: 'html[data-theme="dark"]',
+        comment: true,
+        pageview: true,
+    });
 }
 
-document.addEventListener('DOMContentLoaded', initGuestbookCusdis);
+document.addEventListener('DOMContentLoaded', initGuestbookWaline);
+document.addEventListener('astro:after-swap', initGuestbookWaline);
 </script>

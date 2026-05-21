@@ -158,7 +158,6 @@ const {
                     if (sunIcon) sunIcon.style.display = 'none';
                 }
                 localStorage.setItem('omr_theme', theme);
-                updateCusdisTheme();
             }
 
             // Initialize icon state based on current theme
@@ -170,78 +169,6 @@ const {
                 const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
                 setTheme(isDark ? 'light' : 'dark');
             });
-        }
-
-        // Cusdis theme sync
-        function updateCusdisTheme() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const cusdisThread = document.getElementById('cusdis_thread');
-            if (cusdisThread) {
-                cusdisThread.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                if ((window as any).CUSDIS && typeof (window as any).CUSDIS.setTheme === 'function') {
-                    (window as any).CUSDIS.setTheme(isDark ? 'dark' : 'light');
-                }
-                const iframe = cusdisThread.querySelector('iframe');
-                if (iframe) {
-                    applyCustomIframeStyles(iframe as HTMLIFrameElement);
-                }
-            }
-        }
-
-        // Cusdis iframe style injection (matches site theme)
-        function applyCustomIframeStyles(iframe: HTMLIFrameElement) {
-            const injectStyles = () => {
-                const doc = iframe.contentDocument || iframe.contentWindow?.document;
-                if (!doc) return;
-                const existing = doc.getElementById('omr-custom-cusdis-style');
-                if (existing) existing.remove();
-
-                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                const style = doc.createElement('style');
-                style.id = 'omr-custom-cusdis-style';
-
-                const variables = isDark ? `
-                    --primary: #81c784; --primary-light: #1b261d; --primary-medium: #388e3c;
-                    --primary-hover: #a5d6a7; --bg-base: #111612; --bg-card: #18201a;
-                    --text-main: #edf4ec; --text-muted: #b0bec5; --text-light: #78909c;
-                    --border: rgba(129, 199, 132, 0.12); --border-strong: #37474f;
-                ` : `
-                    --primary: #2e7d32; --primary-light: #ebf5ec; --primary-medium: #a5d6a7;
-                    --primary-hover: #1b5e20; --bg-base: #f7f9f6; --bg-card: #ffffff;
-                    --text-main: #2c3e50; --text-muted: #546e7a; --text-light: #90a4ae;
-                    --border: rgba(46, 125, 50, 0.09); --border-strong: #cfd8dc;
-                `;
-
-                style.textContent = `
-                    :root { ${variables} }
-                    html, body { background-color: transparent !important; font-family: 'Nunito', 'Noto Sans SC', system-ui, sans-serif !important; color: var(--text-main) !important; font-size: 15px !important; }
-                    input, textarea { background-color: var(--bg-card) !important; border: 1px solid var(--border-strong) !important; border-radius: 8px !important; color: var(--text-main) !important; padding: 0.65rem 0.85rem !important; font-size: 0.95rem !important; outline: none !important; transition: border-color 0.2s ease, box-shadow 0.2s ease !important; font-family: inherit !important; }
-                    input:focus, textarea:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important; }
-                    button[type="submit"], .bg-blue-500 { background-color: var(--primary) !important; color: #ffffff !important; font-weight: 700 !important; font-size: 0.9rem !important; padding: 0.6rem 1.4rem !important; border-radius: 50px !important; border: none !important; cursor: pointer !important; transition: all 0.2s ease !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; font-family: inherit !important; }
-                    button[type="submit"]:hover, .bg-blue-500:hover { background-color: var(--primary-hover) !important; transform: translateY(-1px) !important; opacity: 0.95; }
-                    .text-xs, .text-sm, .text-gray-500 { color: var(--text-muted) !important; }
-                    .border, .border-gray-200 { border-color: var(--border) !important; }
-                    .text-gray-900 { color: var(--text-main) !important; }
-                    .my-2 { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
-                    #root { padding: 0 !important; }
-                `;
-                doc.head.appendChild(style);
-
-                // Auto-resize iframe height
-                const syncHeight = () => {
-                    try {
-                        const scrollHeight = doc.body.scrollHeight;
-                        if (scrollHeight > 0) iframe.style.height = (scrollHeight + 20) + 'px';
-                    } catch (e) {}
-                };
-                syncHeight();
-                if (window.MutationObserver) {
-                    const observer = new MutationObserver(syncHeight);
-                    observer.observe(doc.body, { childList: true, subtree: true, attributes: true });
-                }
-            };
-            iframe.addEventListener('load', injectStyles);
-            injectStyles();
         }
 
         // Mobile Navigation
@@ -257,10 +184,6 @@ const {
             }
         }
 
-        // Expose for use by page-specific scripts
-        (window as any).applyCustomIframeStyles = applyCustomIframeStyles;
-        (window as any).updateCusdisTheme = updateCusdisTheme;
-
         // Init on page load
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
@@ -273,9 +196,6 @@ const {
             initMobileNav();
         });
     </script>
-
-    <!-- Cusdis Comments Script -->
-    <script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </body>
 </html>
 

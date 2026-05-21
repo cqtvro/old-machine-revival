@@ -16,3 +16,13 @@ dist/
 # System files
 .DS_Store
 Thumbs.db
+
+# Environmental variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Sensitive files
+recovery-codes.txt
+
