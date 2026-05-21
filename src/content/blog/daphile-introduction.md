@@ -1,8 +1,8 @@
 ---
 title: "【数播入门教程】第一章：系统介绍与硬件准备——化腐朽为神奇，0元开启发烧之旅"
 summary: "系统性地介绍为何要搭建专用数播系统（Daphile），以及如何利用旧笔记本、瘦客户机、闲置U盘等手头闲置硬件，0成本迈出无损音频折腾的第一步！"
-category: "system"
-categoryName: "系统/优化"
+category: "daphile"
+categoryName: "数播教程"
 date: "2026-05-21"
 readTime: "6 分钟阅读"
 views: 120
