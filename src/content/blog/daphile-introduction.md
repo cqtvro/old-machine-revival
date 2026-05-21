@@ -70,8 +70,8 @@ bannerGradient: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)"
 找一个闲置的 U 盘。
 容量 2GB 以上即可。
 
-> 📌 **【图示占位 6：准备一个 2GB 以上的 U 盘】**
-> *(您可以翻箱倒柜找出一个闲置的小容量 U 盘作为 Daphile 的启动与安装盘。)*
+![闲置的 U 盘](./images/daphile-introduction/image6.jpg)
+*图注：找一个容量在 2GB 以上的闲置 U 盘，作为我们烧录系统的钥匙。*
 
 ### 3. 网络连接
 
@@ -80,8 +80,8 @@ bannerGradient: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)"
 
 ### 4. 解码设备（DAC）
 
-> 📌 **【图示占位 7：外接 USB 解码器（DAC）或小尾巴】**
-> *(虽然旧电脑自带 3.5mm 耳机孔，但底噪感人。发烧推荐外接一个 USB DAC，将数字信号高精度转换为模拟信号。)*
+![外接 USB 解码器（DAC）](./images/daphile-introduction/image7.jpg)
+*图注：外接高品质 USB 解码器（例如图中的 Rod Rain Audio DA10 PRO），能将数字音频高解析度输出至后级。*
 
 旧电脑自带的耳机孔通常底噪很大，听个响可以，想发烧不行。
 如果你手头有 USB 解码器（台式或便携小尾巴），那是最好的。如果没有，这一章先不急着买，我们先把系统跑起来。
@@ -97,8 +97,8 @@ Daphile 的官网是全英文的，不用慌，也不用去啃英文，直接点
 官方下载地址：https://www.daphile.com/firmware/stable/
 打开页面后，你会看到一堆文件，请根据你的旧电脑年龄，二选一：
 
-> 📌 **【图示占位 8：Daphile 固件官方下载列表】**
-> *(进入 stable 目录后，选择文件名带 x86_64 且后缀为 .iso 的最新文件进行下载。)*
+![Daphile 系统镜像下载列表](./images/daphile-introduction/image8.png)
+*图注：Daphile 官网 stable 固件镜像下载页面，根据机器年份选择相应版本下载。*
 
 *   **大多数电脑（推荐）**：
     如果你用的是 2012 年以后的电脑（或者是近几年的瘦客户机），请找文件名里带 `x86_64` 的文件。
@@ -122,8 +122,8 @@ Daphile 的官网是全英文的，不用慌，也不用去啃英文，直接点
 *   **中文官网下载**：https://rufus.ie/zh/
 *   **使用方式**：下载页面往下拉，看到“下载”两个大字，点下面的 `rufus-4.12.exe` 即可（不仅免费，而且自带中文）。
 
-> 📌 **【图示占位 9：Rufus 写盘工具官方下载界面】**
-> *(在 Rufus 官网选择最新版（如 rufus-4.12.exe）下载，该工具体积极小且无需安装，双击即可使用。)*
+![Rufus 写盘工具下载界面](./images/daphile-introduction/image9.png)
+*图注：Rufus 官网下载列表中选择最新版本下载，推荐 `rufus-4.12.exe`。*
 
 第一章总结
 
