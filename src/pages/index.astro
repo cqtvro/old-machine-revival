@@ -15,129 +15,226 @@ const featuredPosts = sortedPosts.slice(0, 4);
     description="老机复活专注 Daphile 数播教程、旧电脑/洋垃圾硬件改造、低成本 Hi-Fi 方案与音响反玄学实测，用数据和折腾经验帮你少交智商税。"
     currentPath="/"
 >
-    <section id="home-view" class="page-view">
-        <!-- Hero Banner -->
-        <div class="hero-section">
-            <div class="hero-content">
-                <span class="hero-badge">🌱 让闲置硬件再次起舞</span>
-                <h1 class="hero-title">拯救旧设备，重启新可能</h1>
-                <p class="hero-desc">
-                    在这个不断催促我们更新换代的时代，我们选择慢下来。一台十年前的笔记本、一部吃灰的主机，只需要适当的维护、合理的升级与轻量化的系统，就能在新的领域重新焕发光彩。这是属于折腾者的浪漫，也是送给地球的一份微薄礼物。
-                </p>
-                <div class="hero-buttons">
-                    <a href="/blog" class="btn btn-primary">探索复活案例</a>
-                    <a href="#calculator-anchor" class="btn btn-secondary">配置诊断工具</a>
+    <section id="home-view" class="page-view home-page-v2">
+        <!-- Compact Hero Section -->
+        <div class="section-container compact-hero-container">
+            <div class="compact-hero">
+                <div class="hero-content">
+                    <span class="hero-badge">💿 Daphile 数播 / 旧电脑复活 / Hi-Fi 反玄学</span>
+                    <h1 class="hero-title">旧电脑，改成 Daphile 数播和低成本 Hi-Fi 系统</h1>
+                    <p class="hero-desc">
+                        这里记录 Daphile 安装调优、二手 DAC 选购、洋垃圾硬件改造和音响反玄学实测。用数据和实战经验，帮你少花钱、少踩坑，把闲置设备变成真正有用的东西。
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="/blog#daphile-roadmap" class="btn btn-primary">开始 Daphile 路线 &rarr;</a>
+                        <a href="/blog?category=audio" class="btn btn-secondary">看反玄学实测</a>
+                    </div>
+                    <div class="hero-extra-link-row">
+                        <a href="/blog/daphile-decoder-buying-guide" class="hero-text-link">二手 DAC 怎么选？&rarr;</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="retro-machine-artwork">
-                    <div class="monitor-wrapper">
-                        <div class="screen-glow"></div>
-                        <div class="monitor-frame">
-                            <div class="monitor-screen">
-                                <div class="terminal-text">
-                                    <p>&gt; sudo apt update</p>
-                                    <p>&gt; Upgrading hardware...</p>
-                                    <p>&gt; System status: OK</p>
-                                    <p class="blink-cursor">&gt; 🌱 Ready to revive!</p>
+                <div class="hero-entry-panel">
+                    <h3>热门专题入口</h3>
+                    <ul class="hero-entry-list">
+                        <li>
+                            <a href="/blog#daphile-roadmap">
+                                <span class="entry-icon">💿</span>
+                                <div class="entry-text">
+                                    <strong>Daphile 数播完全指南</strong>
+                                    <p>从 U 盘安装到双达菲、内核调优</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="monitor-neck"></div>
-                        <div class="monitor-base"></div>
-                    </div>
-                    <div class="floating-elements">
-                        <div class="floating-item item-ram">📼 RAM</div>
-                        <div class="floating-item item-ssd">💾 SSD</div>
-                        <div class="floating-item item-tux">🐧 Linux</div>
-                        <div class="floating-item item-leaf">🍃 CPU</div>
-                    </div>
+                                <span class="entry-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/blog?category=audio">
+                                <span class="entry-icon">🔊</span>
+                                <div class="entry-text">
+                                    <strong>Hi-Fi 反玄学实测</strong>
+                                    <p>线材、线电、数播智商税避坑</p>
+                                </div>
+                                <span class="entry-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/blog/daphile-decoder-buying-guide">
+                                <span class="entry-icon">🔌</span>
+                                <div class="entry-text">
+                                    <strong>300 元 DAC 选购指南</strong>
+                                    <p>小尾巴、桌面解码器、闲鱼避坑</p>
+                                </div>
+                                <span class="entry-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/blog?category=system">
+                                <span class="entry-icon">💻</span>
+                                <div class="entry-text">
+                                    <strong>旧电脑复活指南</strong>
+                                    <p>SSD、Linux、NAS、软路由</p>
+                                </div>
+                                <span class="entry-arrow">&rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Categories Portal -->
-        <div class="section-container categories-portal-section">
-            <div class="portal-header text-center">
+        <!-- Quick Routes Section -->
+        <div class="section-container quick-routes-section">
+            <div class="quick-routes">
+                <!-- Route Card 1 -->
+                <a href="/blog#daphile-roadmap" class="route-card">
+                    <div class="route-card-header">
+                        <span class="route-badge badge-daphile">📡 Daphile 数播</span>
+                    </div>
+                    <h3>Daphile 数播路线</h3>
+                    <p class="route-desc">适合：想用旧电脑/瘦客户机做播放器</p>
+                    <div class="route-chips">
+                        <span class="chip">数播安装</span>
+                        <span class="chip">双达菲</span>
+                        <span class="chip">内核调优</span>
+                    </div>
+                    <span class="route-link">开始探索 &rarr;</span>
+                </a>
+                <!-- Route Card 2 -->
+                <a href="/blog?category=audio" class="route-card">
+                    <div class="route-card-header">
+                        <span class="route-badge badge-audio">🔊 反玄学</span>
+                    </div>
+                    <h3>Hi-Fi 反玄学路线</h3>
+                    <p class="route-desc">适合：想避开线材、线电、数播智商税</p>
+                    <div class="route-chips">
+                        <span class="chip">线材真相</span>
+                        <span class="chip">线性电源</span>
+                        <span class="chip">避坑指南</span>
+                    </div>
+                    <span class="route-link">看避坑实测 &rarr;</span>
+                </a>
+                <!-- Route Card 3 -->
+                <a href="/blog/daphile-decoder-buying-guide" class="route-card">
+                    <div class="route-card-header">
+                        <span class="route-badge badge-dac">🔌 低成本</span>
+                    </div>
+                    <h3>低成本选购路线</h3>
+                    <p class="route-desc">适合：想买二手 DAC、小尾巴、洋垃圾硬件</p>
+                    <div class="route-chips">
+                        <span class="chip">闲鱼避坑</span>
+                        <span class="chip">300元解码</span>
+                        <span class="chip">老旧硬件</span>
+                    </div>
+                    <span class="route-link">去选购指南 &rarr;</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Articles Section -->
+        <div class="section-container featured-articles-section">
+            <div class="column-header">
+                <h2 class="sub-section-title">最新折腾记录</h2>
+                <a href="/blog" class="link-more">查看全部文章 &rarr;</a>
+            </div>
+            <div class="posts-grid home-posts-grid">
+                {featuredPosts.map(post => (
+                    <PostCard
+                        slug={post.slug}
+                        title={post.data.title}
+                        summary={post.data.summary}
+                        category={post.data.category}
+                        categoryName={post.data.categoryName}
+                        date={post.data.date}
+                        likes={post.data.likes}
+                        bannerGradient={post.data.bannerGradient}
+                        tags={post.data.tags}
+                    />
+                ))}
+            </div>
+        </div>
+
+        <!-- Tool Strip -->
+        <div class="tool-strip-section">
+            <div class="section-container">
+                <div class="tool-strip">
+                    <div class="tool-strip-content">
+                        <span class="tool-strip-icon">🛠️</span>
+                        <p class="tool-strip-text">
+                            <strong>不知道你的老机器还能干什么？</strong>
+                            <span>输入 CPU / 内存 / 硬盘类型，生成升级建议和适用系统。</span>
+                        </p>
+                    </div>
+                    <a href="#calculator-anchor" class="btn btn-primary btn-sm btn-tool-strip">打开配置诊断</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topic Grid Section -->
+        <div class="section-container topic-grid-section">
+            <div class="section-header text-center">
                 <h2 class="section-title">折腾专题专栏</h2>
                 <p class="section-subtitle">按主题快速检索，精准击破痛点</p>
             </div>
-            <div class="categories-portal-grid">
-                <a href="/blog?category=notebook" class="portal-card">
-                    <div class="portal-icon bg-green-light">💻</div>
-                    <h3>笔记本复活</h3>
-                    <p>清理保养、升级固态硬盘与轻量 Linux 系统定制，让闲置笔记本重现丝滑。</p>
-                    <span class="portal-link">浏览专栏 &rarr;</span>
+            <div class="topic-mini-grid">
+                <a href="/blog?category=daphile" class="topic-mini-card">
+                    <span class="topic-icon bg-orange-light">📀</span>
+                    <div class="topic-info">
+                        <h3>Daphile 教程</h3>
+                        <p>数播系统安装与进阶调优</p>
+                    </div>
                 </a>
-                <a href="/blog?category=desktop" class="portal-card">
-                    <div class="portal-icon bg-blue-light">🖥️</div>
-                    <h3>台式机/服务器</h3>
-                    <p>旧电脑、软路由与洋垃圾硬件搭建家用轻量级 NAS、媒体服务器场景再造。</p>
-                    <span class="portal-link">浏览专栏 &rarr;</span>
+                <a href="/blog/daphile-decoder-buying-guide" class="topic-mini-card">
+                    <span class="topic-icon bg-blue-light">🔌</span>
+                    <div class="topic-info">
+                        <h3>二手 DAC</h3>
+                        <p>解码器避坑与300元高性价比选购</p>
+                    </div>
                 </a>
-                <a href="/blog?category=daphile" class="portal-card">
-                    <div class="portal-icon bg-orange-light">📀</div>
-                    <h3>Daphile 数播</h3>
-                    <p>低成本搭建 Daphile 高保真音乐播放系统，包含双达菲与内核级性能调优。</p>
-                    <span class="portal-link">浏览专栏 &rarr;</span>
+                <a href="/blog?category=audio" class="topic-mini-card">
+                    <span class="topic-icon bg-red-light">🔊</span>
+                    <div class="topic-info">
+                        <h3>反玄学实测</h3>
+                        <p>揭露发烧线材与电源避坑指南</p>
+                    </div>
                 </a>
-                <a href="/blog?category=audio" class="portal-card">
-                    <div class="portal-icon bg-red-light">🔊</div>
-                    <h3>音响与反玄学</h3>
-                    <p>用客观数据和对比实测说话，揭露高端线材与电源避坑玄学，理性发烧。</p>
-                    <span class="portal-link">浏览专栏 &rarr;</span>
+                <a href="/blog?category=notebook" class="topic-mini-card">
+                    <span class="topic-icon bg-green-light">💻</span>
+                    <div class="topic-info">
+                        <h3>旧笔记本</h3>
+                        <p>清灰保养、硬件升级与系统复活</p>
+                    </div>
+                </a>
+                <a href="/blog?category=desktop" class="topic-mini-card">
+                    <span class="topic-icon bg-purple-light">🖥️</span>
+                    <div class="topic-info">
+                        <h3>NAS / 服务器</h3>
+                        <p>软路由、轻量NAS与家用服务器搭建</p>
+                    </div>
+                </a>
+                <a href="/blog?category=system" class="topic-mini-card">
+                    <span class="topic-icon bg-teal-light">⚙️</span>
+                    <div class="topic-info">
+                        <h3>系统优化</h3>
+                        <p>极简 Linux 方案与系统内核调优</p>
+                    </div>
                 </a>
             </div>
         </div>
 
-        <!-- Home Content Layout -->
-        <div class="section-container home-layout">
-            <div class="main-column">
-                <div class="column-header">
-                    <h2 class="sub-section-title">精选复活案例</h2>
-                    <a href="/blog" class="link-more">查看全部文章 &rarr;</a>
-                </div>
-                <div class="posts-grid home-posts-grid">
-                    {featuredPosts.map(post => (
-                        <PostCard
-                            slug={post.slug}
-                            title={post.data.title}
-                            summary={post.data.summary}
-                            category={post.data.category}
-                            categoryName={post.data.categoryName}
-                            date={post.data.date}
-                            likes={post.data.likes}
-                            bannerGradient={post.data.bannerGradient}
-                            tags={post.data.tags}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            <aside class="sidebar-column">
-                <!-- Daphile Series Roadmap Guide Widget -->
-                <div class="widget-card daphile-widget-card">
-                    <div class="widget-header">
-                        <span class="widget-icon">📡</span>
-                        <h3>Daphile 数播完全指南</h3>
-                    </div>
-                    <p class="widget-intro">
-                        从零基础系统安装，到双达菲隔离架构与内核级性能调优。手把手带你用废旧电脑/洋垃圾搭建高保真 Hi-Fi 播放系统！
-                    </p>
-                    <ul class="widget-checklist">
-                        <li><span>🌱</span> <span><strong>入门：</strong>U盘安装与解码设置</span></li>
-                        <li><span>🔥</span> <span><strong>进阶：</strong>双达菲架构与内核调优</span></li>
-                        <li><span>🎵</span> <span><strong>调音：</strong>AI 滤波器与 FIR 降噪</span></li>
-                    </ul>
-                    <a href="/blog#daphile-roadmap" class="btn btn-primary btn-block">
-                        开启发烧之路 &rarr;
-                    </a>
-                </div>
-
-                <div id="calculator-anchor"></div>
+        <!-- Calculator Section -->
+        <div class="section-container calculator-section" id="calculator-anchor">
+            <div class="calculator-wrapper">
                 <Calculator />
-                <ProfileCard postCount={allPosts.length} />
-            </aside>
+            </div>
+        </div>
+
+        <!-- Footer Profile Intro -->
+        <div class="homepage-footer-profile">
+            <div class="section-container text-center">
+                <p class="profile-intro-text">
+                    由 <strong>七木</strong> 维护，专注低成本硬件改造、Daphile 数播完全指南与 Hi-Fi 反玄学实测。
+                </p>
+                <a href="/about" class="profile-more-link">了解更多关于本站 &rarr;</a>
+            </div>
         </div>
     </section>
 </Layout>
