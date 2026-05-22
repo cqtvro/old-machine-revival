@@ -30,6 +30,89 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
                 </div>
             </div>
 
+            <!-- ====== Daphile Series Roadmap Module ====== -->
+            <div class="series-roadmap" id="daphile-roadmap">
+                <div class="roadmap-header">
+                    <div class="roadmap-badge">📡 系列专题</div>
+                    <h2 class="roadmap-title">Daphile 数播完全指南</h2>
+                    <p class="roadmap-subtitle">从零基础到内核级调优，10 篇文章带你搭建一套吊打五千块商业数播的 Hi-Fi 系统</p>
+                </div>
+
+                <!-- Tier 1: 入门篇 -->
+                <div class="roadmap-tier">
+                    <div class="tier-label">
+                        <span class="tier-icon">🌱</span>
+                        <span class="tier-name">入门篇</span>
+                        <span class="tier-desc">从零开始，6步搞定</span>
+                    </div>
+                    <div class="roadmap-timeline">
+                        <a href="/blog/daphile-introduction" class="roadmap-step">
+                            <span class="step-number">1</span>
+                            <span class="step-label">系统介绍<br/><small>硬件准备</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-installation" class="roadmap-step">
+                            <span class="step-number">2</span>
+                            <span class="step-label">系统安装<br/><small>U盘3分钟</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-music-transfer" class="roadmap-step">
+                            <span class="step-number">3</span>
+                            <span class="step-label">导入音乐<br/><small>网络共享</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-decoder" class="roadmap-step">
+                            <span class="step-number">4</span>
+                            <span class="step-label">解码设置<br/><small>音质起飞</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-decoder-buying-guide" class="roadmap-step step-bonus">
+                            <span class="step-number">★</span>
+                            <span class="step-label">选购避坑<br/><small>闲鱼300元</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-final-setup" class="roadmap-step step-finale">
+                            <span class="step-number">✓</span>
+                            <span class="step-label">大结局<br/><small>几十块搞定</small></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tier 2: 进阶篇 -->
+                <div class="roadmap-tier tier-advanced">
+                    <div class="tier-label">
+                        <span class="tier-icon">🔥</span>
+                        <span class="tier-name">进阶篇</span>
+                        <span class="tier-desc">压榨性能，极致听感</span>
+                    </div>
+                    <div class="roadmap-timeline">
+                        <a href="/blog/fnos-daphile-vm" class="roadmap-step">
+                            <span class="step-number">7</span>
+                            <span class="step-label">NAS虚拟机<br/><small>飞牛直通</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/dual-daphile-setup" class="roadmap-step">
+                            <span class="step-number">8</span>
+                            <span class="step-label">双达菲架构<br/><small>物理隔离</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/daphile-kernel-tuning" class="roadmap-step">
+                            <span class="step-number">9</span>
+                            <span class="step-label">内核调优<br/><small>RAM+CPU+NFS</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/ai-fir-filter" class="roadmap-step step-finale">
+                            <span class="step-number">10</span>
+                            <span class="step-label">AI调音<br/><small>FIR滤波器</small></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="roadmap-cta">
+                    <span class="roadmap-cta-text">💡 建议从第 1 步开始，按顺序阅读效果最佳</span>
+                </div>
+            </div>
+
             <!-- Category Filters -->
             <div class="categories-bar">
                 <button class="category-btn active" data-category="all">全部文章</button>
