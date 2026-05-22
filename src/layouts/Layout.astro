@@ -3,13 +3,42 @@ interface Props {
     title?: string;
     description?: string;
     currentPath?: string;
+    type?: 'website' | 'article';
+    structuredData?: Record<string, unknown> | Record<string, unknown>[];
+    noindex?: boolean;
 }
 
 const {
     title = '老机复活 | 让旧设备重新绽放光芒',
     description = '老机复活是一个专注于旧电脑、旧手机、老游戏机等硬件的清理、升级、改装与轻量级系统优化的个人博客。用爱与技术赋予老硬件新的生命。',
     currentPath = '/',
+    type = 'website',
+    structuredData,
+    noindex = false,
 } = Astro.props;
+
+const site = Astro.site ?? new URL('https://www.284868.xyz');
+const canonicalPath = currentPath === '/' || currentPath.endsWith('/') || currentPath.includes('.')
+    ? currentPath
+    : `${currentPath}/`;
+const canonicalUrl = new URL(canonicalPath, site).toString();
+const defaultStructuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+        {
+            '@type': 'WebSite',
+            name: '老机复活',
+            url: new URL('/', site).toString(),
+            description,
+            inLanguage: 'zh-CN',
+        },
+        {
+            '@type': 'Organization',
+            name: '老机复活',
+            url: new URL('/', site).toString(),
+        },
+    ],
+};
 ---
 
 <!DOCTYPE html>
@@ -19,6 +48,18 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description}>
+    {noindex && <meta name="robots" content="noindex,follow">}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href={canonicalUrl}>
+    <link rel="alternate" type="application/rss+xml" title="老机复活 RSS" href={new URL('/rss.xml', site).toString()}>
+    <meta property="og:site_name" content="老机复活">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content={type}>
+    <meta property="og:url" content={canonicalUrl}>
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData ?? defaultStructuredData)} />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

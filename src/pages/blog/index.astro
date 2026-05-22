@@ -7,7 +7,11 @@ const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<Layout title="复活日记 | 老机复活" currentPath="/blog">
+<Layout
+    title="复活日记 | Daphile 教程、旧电脑改造与 Hi-Fi 避坑"
+    description="系统整理老机复活全部文章：Daphile 安装与调优、二手 DAC 选购、HP T620 数播、旧电脑升级、线材和线性电源反玄学避坑。"
+    currentPath="/blog"
+>
     <section id="blog-view" class="page-view">
         <div class="section-container">
             <div class="view-header">

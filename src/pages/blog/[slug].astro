@@ -13,9 +13,32 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const articlePath = `/blog/${post.slug}/`;
+const articleUrl = new URL(articlePath, Astro.site ?? 'https://www.284868.xyz').toString();
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    description: post.data.summary,
+    datePublished: new Date(post.data.date).toISOString(),
+    dateModified: new Date(post.data.date).toISOString(),
+    url: articleUrl,
+    mainEntityOfPage: articleUrl,
+    author: {
+        '@type': 'Person',
+        name: '折腾狂人小绿',
+    },
+    publisher: {
+        '@type': 'Organization',
+        name: '老机复活',
+        url: new URL('/', Astro.site ?? 'https://www.284868.xyz').toString(),
+    },
+    keywords: post.data.tags.join(', '),
+    articleSection: post.data.categoryName,
+};
 ---
 
-<Layout title={`${post.data.title} | 老机复活`} description={post.data.summary} currentPath={`/blog/${post.slug}`}>
+<Layout title={`${post.data.title} | 老机复活`} description={post.data.summary} currentPath={articlePath} type="article" structuredData={structuredData}>
     <section id="post-detail-view" class="page-view">
         <div class="section-container article-view-container">
             <a href="/blog" class="back-link">
@@ -53,6 +76,18 @@ const { Content } = await post.render();
                 <div class="article-content markdown-body">
                     <Content />
                 </div>
+
+                <aside class="article-cta" aria-label="站内推荐">
+                    <div>
+                        <p class="article-cta-kicker">继续折腾</p>
+                        <h2>想系统看完整套 Daphile、数播和反玄学实测？</h2>
+                        <p>来老机复活独立站翻完整系列教程，也可以在评论区留下你的设备和预算，七木会尽量给你一个不烧钱的方案。</p>
+                    </div>
+                    <div class="article-cta-actions">
+                        <a href="/blog" class="btn btn-primary">看完整系列</a>
+                        <a href="/guestbook" class="btn btn-secondary">留下问题</a>
+                    </div>
+                </aside>
 
                 <!-- Article Footer -->
                 <footer class="article-footer">
