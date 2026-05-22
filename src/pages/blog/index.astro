@@ -208,6 +208,30 @@ function initBlogFilters() {
             filterPosts();
         });
     }
+
+    // Check URL parameters for category filtering on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    if (categoryParam) {
+        let found = false;
+        categoryBtns.forEach(btn => {
+            if (btn.getAttribute('data-category') === categoryParam) {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                found = true;
+            }
+        });
+        if (found) {
+            filterPosts();
+            // Wait a brief moment or do it directly to scroll down to categories bar
+            setTimeout(() => {
+                const categoriesBar = document.querySelector('.categories-bar');
+                if (categoriesBar) {
+                    categoriesBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initBlogFilters);

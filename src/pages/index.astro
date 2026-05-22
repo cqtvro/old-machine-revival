@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Calculator from '../components/Calculator.astro';
 import ProfileCard from '../components/ProfileCard.astro';
+import PostCard from '../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-const featuredPosts = sortedPosts.slice(0, 3);
+const featuredPosts = sortedPosts.slice(0, 4);
 ---
 
 <Layout
@@ -55,38 +56,37 @@ const featuredPosts = sortedPosts.slice(0, 3);
             </div>
         </div>
 
-        <!-- Features Grid -->
-        <div class="section-container">
-            <h2 class="section-title text-center">核心折腾理念</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon bg-green-light">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="9" y1="3" x2="9" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h3>硬件焕新</h3>
-                    <p>清理灰尘、重涂硅脂、升级固态硬盘（SSD）与加装物理内存，用最低成本突破陈旧木桶的最短板。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon bg-orange-light">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3>轻量系统</h3>
-                    <p>告别臃肿的 Windows 11，拥抱 Linux Mint、ChromeOS Flex 或轻量定制版系统，让 CPU 重新自由呼吸。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon bg-blue-light">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        </svg>
-                    </div>
-                    <h3>场景再造</h3>
-                    <p>旧设备不只是"备用机"，还能变成客厅高清盒子、家用轻量 NAS、智能时钟、软路由等全新职能硬件。</p>
-                </div>
+        <!-- Categories Portal -->
+        <div class="section-container categories-portal-section">
+            <div class="portal-header text-center">
+                <h2 class="section-title">折腾专题专栏</h2>
+                <p class="section-subtitle">按主题快速检索，精准击破痛点</p>
+            </div>
+            <div class="categories-portal-grid">
+                <a href="/blog?category=notebook" class="portal-card">
+                    <div class="portal-icon bg-green-light">💻</div>
+                    <h3>笔记本复活</h3>
+                    <p>清理保养、升级固态硬盘与轻量 Linux 系统定制，让闲置笔记本重现丝滑。</p>
+                    <span class="portal-link">浏览专栏 &rarr;</span>
+                </a>
+                <a href="/blog?category=desktop" class="portal-card">
+                    <div class="portal-icon bg-blue-light">🖥️</div>
+                    <h3>台式机/服务器</h3>
+                    <p>旧电脑、软路由与洋垃圾硬件搭建家用轻量级 NAS、媒体服务器场景再造。</p>
+                    <span class="portal-link">浏览专栏 &rarr;</span>
+                </a>
+                <a href="/blog?category=daphile" class="portal-card">
+                    <div class="portal-icon bg-orange-light">📀</div>
+                    <h3>Daphile 数播</h3>
+                    <p>低成本搭建 Daphile 高保真音乐播放系统，包含双达菲与内核级性能调优。</p>
+                    <span class="portal-link">浏览专栏 &rarr;</span>
+                </a>
+                <a href="/blog?category=audio" class="portal-card">
+                    <div class="portal-icon bg-red-light">🔊</div>
+                    <h3>音响与反玄学</h3>
+                    <p>用客观数据和对比实测说话，揭露高端线材与电源避坑玄学，理性发烧。</p>
+                    <span class="portal-link">浏览专栏 &rarr;</span>
+                </a>
             </div>
         </div>
 
@@ -94,26 +94,22 @@ const featuredPosts = sortedPosts.slice(0, 3);
         <div class="section-container home-layout">
             <div class="main-column">
                 <div class="column-header">
-                    <h2 class="sub-section-title">最新复活日记</h2>
+                    <h2 class="sub-section-title">精选复活案例</h2>
                     <a href="/blog" class="link-more">查看全部文章 &rarr;</a>
                 </div>
-                <div class="posts-list-simple">
+                <div class="posts-grid home-posts-grid">
                     {featuredPosts.map(post => (
-                        <article class="post-card-simple">
-                            <div class="card-meta-row">
-                                <span class="card-tag">{post.data.categoryName}</span>
-                                <span class="card-date">{post.data.date}</span>
-                            </div>
-                            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-                            <p>{post.data.summary}</p>
-                            <div class="card-bottom-row">
-                                <a href={`/blog/${post.slug}`} class="card-readmore">阅读全文 &rarr;</a>
-                                <div class="card-stats">
-                                    <span class="card-stat-item">💬 评论</span>
-                                    <span class="card-stat-item">👍 {post.data.likes} 赞</span>
-                                </div>
-                            </div>
-                        </article>
+                        <PostCard
+                            slug={post.slug}
+                            title={post.data.title}
+                            summary={post.data.summary}
+                            category={post.data.category}
+                            categoryName={post.data.categoryName}
+                            date={post.data.date}
+                            likes={post.data.likes}
+                            bannerGradient={post.data.bannerGradient}
+                            tags={post.data.tags}
+                        />
                     ))}
                 </div>
             </div>
