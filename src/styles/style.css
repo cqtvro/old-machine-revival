@@ -2572,3 +2572,66 @@ button {
     }
 }
 
+/* ==========================================================================
+   Daphile Sidebar Widget Styles
+   ========================================================================== */
+.daphile-widget-card {
+    background: linear-gradient(135deg, var(--primary-light) 0%, rgba(245, 124, 0, 0.05) 100%);
+    border: 1px solid rgba(46, 125, 50, 0.18) !important;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+[data-theme="dark"] .daphile-widget-card {
+    background: linear-gradient(135deg, rgba(27, 38, 29, 0.85) 0%, rgba(46, 33, 11, 0.4) 100%);
+    border-color: rgba(129, 199, 132, 0.22) !important;
+}
+
+.daphile-widget-card .widget-header {
+    border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+    color: var(--primary);
+}
+
+.daphile-widget-card .widget-icon {
+    font-size: 1.5rem;
+    animation: omr-pulse 2s infinite ease-in-out;
+    display: inline-block;
+}
+
+.widget-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+.widget-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+.widget-checklist li span:last-child {
+    font-weight: 500;
+}
+
+.widget-checklist li span:first-child {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.daphile-widget-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md) !important;
+}
+
+@keyframes omr-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+
