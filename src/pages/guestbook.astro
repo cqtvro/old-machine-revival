@@ -1,46 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '@waline/client/style';
+// Redirect /guestbook to /bbs to maintain SEO and prevent broken links
 ---
-
-<Layout title="留言交流 | 老机复活" description="在老机复活留言交流你的 Daphile 数播、旧电脑改造、二手 DAC 选购、Hi-Fi 避坑和洋垃圾折腾问题。" currentPath="/guestbook">
-    <section id="guestbook-view" class="page-view">
-        <div class="section-container article-view-container">
-            <div class="view-header text-center" style="max-width: 600px; margin: 0 auto 2rem auto;">
-                <h1 class="view-title">🌱 公共留言板</h1>
-                <p class="view-subtitle">在这里，留下你的印记。不管是分享你复活成功的机器配置、吐槽遇到的坑，还是纯粹的友情打卡，我们都随时欢迎！</p>
-            </div>
-
-            <!-- Waline Guestbook Container -->
-            <div class="guestbook-cusdis-wrapper" style="max-width: 800px; margin: 0 auto; padding: 1rem 0;">
-                <div id="guestbook-cusdis-container">
-                    <div id="waline" data-path="/guestbook" data-title="公共留言板"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-</Layout>
-
-<script>
-import { init } from '@waline/client';
-
-function initGuestbookWaline() {
-    const walineEl = document.getElementById('waline');
-    if (!walineEl) return;
-
-    const path = walineEl.getAttribute('data-path') || window.location.pathname;
-    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
-
-    init({
-        el: '#waline',
-        serverURL: serverURL,
-        path: path,
-        dark: 'html[data-theme="dark"]',
-        comment: true,
-        pageview: true,
-    });
-}
-
-document.addEventListener('DOMContentLoaded', initGuestbookWaline);
-document.addEventListener('astro:after-swap', initGuestbookWaline);
-</script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=/bbs" />
+    <title>正在跳转 - 老机复活社区</title>
+    <script is:inline>
+        window.location.replace("/bbs");
+    </script>
+</head>
+<body style="font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background-color: #121212; color: #e0e0e0; text-align: center;">
+    <div>
+        <p style="font-size: 1.25rem; margin-bottom: 1rem;">公共留言板已升级并入<strong>社区论坛</strong> 💬</p>
+        <p style="font-size: 0.95rem; color: #888;">正在为您自动跳转... 如果您的浏览器没有自动跳转，请点击 <a href="/bbs" style="color: #4caf50; text-decoration: underline;">此处</a> 直接访问论坛。</p>
+    </div>
+</body>
+</html>

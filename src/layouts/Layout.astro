@@ -102,12 +102,12 @@ const defaultStructuredData = {
             </a>
 
             <!-- Desktop Navigation -->
+            <!-- Desktop Navigation -->
             <nav class="desktop-nav" aria-label="主导航">
                 <ul>
                     <li><a href="/" class:list={["nav-item", { active: currentPath === '/' }]} id="nav-home">首页</a></li>
                     <li><a href="/blog" class:list={["nav-item", { active: currentPath.startsWith('/blog') }]} id="nav-blog">精选博客</a></li>
                     <li><a href="/bbs" class:list={["nav-item", { active: currentPath.startsWith('/bbs') }]} id="nav-bbs">社区论坛</a></li>
-                    <li><a href="/guestbook" class:list={["nav-item", { active: currentPath === '/guestbook' }]} id="nav-guestbook">留言板</a></li>
                     <li><a href="/about" class:list={["nav-item", { active: currentPath === '/about' }]} id="nav-about">关于本站</a></li>
                 </ul>
             </nav>
@@ -148,7 +148,6 @@ const defaultStructuredData = {
             <li><a href="/" class:list={["mobile-nav-item", { active: currentPath === '/' }]}>首页</a></li>
             <li><a href="/blog" class:list={["mobile-nav-item", { active: currentPath.startsWith('/blog') }]}>精选博客</a></li>
             <li><a href="/bbs" class:list={["mobile-nav-item", { active: currentPath.startsWith('/bbs') }]}>社区论坛</a></li>
-            <li><a href="/guestbook" class:list={["mobile-nav-item", { active: currentPath === '/guestbook' }]}>留言板</a></li>
             <li><a href="/about" class:list={["mobile-nav-item", { active: currentPath === '/about' }]}>关于本站</a></li>
         </ul>
     </nav>
@@ -171,7 +170,6 @@ const defaultStructuredData = {
                     <li><a href="/">回到首页</a></li>
                     <li><a href="/blog">所有案例</a></li>
                     <li><a href="/bbs">社区论坛</a></li>
-                    <li><a href="/guestbook">公众留言</a></li>
                     <li><a href="/about">关于小站</a></li>
                 </ul>
             </div>
