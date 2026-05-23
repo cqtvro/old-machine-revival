@@ -149,19 +149,23 @@ const boards = [
         if (!container) return;
 
         try {
-            // Fetch recent comments across all paths from Waline
-            const response = await fetch(`${serverURL}/comment?pageSize=6`);
+            // Fetch recent comments across all paths from Waline using the official recent comments API
+            const response = await fetch(`${serverURL}/comment?type=recent&count=6`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const json = await response.json();
             
-            // Extract comment list
+            // Extract comment list (supporting multiple API response variations)
             let comments = [];
-            if (json && Array.isArray(json.data)) {
+            if (json && Array.isArray(json.comments)) {
+                comments = json.comments;
+            } else if (json && Array.isArray(json.data)) {
                 comments = json.data;
             } else if (json && json.data && Array.isArray(json.data.data)) {
                 comments = json.data.data;
+            } else if (Array.isArray(json)) {
+                comments = json;
             }
 
             if (comments.length === 0) {
@@ -174,7 +178,8 @@ const boards = [
                 const nick = comment.nick || '匿名网友';
                 const avatar = comment.avatar || 'https://cravatar.cn/avatar/00000000000000000000000000000000?d=mp';
                 const plainText = cleanCommentText(comment.comment);
-                const rawPath = comment.path || '';
+                // Waline recent API returns page path in `url` field
+                const rawPath = comment.url || comment.path || '';
                 const boardName = getPathName(rawPath);
                 
                 let targetUrl = '/bbs';
