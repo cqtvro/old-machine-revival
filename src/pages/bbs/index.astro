@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const boards = [
+  {
+    id: 'daphile',
+    name: '💿 Daphile 数播专区',
+    desc: '从 U 盘安装、极简系统优化、到双达菲、内核调优以及低成本数播方案交流。',
+    badge: '数播/极简系统',
+    iconClass: 'bbs-icon-daphile',
+    icon: '💿'
+  },
+  {
+    id: 'hardware',
+    name: '🔧 旧机复活与改装',
+    desc: '旧笔记本、瘦客户机、老台式机硬件清理升级，以及轻量 Linux、NAS、软路由折腾。',
+    badge: '老机复活/硬件改装',
+    iconClass: 'bbs-icon-hardware',
+    icon: '🔧'
+  },
+  {
+    id: 'hifi',
+    name: '🎧 低成本 Hi-Fi & DAC',
+    desc: '二手解码器选购与防坑指南，小尾巴、桌面耳放搭配，音响反玄学实测与讨论。',
+    badge: '低成本 Hi-Fi/反玄学',
+    iconClass: 'bbs-icon-hifi',
+    icon: '🎧'
+  },
+  {
+    id: 'qa',
+    name: '❓ 求助与问答专区',
+    desc: '遇到疑难杂症了？数播没声音、老机装不了系统、报错代码？来这里向大家提问。',
+    badge: '有问必答/技术交流',
+    iconClass: 'bbs-icon-qa',
+    icon: '❓'
+  },
+  {
+    id: 'chat',
+    name: '💬 茶水间与闲聊',
+    desc: '分享你的洋垃圾折腾心得、桌搭展示、生活闲聊、打卡吐槽或划水灌水。',
+    badge: '闲聊灌水/打卡交流',
+    iconClass: 'bbs-icon-chat',
+    icon: '💬'
+  }
+];
+---
+
+<Layout title="社区论坛 | 老机复活" description="老机复活社区论坛，在这里讨论 Daphile 数播、旧电脑改造、二手 DAC 选购、Hi-Fi 避坑和洋垃圾折腾。" currentPath="/bbs">
+    <section class="page-view" style="padding-top: 2rem;">
+        <div class="bbs-page-container">
+            <!-- Hero section -->
+            <div class="bbs-hero">
+                <h1 class="bbs-title">🌱 老机复活社区论坛</h1>
+                <p class="bbs-subtitle">用爱与技术赋予老硬件新的生命。在这里，留下你的折腾故事，向同好求助，或者交流 Daphile 数播和 Hi-Fi 避坑心得。</p>
+            </div>
+
+            <!-- Boards Grid -->
+            <div class="bbs-grid">
+                {boards.map((board) => (
+                    <a href={`/bbs/${board.id}`} class="bbs-card">
+                        <div class={`bbs-card-icon-wrapper ${board.iconClass}`}>
+                            {board.icon}
+                        </div>
+                        <div class="bbs-card-content">
+                            <div class="bbs-card-header">
+                                <h2 class="bbs-card-title">{board.name}</h2>
+                                <span class="bbs-card-badge">{board.badge}</span>
+                            </div>
+                            <p class="bbs-card-desc">{board.desc}</p>
+                        </div>
+                    </a>
+                ))}
+            </div>
+
+            <!-- Latest Activity Section -->
+            <div class="bbs-activity-section">
+                <h2 class="bbs-activity-title">
+                    <span>⚡</span> 社区最新动态
+                </h2>
+                
+                <div id="bbs-activity-container">
+                    <div class="bbs-loading">
+                        <div class="bbs-loading-spinner"></div>
+                        <span>正在获取最新讨论...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
+
+    // Map comments path to human-readable names
+    const pathNameMap: Record<string, string> = {
+        '/guestbook': '🌱 留言板',
+        '/bbs/daphile': '💿 Daphile 数播',
+        '/bbs/hardware': '🔧 旧机改装',
+        '/bbs/hifi': '🎧 Hi-Fi 与 DAC',
+        '/bbs/qa': '❓ 求助问答',
+        '/bbs/chat': '💬 茶水闲聊'
+    };
+
+    function getPathName(path: string) {
+        if (!path) return '💬 社区';
+        if (pathNameMap[path]) return pathNameMap[path];
+        if (path.startsWith('/blog/')) return '📝 博客文章';
+        return '💬 社区';
+    }
+
+    // Helper to format date string to human-readable relative time
+    function formatTime(timeStr: string) {
+        if (!timeStr) return '';
+        try {
+            const date = new Date(timeStr);
+            const now = new Date();
+            const diffMs = now.getTime() - date.getTime();
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            const diffDays = Math.floor(diffHours / 24);
+
+            if (diffMins < 1) return '刚刚';
+            if (diffMins < 60) return `${diffMins} 分钟前`;
+            if (diffHours < 24) return `${diffHours} 小时前`;
+            if (diffDays < 30) return `${diffDays} 天前`;
+            
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        } catch (e) {
+            return timeStr.split('T')[0] || '';
+        }
+    }
+
+    // Helper to clean HTML string into plain text preview
+    function cleanCommentText(html: string) {
+        if (!html) return '';
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        let text = tempDiv.textContent || tempDiv.innerText || '';
+        text = text.trim().replace(/\s+/g, ' ');
+        if (text.length > 100) {
+            return text.substring(0, 100) + '...';
+        }
+        return text;
+    }
+
+    async function fetchLatestComments() {
+        const container = document.getElementById('bbs-activity-container');
+        if (!container) return;
+
+        try {
+            // Fetch recent comments across all paths from Waline
+            const response = await fetch(`${serverURL}/comment?pageSize=6`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const json = await response.json();
+            
+            // Extract comment list
+            let comments = [];
+            if (json && Array.isArray(json.data)) {
+                comments = json.data;
+            } else if (json && json.data && Array.isArray(json.data.data)) {
+                comments = json.data.data;
+            }
+
+            if (comments.length === 0) {
+                container.innerHTML = `<div class="bbs-loading"><span>暂无最近动态，快去发帖吧！</span></div>`;
+                return;
+            }
+
+            let htmlList = '<div class="bbs-activity-list">';
+            comments.forEach((comment: any) => {
+                const nick = comment.nick || '匿名网友';
+                const avatar = comment.avatar || 'https://cravatar.cn/avatar/00000000000000000000000000000000?d=mp';
+                const plainText = cleanCommentText(comment.comment);
+                const rawPath = comment.path || '';
+                const boardName = getPathName(rawPath);
+                
+                let targetUrl = '/bbs';
+                if (rawPath === '/guestbook') targetUrl = '/guestbook';
+                else if (rawPath.startsWith('/bbs/')) targetUrl = rawPath;
+                else if (rawPath.startsWith('/blog/')) targetUrl = rawPath;
+                else if (rawPath) targetUrl = rawPath;
+
+                const timeFormatted = formatTime(comment.insertedAt || comment.createdAt || comment.time);
+
+                htmlList += `
+                    <div class="bbs-activity-item">
+                        <img src="${avatar}" alt="${nick} 的头像" class="bbs-activity-avatar" onerror="this.src='https://cravatar.cn/avatar/00000000000000000000000000000000?d=mp'" />
+                        <div class="bbs-activity-main">
+                            <div class="bbs-activity-meta">
+                                <span class="bbs-activity-user">${nick}</span>
+                                <span class="bbs-activity-badge">${boardName}</span>
+                                <span class="bbs-activity-time">${timeFormatted}</span>
+                            </div>
+                            <p class="bbs-activity-content">
+                                <a href="${targetUrl}">${plainText}</a>
+                            </p>
+                        </div>
+                    </div>
+                `;
+            });
+            htmlList += '</div>';
+            container.innerHTML = htmlList;
+
+        } catch (error) {
+            console.error('Failed to fetch Waline comments:', error);
+            container.innerHTML = `
+                <div class="bbs-loading" style="color: var(--text-muted);">
+                    <span>⚠️ 暂时无法加载最新动态 (可能正在连接中或网络受限)</span>
+                </div>
+            `;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchLatestComments);
+    document.addEventListener('astro:after-swap', fetchLatestComments);
+</script>

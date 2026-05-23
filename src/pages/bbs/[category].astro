@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '@waline/client/style';
+
+export function getStaticPaths() {
+    return [
+        { params: { category: 'daphile' }, props: { name: '💿 Daphile 数播专区', desc: '从 U 盘安装、极简系统优化、到双达菲、内核调优以及低成本数播方案交流。', icon: '💿' } },
+        { params: { category: 'hardware' }, props: { name: '🔧 旧机复活与改装', desc: '旧笔记本、瘦客户机、老台式机硬件清理升级，以及轻量 Linux、NAS、软路由折腾。', icon: '🔧' } },
+        { params: { category: 'hifi' }, props: { name: '🎧 低成本 Hi-Fi & DAC', desc: '二手解码器选购与防坑指南，小尾巴、桌面耳放搭配，音响反玄学实测与讨论。', icon: '🎧' } },
+        { params: { category: 'qa' }, props: { name: '❓ 求助与问答专区', desc: '遇到疑难杂症了？数播没声音、老机装不了系统、报错代码？来这里向大家提问。', icon: '❓' } },
+        { params: { category: 'chat' }, props: { name: '💬 茶水间与闲聊', desc: '分享你的洋垃圾折腾心得、桌搭展示、生活闲聊、打卡吐槽或划水灌水。', icon: '💬' } },
+    ];
+}
+
+const { category } = Astro.params;
+const { name, desc, icon } = Astro.props;
+const bbsPath = `/bbs/${category}`;
+---
+
+<Layout title={`${name} | 老机复活社区论坛`} description={desc} currentPath={`/bbs/${category}`}>
+    <section class="page-view" style="padding-top: 2rem;">
+        <div class="bbs-page-container">
+            <!-- Breadcrumbs -->
+            <nav class="bbs-breadcrumbs" aria-label="面包屑导航">
+                <a href="/">首页</a>
+                <span>&gt;</span>
+                <a href="/bbs">社区论坛</a>
+                <span>&gt;</span>
+                <span>{name}</span>
+            </nav>
+
+            <!-- Category Header -->
+            <header class="bbs-category-header">
+                <div class={`bbs-category-header-icon bbs-icon-${category}`}>
+                    {icon}
+                </div>
+                <div class="bbs-category-header-info">
+                    <h1 class="bbs-category-header-title">{name}</h1>
+                    <p class="bbs-category-header-desc">{desc}</p>
+                </div>
+            </header>
+
+            <!-- Waline Comment Section -->
+            <div class="article-comments-section" style="padding: 2rem; margin-top: 1rem;">
+                <div id="waline" data-path={bbsPath} data-title={name}></div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+import { init } from '@waline/client';
+
+function initBBSWaline() {
+    const walineEl = document.getElementById('waline');
+    if (!walineEl) return;
+
+    const path = walineEl.getAttribute('data-path') || window.location.pathname;
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
+
+    init({
+        el: '#waline',
+        serverURL: serverURL,
+        path: path,
+        dark: 'html[data-theme="dark"]',
+        comment: true,
+        pageview: true,
+    });
+}
+
+// Support Astro view transitions
+document.addEventListener('DOMContentLoaded', initBBSWaline);
+document.addEventListener('astro:after-swap', initBBSWaline);
+</script>

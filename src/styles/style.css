@@ -3325,5 +3325,403 @@ button {
     }
 }
 
+/* ==========================================================================
+   13. BBS (BULLETIN BOARD SYSTEM) FORUM STYLES
+   ========================================================================== */
+.bbs-page-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.bbs-hero {
+    text-align: center;
+    padding: 3rem 0 2rem 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.bbs-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.bbs-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* BBS Grid & Cards */
+.bbs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0 4rem 0;
+}
+
+.bbs-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.bbs-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.bbs-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-medium);
+}
+
+.bbs-card:hover::before {
+    opacity: 1;
+}
+
+.bbs-card-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.bbs-card:hover .bbs-card-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.bbs-card-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.bbs-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+}
+
+.bbs-card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+    transition: color var(--transition-fast);
+}
+
+.bbs-card:hover .bbs-card-title {
+    color: var(--primary);
+}
+
+.bbs-card-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 50px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.bbs-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* BBS Card Icon Color Schemes */
+.bbs-icon-daphile {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+.bbs-icon-hardware {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+.bbs-icon-hifi {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+.bbs-icon-qa {
+    background-color: #ffebee;
+    color: #c62828;
+}
+.bbs-icon-chat {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+[data-theme="dark"] .bbs-icon-daphile {
+    background-color: #0d2744;
+    color: #64b5f6;
+}
+[data-theme="dark"] .bbs-icon-hardware {
+    background-color: #2b1d0a;
+    color: #ffb74d;
+}
+[data-theme="dark"] .bbs-icon-hifi {
+    background-color: #0f2514;
+    color: #81c784;
+}
+[data-theme="dark"] .bbs-icon-qa {
+    background-color: #2d0f11;
+    color: #e57373;
+}
+[data-theme="dark"] .bbs-icon-chat {
+    background-color: #25102a;
+    color: #ba68c8;
+}
+
+/* Latest Activity Section */
+.bbs-activity-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin: 3rem 0 5rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.bbs-activity-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-main);
+}
+
+.bbs-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.bbs-activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    animation: slideUp 0.3s ease-out;
+}
+
+.bbs-activity-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.bbs-activity-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--border-strong);
+    background-color: var(--bg-base);
+}
+
+.bbs-activity-main {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.bbs-activity-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+}
+
+.bbs-activity-user {
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.bbs-activity-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    background-color: var(--bg-base);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.bbs-activity-time {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.bbs-activity-content {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bbs-activity-content a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.bbs-activity-content a:hover {
+    color: var(--primary);
+}
+
+.bbs-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    gap: 0.75rem;
+}
+
+.bbs-loading-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--border-strong);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: bbs-spin 0.8s linear infinite;
+}
+
+@keyframes bbs-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Category Detail Page */
+.bbs-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.bbs-breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.bbs-breadcrumbs a:hover {
+    color: var(--primary);
+}
+
+.bbs-category-header {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.bbs-category-header-icon {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bbs-category-header-info {
+    flex-grow: 1;
+}
+
+.bbs-category-header-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin: 0 0 0.5rem 0;
+}
+
+.bbs-category-header-desc {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Responsive BBS */
+@media (max-width: 900px) {
+    .bbs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bbs-hero {
+        padding: 2.5rem 0 1.5rem 0;
+    }
+    .bbs-category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.75rem;
+        gap: 1rem;
+    }
+    .bbs-category-header-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2rem;
+    }
+    .bbs-category-header-title {
+        font-size: 1.4rem;
+    }
+    .bbs-activity-section {
+        padding: 1.5rem;
+        margin: 2rem 0 3rem 0;
+    }
+}
+
+
 
 
