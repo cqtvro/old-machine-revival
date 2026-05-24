@@ -147,7 +147,7 @@ bannerGradient: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
 
 由于文件较大，本次提供百度网盘下载通道：
 
-* **下载链接**：[百度网盘下载](https://pan.baidu.com/s/1GA-RI86dwR7H0GOcS0IeCQ?pwd=ljfh) 
+* **下载链接**：[百度网盘下载](/download/daphile-25-05) 
 * **提取码**：`ljfh`
 
 *(提示：若下载链接失效，请在下方留言区或通过「关于本站」页面联系站长更新。)*
