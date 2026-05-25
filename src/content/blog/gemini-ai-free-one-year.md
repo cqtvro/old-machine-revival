@@ -93,7 +93,7 @@ bannerGradient: "linear-gradient(135deg, #1A73E8 0%, #4285F4 50%, #8AB4F8 100%)"
    * 在绑定外币信用卡时，账单地址必须使用美国地址。
    * 您可以使用 **[美国地址生成器](https://www.meiguodizhi.com/)** 随机生成一个包含街道、城市、邮编和电话的美国免税州地址（如俄勒冈州 Oregon、特拉华州 Delaware 等）。
    * 照抄生成的美国地址作为信用卡的账单地址提交绑定。
-5. 成功订阅后，您的 Google One 空间将变为 2TB，并且能立刻开始在 Gemini 网页端使用 **Gemini Advanced**（底座为 Gemini 1.5 Pro 级大模型）。
+5. 成功订阅后，您的 Google One 空间将变为 2TB，并且能立刻开始在 Gemini 网页端使用 **Gemini Advanced**（底座为最新的 Gemini 3.5 Flash 级大模型）。
 
 ---
 
