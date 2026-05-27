@@ -182,6 +182,9 @@ const defaultStructuredData = {
 
     <!-- Global Scripts -->
     <script>
+        import { inject } from "@vercel/analytics";
+        inject();
+
         // Theme Toggle
         function initTheme() {
             const themeToggle = document.getElementById('theme-toggle');
