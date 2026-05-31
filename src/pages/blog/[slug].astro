@@ -171,6 +171,55 @@ function initPostDetail() {
 
     // Initialize Waline
     initWaline();
+
+    // Check reply-to-view lock status
+    checkReplyToView();
+}
+
+function checkUserInComments(comments: any[], nick: string): boolean {
+    for (const c of comments) {
+        if (c.nick === nick) return true;
+        if (c.children && c.children.length > 0) {
+            if (checkUserInComments(c.children, nick)) return true;
+        }
+    }
+    return false;
+}
+
+function checkReplyToView() {
+    const lockedElements = document.querySelectorAll('.reply-to-view');
+    if (lockedElements.length === 0) return;
+
+    const path = window.location.pathname;
+    const storageKey = 'unlocked_' + path;
+
+    // 1. Check if already unlocked in this session
+    if (sessionStorage.getItem(storageKey) === 'true') {
+        lockedElements.forEach(el => el.setAttribute('data-locked', 'false'));
+        return;
+    }
+
+    // 2. Check local nickname
+    const walineNick = localStorage.getItem('waline:nick');
+    if (!walineNick) return;
+
+    // 3. Fetch Waline comments to verify
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline-284868.vercel.app';
+    const apiURL = `${serverURL}/api/comment?path=${encodeURIComponent(path)}`;
+
+    fetch(apiURL)
+        .then(res => res.json())
+        .then(json => {
+            if (json.errno === 0 && json.data && json.data.data) {
+                const comments = json.data.data;
+                const hasCommented = checkUserInComments(comments, walineNick);
+                if (hasCommented) {
+                    sessionStorage.setItem(storageKey, 'true');
+                    lockedElements.forEach(el => el.setAttribute('data-locked', 'false'));
+                }
+            }
+        })
+        .catch(err => console.error('Error checking comments:', err));
 }
 
 function initWaline() {
@@ -178,7 +227,7 @@ function initWaline() {
     if (!walineEl) return;
 
     const path = walineEl.getAttribute('data-path') || window.location.pathname;
-    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline-284868.vercel.app';
 
     init({
         el: '#waline',
@@ -193,3 +242,57 @@ function initWaline() {
 document.addEventListener('DOMContentLoaded', initPostDetail);
 document.addEventListener('astro:after-swap', initPostDetail);
 </script>
+
+<style is:global>
+/* Reply-to-view locked block styles */
+.reply-to-view[data-locked="true"] {
+    background: var(--bg-card) !important;
+    border: 2px dashed var(--accent) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 1.5rem !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin: 1.5rem 0 !important;
+}
+.reply-to-view[data-locked="true"]::before {
+    content: "🔒" !important;
+    font-size: 2rem !important;
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+}
+.reply-to-view[data-locked="true"] > * {
+    display: none !important;
+}
+.reply-to-view[data-locked="true"]::after {
+    content: "💡 此处下载链接已隐藏，请在下方评论区发表回复（填写昵称和邮箱提交评论）后，重新刷新网页即可查看！" !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: var(--text-main) !important;
+    display: block !important;
+    line-height: 1.6 !important;
+}
+
+/* Reply-to-view unlocked block styles */
+.reply-to-view[data-locked="false"] {
+    border: 2px solid var(--primary-medium) !important;
+    background: var(--bg-card) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0 !important;
+}
+.reply-to-view[data-locked="false"]::before {
+    content: "🔑 已解锁下载内容" !important;
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    color: var(--primary) !important;
+    display: block !important;
+    margin-bottom: 0.75rem !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding-bottom: 0.5rem !important;
+    text-align: left !important;
+}
+.reply-to-view[data-locked="false"] > * {
+    display: block !important;
+}
+</style>
