@@ -9,6 +9,10 @@ export default defineConfig({
     '/download/daphile-25-05': {
       status: 307,
       destination: 'https://pan.baidu.com/s/1GA-RI86dwR7H0GOcS0IeCQ?pwd=ljfh'
+    },
+    '/download/sacd-extract': {
+      status: 307,
+      destination: 'https://pan.baidu.com/s/1xxxxxx?pwd=ljfh'
     }
   }
 });
