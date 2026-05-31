@@ -129,6 +129,8 @@ const structuredData = {
 <script>
 import { init } from '@waline/client';
 
+let checkInterval: any = null;
+
 function initPostDetail() {
     const btnLike = document.getElementById('btn-like-post');
     const likesCountEl = document.getElementById('detail-likes-count');
@@ -169,16 +171,79 @@ function initPostDetail() {
         });
     }
 
+    // Clear existing interval if any
+    if (checkInterval) {
+        clearInterval(checkInterval);
+        checkInterval = null;
+    }
+
     // Initialize Waline
     initWaline();
 
     // Check reply-to-view lock status
     checkReplyToView();
+
+    // Poll periodically to check comments (unlock automatically without refresh)
+    const lockedElements = document.querySelectorAll('.reply-to-view[data-locked="true"]');
+    if (lockedElements.length > 0) {
+        checkInterval = setInterval(() => {
+            const currentLocked = document.querySelectorAll('.reply-to-view[data-locked="true"]');
+            if (currentLocked.length === 0) {
+                clearInterval(checkInterval);
+                checkInterval = null;
+                return;
+            }
+            checkReplyToView();
+        }, 3000);
+    }
+}
+
+function getWalineNick(): string {
+    // 1. Try standard keys
+    const keys = ['WALINE_NICK', 'waline_nick', 'waline:nick', 'nick'];
+    for (const key of keys) {
+        const val = localStorage.getItem(key);
+        if (val) return val.trim();
+    }
+
+    // 2. Iterate through all localStorage keys
+    try {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (!key) continue;
+            const keyLower = key.toLowerCase();
+            
+            // Check for key name containing waline and nick
+            if (keyLower.includes('waline') && keyLower.includes('nick')) {
+                const val = localStorage.getItem(key);
+                if (val) return val.trim();
+            }
+            
+            // Or look for serialized user JSON object
+            if (keyLower.includes('waline') || keyLower.includes('user')) {
+                const val = localStorage.getItem(key);
+                if (val && (val.startsWith('{') || val.startsWith('['))) {
+                    const obj = JSON.parse(val);
+                    if (obj && typeof obj === 'object') {
+                        if (obj.nick) return String(obj.nick).trim();
+                        if (obj.display_name) return String(obj.display_name).trim();
+                        if (obj.displayName) return String(obj.displayName).trim();
+                        if (obj.user && obj.user.nick) return String(obj.user.nick).trim();
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.error('Error scanning localStorage for waline nick:', e);
+    }
+    return '';
 }
 
 function checkUserInComments(comments: any[], nick: string): boolean {
+    if (!nick) return false;
+    const lowerNick = nick.toLowerCase();
     for (const c of comments) {
-        if (c.nick === nick) return true;
+        if (c.nick && c.nick.toLowerCase() === lowerNick) return true;
         if (c.children && c.children.length > 0) {
             if (checkUserInComments(c.children, nick)) return true;
         }
@@ -190,7 +255,14 @@ function checkReplyToView() {
     const lockedElements = document.querySelectorAll('.reply-to-view');
     if (lockedElements.length === 0) return;
 
-    const path = window.location.pathname;
+    const walineEl = document.getElementById('waline');
+    let path = walineEl ? walineEl.getAttribute('data-path') : window.location.pathname;
+    
+    // Normalize path by removing trailing slash if present
+    if (path && path.endsWith('/') && path.length > 1) {
+        path = path.slice(0, -1);
+    }
+    
     const storageKey = 'unlocked_' + path;
 
     // 1. Check if already unlocked in this session
@@ -200,7 +272,7 @@ function checkReplyToView() {
     }
 
     // 2. Check local nickname
-    const walineNick = localStorage.getItem('waline:nick');
+    const walineNick = getWalineNick();
     if (!walineNick) return;
 
     // 3. Fetch Waline comments to verify
