@@ -276,7 +276,7 @@ function checkReplyToView() {
     if (!walineNick) return;
 
     // 3. Fetch Waline comments to verify
-    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline-284868.vercel.app';
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
     const apiURL = `${serverURL}/api/comment?path=${encodeURIComponent(path)}`;
 
     fetch(apiURL)
@@ -299,7 +299,7 @@ function initWaline() {
     if (!walineEl) return;
 
     const path = walineEl.getAttribute('data-path') || window.location.pathname;
-    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline-284868.vercel.app';
+    const serverURL = import.meta.env.PUBLIC_WALINE_SERVER || 'https://waline.284868.xyz';
 
     init({
         el: '#waline',
