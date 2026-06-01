@@ -30,7 +30,7 @@ bannerGradient: "linear-gradient(135deg, #f12711 0%, #f5af19 100%)"
 1. **创建虚拟机**：
    登录飞牛 NAS 后台，打开“虚拟机”应用，点击“新建”。
    * **名称**：可随意填写（如 `Daphile-Server`）。
-   * **操作系统**：选择 Linux（类型只能选择 `其他 Linux`，没有 `Debian` 可选），具体配置参考下图。
+   * **操作系统**：选择 Linux，具体配置参考下图。
 
    ![飞牛虚拟机系统设置](./images/fnos-dual-daphile/1-fnos-create-vm.png)
    *图注：新建虚拟机，选择操作系统为通用 Linux 系列。*
