@@ -65,12 +65,14 @@ LMS 必须严格遵守**“先扫描、后检索、再网络播放”**的逻辑
 * **单文件绿色版**：免安装，包含底层转换引擎，双击即可直接运行；
 * **极简中文图形界面**：支持一键选择 ISO 镜像，自定义输出格式（DSF/DFF）与主声道配置，带有实时的进度日志展示；
 * **纯净安全**：无广告、无多余文件，完全由我们自己封装。
+* *(注：本定制版软件目前仅支持 Windows 平台。)*
 
 **本下载内容已开启“回复可见”，请在页面下方发表评论回复后，重新刷新网页即可解锁下载链接**：
 
 <div class="reply-to-view" data-locked="true">
   <ul>
-    <li><strong>软件下载链接</strong>：<a href="/download/sacd-extract">百度网盘下载 (老机复活定制版)</a></li>
+    <li><strong>Windows 用户 (推荐使用定制版)</strong>：<a href="/download/sacd-extract">百度网盘下载 (老机复活定制版)</a></li>
+    <li><strong>Mac 用户 (备用原版工具包)</strong>：<a href="/download/sacd-extract">百度网盘下载 (Mac 平台原版)</a></li>
     <li><strong>提取码</strong>：<code>ljfg</code></li>
   </ul>
 </div>
