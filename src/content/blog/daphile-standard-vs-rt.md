@@ -1,10 +1,14 @@
 ---
 title: "冷门科普：达菲（Daphile）实时版（RT）与标准版，在听感上到底有多大区别？"
-description: "很多烧友在选择达菲系统时，都会纠结于 Standard（标准版）和 RT（Preempt-RT 实时内核版）。本文站在音频工程与计算机底层调度的科学角度，为您客观剖析两者的技术差异、对声音的影响，以及它们在不同器材上的真实听感表现。"
-pubDate: "2026-06-06"
-heroImage: "/blog-placeholder-about.jpg"
-category: "数播技术"
-tags: ["Daphile", "RT内核", "数播优化", "HIFI科普"]
+summary: "很多烧友在选择达菲系统时，都会纠结于 Standard（标准版）和 RT（Preempt-RT 实时内核版）。本文站在音频工程与计算机底层调度的科学角度，为您客观剖析两者的技术差异、对声音的影响，以及它们在不同器材上的真实听感表现。"
+category: "daphile"
+categoryName: "数播技术"
+date: "2026-06-06"
+readTime: "6 分钟阅读"
+views: 1
+likes: 0
+tags: ["Daphile", "达菲", "RT内核", "数播优化", "HIFI科普"]
+bannerGradient: "linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%)"
 ---
 
 在数字音频（Computer Audio）和 HIFI 发烧圈里，系统底层的优化一直是一个充满争议的领域。其中最经典的一个问题就是：**达菲（Daphile）系统的“RT 实时内核版”与“标准版”，到底有什么区别？多出来的“RT”两个字是不是玄学？人耳真的能听出差别吗？**
