@@ -70,7 +70,7 @@ LMS 必须严格遵守**“先扫描、后检索、再网络播放”**的逻辑
 
 <div class="reply-to-view" data-locked="true">
   <ul>
-    <li><strong>软件下载链接</strong>：<a href="https://pan.baidu.com/s/1GWSA91bG75tXtsUo5QUTOQ?pwd=ljfg" target="_blank" rel="noopener noreferrer">百度网盘下载 (老机复活定制版)</a></li>
+    <li><strong>软件下载链接</strong>：<a href="/download/sacd-extract">百度网盘下载 (老机复活定制版)</a></li>
     <li><strong>提取码</strong>：<code>ljfg</code></li>
   </ul>
 </div>
