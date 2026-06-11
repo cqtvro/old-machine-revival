@@ -17,7 +17,7 @@ const { name, desc, icon } = Astro.props;
 const bbsPath = `/bbs/${category}`;
 ---
 
-<Layout title={`${name} | 老机复活社区论坛`} description={desc} currentPath={`/bbs/${category}`}>
+<Layout title={`${name} | 老机复活社区论坛`} description={desc} currentPath={`/bbs/${category}`} noindex={true}>
     <section class="page-view" style="padding-top: 2rem;">
         <div class="bbs-page-container">
             <!-- Breadcrumbs -->

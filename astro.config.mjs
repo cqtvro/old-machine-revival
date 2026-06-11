@@ -4,7 +4,11 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.284868.xyz',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/bbs') && !page.includes('/guestbook')
+    })
+  ],
   redirects: {
     '/download/daphile-25-05': {
       status: 307,

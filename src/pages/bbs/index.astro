@@ -45,7 +45,7 @@ const boards = [
 ];
 ---
 
-<Layout title="社区论坛 | 老机复活" description="老机复活社区论坛，在这里讨论 Daphile 数播、旧电脑改造、二手 DAC 选购、Hi-Fi 避坑和洋垃圾折腾。" currentPath="/bbs">
+<Layout title="社区论坛 | 老机复活" description="老机复活社区论坛，在这里讨论 Daphile 数播、旧电脑改造、二手 DAC 选购、Hi-Fi 避坑和洋垃圾折腾。" currentPath="/bbs" noindex={true}>
     <section class="page-view" style="padding-top: 2rem;">
         <div class="bbs-page-container">
             <!-- Hero section -->
@@ -183,7 +183,7 @@ const boards = [
                 const boardName = getPathName(rawPath);
                 
                 let targetUrl = '/bbs';
-                if (rawPath === '/guestbook') targetUrl = '/guestbook';
+                if (rawPath === '/guestbook') targetUrl = '/bbs';
                 else if (rawPath.startsWith('/bbs/')) targetUrl = rawPath;
                 else if (rawPath.startsWith('/blog/')) targetUrl = rawPath;
                 else if (rawPath) targetUrl = rawPath;
