@@ -17,6 +17,10 @@ export default defineConfig({
     '/download/sacd-extract': {
       status: 307,
       destination: 'https://pan.baidu.com/s/1GWSA91bG75tXtsUo5QUTOQ?pwd=ljfg'
+    },
+    '/download/daphile-v27': {
+      status: 307,
+      destination: 'https://pan.baidu.com/s/1evinLPnMfnEcheyJkIWE5Q?pwd=ljfh'
     }
   }
 });
