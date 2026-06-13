@@ -21,6 +21,10 @@ export default defineConfig({
     '/download/daphile-v27': {
       status: 307,
       destination: 'https://pan.baidu.com/s/1evinLPnMfnEcheyJkIWE5Q?pwd=ljfh'
+    },
+    '/download/daphile-v28': {
+      status: 307,
+      destination: 'https://pan.baidu.com/s/1Y9_3BO_vpViZv6h3mHuIlg?pwd=ljfh'
     }
   }
 });
