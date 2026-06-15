@@ -1,4 +1,6 @@
 ---
+import ContactWidget from '../components/ContactWidget.astro';
+
 interface Props {
     title?: string;
     description?: string;
@@ -130,6 +132,7 @@ const defaultStructuredData = {
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <a href="#contact" class="contact-shortcut-btn" data-trigger-contact>微信咨询</a>
                 <a href="/#calculator-anchor" class="calc-shortcut-btn">复活指南</a>
             </div>
 
@@ -149,6 +152,7 @@ const defaultStructuredData = {
             <li><a href="/blog" class:list={["mobile-nav-item", { active: currentPath.startsWith('/blog') }]}>精选博客</a></li>
             <li><a href="/bbs" class:list={["mobile-nav-item", { active: currentPath.startsWith('/bbs') }]}>社区论坛</a></li>
             <li><a href="/about" class:list={["mobile-nav-item", { active: currentPath === '/about' }]}>关于本站</a></li>
+            <li><a href="#contact" class="mobile-nav-item highlight-contact" data-trigger-contact style="color: var(--primary); font-weight: bold; border-top: 1px dashed var(--border); margin-top: 5px; padding-top: 10px;">💬 微信咨询/购买</a></li>
         </ul>
     </nav>
 
@@ -243,6 +247,7 @@ const defaultStructuredData = {
             initMobileNav();
         });
     </script>
+    <ContactWidget />
 </body>
 </html>
 
