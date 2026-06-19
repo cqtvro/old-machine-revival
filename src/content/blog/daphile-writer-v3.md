@@ -98,11 +98,17 @@ bannerGradient: "linear-gradient(135deg, #1e1e1e 0%, #d4af37 100%)"
 
 <h2 id="download-section">💾 写盘汉化工具下载</h2>
 
-写盘工具为绿色免安装软件（约 34.9 MB），已开启“回复可见”。请在页面下方发表评论回复后，重新刷新网页即可解锁官方写盘工具下载链接：
+写盘工具为绿色免安装软件（约 34.9 MB），已开启“回复可见”。请在页面下方发表评论回复后，重新刷新网页即可解锁下载链接：
 
 <div class="reply-to-view" data-locked="true">
   <ul>
     <li><strong>百度网盘下载链接</strong>：<a href="https://pan.baidu.com/s/1Zs7-uWplpK-aScq2LxKtFg?pwd=ljfh" target="_blank" rel="noopener noreferrer">点击进入百度网盘下载</a></li>
+    <li><strong>网盘内含资源</strong>：
+      <ol>
+        <li><code>Daphile中文写盘工具.exe</code>（我们独家开发的汉化写盘软件）</li>
+        <li><code>daphile-25.05-x86_64-rt.iso</code>（配套官方英文原版镜像，已贴心为您做好了高速分流，免去国外官网慢、打不开的烦恼）</li>
+      </ol>
+    </li>
     <li><strong>提取码</strong>：<code>ljfh</code></li>
   </ul>
 </div>
