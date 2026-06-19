@@ -102,7 +102,7 @@ bannerGradient: "linear-gradient(135deg, #1e1e1e 0%, #d4af37 100%)"
 
 <div class="reply-to-view" data-locked="true">
   <ul>
-    <li><strong>官方写盘工具.exe 下载链接</strong>：<a href="/download/daphile-writer-v3">点击进入网盘下载</a></li>
+    <li><strong>百度网盘下载链接</strong>：<a href="https://pan.baidu.com/s/1Zs7-uWplpK-aScq2LxKtFg?pwd=ljfh" target="_blank" rel="noopener noreferrer">点击进入百度网盘下载</a></li>
     <li><strong>提取码</strong>：<code>ljfh</code></li>
   </ul>
 </div>
