@@ -28,3 +28,8 @@ recovery-codes.txt
 
 
 .vercel
+
+# Local Blogger migration tools
+blogger_html/
+convert_to_blogger.py
+
