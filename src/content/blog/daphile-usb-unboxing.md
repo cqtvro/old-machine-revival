@@ -8,8 +8,11 @@ readTime: "4 分钟阅读"
 views: 1
 likes: 0
 tags: ["Daphile", "达菲", "开箱指南", "U盘启动", "BIOS设置", "数播教程"]
+coverImage: "./images/daphile-usb-unboxing/cover.png"
 bannerGradient: "linear-gradient(135deg, #111 0%, #d4af37 100%)"
 ---
+
+![达菲中文发烧 U 盘](./images/daphile-usb-unboxing/cover.png)
 
 恭喜您收到**老机复活**独家定制的达菲中文发烧 U 盘！本 U 盘已为您预装并激活了最新的 **Daphile 25.05 实时内核全中文系统**，并内置了发烧级必备插件。请按照以下三个步骤，开启您的极客数播之旅。
 
