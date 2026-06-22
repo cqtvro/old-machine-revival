@@ -16,6 +16,13 @@ bannerGradient: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)"
 ![cover](./images/daphile-vu-meter-setup/cover.png)
 
 今天，我们就为大家带来这篇**本地显示界面开启教程**，烧友们可以参考本教程尝试在自己的系统上开启本地显示。
+
+<div style="margin: 1.5rem 0; padding: 1rem; border-left: 4px solid #1e3c72; background: rgba(30, 60, 114, 0.05); border-radius: 0 8px 8px 0;">
+  <strong>📺 视频实操演示：</strong>
+  <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-light, #666);">大屏圆形动态指针表头的实际效果与设置演示，您可以直接播放下方 B站 视频进行观看：</p>
+  <iframe src="//player.bilibili.com/player.html?bvid=BV1P97P6eEEg&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; aspect-ratio: 16/9; margin-top: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+</div>
+
 💡 特别说明：关于“圆形黄光 UV 表”的显示
 【使用提示】
 >默认/原版系统：由于本地界面（Jivelite）的皮肤组件及依赖库版本不同，默认情况下可能仅支持基础的封面图、歌曲文字或线条频谱，无法直接显示高清晰度的双圆形 UV 指针表头。
