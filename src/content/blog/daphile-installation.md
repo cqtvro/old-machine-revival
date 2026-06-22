@@ -21,12 +21,6 @@ Daphile 系统自带了一把“尚方宝剑”，可以在启动时直接把旧
 
 > ⚠️ **高能预警**：接下来的操作会彻底清空旧电脑硬盘里的所有数据！请确保重要数据已经备份。
 
-<div style="margin: 1.5rem 0; padding: 1rem; border-left: 4px solid #d4af37; background: rgba(212, 175, 55, 0.05); border-radius: 0 8px 8px 0;">
-  <strong>📺 视频实操演示：</strong>
-  <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-light, #666);">如果您觉得看文字步骤不够直观，可以直接播放以下我们制作的 B站 视频实操演示：</p>
-  <iframe src="//player.bilibili.com/player.html?bvid=BV1P97P6eEEg&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; aspect-ratio: 16/9; margin-top: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
-</div>
-
 ---
 
 ## 第一步：制作“系统启动盘”
