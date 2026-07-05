@@ -246,16 +246,43 @@ const defaultStructuredData = {
             }
         }
 
+        // Global Announcement Banner Scroll Adjuster
+        function initBannerScroll() {
+            const banner = document.querySelector('.global-announcement-banner') as HTMLElement;
+            const header = document.querySelector('.site-header') as HTMLElement;
+            if (!banner || !header) return;
+
+            function handleScroll() {
+                const bannerHeight = banner.offsetHeight;
+                const scrollY = window.scrollY;
+                
+                // Dynamically set CSS variable for main content spacing
+                document.documentElement.style.setProperty('--global-banner-height', `${bannerHeight}px`);
+                
+                if (scrollY > bannerHeight) {
+                    header.style.top = '0px';
+                } else {
+                    header.style.top = `${bannerHeight - scrollY}px`;
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('resize', handleScroll, { passive: true });
+            handleScroll();
+        }
+
         // Init on page load
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             initMobileNav();
+            initBannerScroll();
         });
 
         // Re-init on Astro page transitions (View Transitions)
         document.addEventListener('astro:after-swap', () => {
             initTheme();
             initMobileNav();
+            initBannerScroll();
         });
     </script>
     <ContactWidget />
@@ -328,6 +355,12 @@ const defaultStructuredData = {
         0% { transform: scale(1); }
         100% { transform: scale(1.22); }
     }
+    
+    /* Dynamically adjust main content spacing below fixed header + banner */
+    .main-content {
+        margin-top: calc(var(--header-height) + var(--global-banner-height, 42px)) !important;
+    }
+
     @media (max-width: 768px) {
         .global-announcement-banner {
             padding: 8px 16px;
