@@ -85,6 +85,17 @@ const defaultStructuredData = {
     <!-- Top Progress Bar -->
     <div id="page-progress" class="page-progress"></div>
 
+    <!-- Globally Exclusive Feature Banner -->
+    <div class="global-announcement-banner">
+        <div class="announcement-content">
+            <span class="announcement-fire-icon">🔥</span>
+            <span class="announcement-text">
+                <strong>全球首创 / 独家发布</strong>：全网唯一支持 Daphile (达菲) <strong>直接播放 SACD-ISO 镜像</strong> 的智能汉化写盘方案，免解压、源码直出！
+            </span>
+            <a href="/blog/daphile-v311-release" class="announcement-link">立即下载体验 &rarr;</a>
+        </div>
+    </div>
+
     <!-- Header & Navigation -->
     <header class="site-header">
         <div class="header-container">
@@ -253,4 +264,77 @@ const defaultStructuredData = {
 
 <style is:global>
     @import '../styles/style.css';
+
+    /* Global Announcement Banner */
+    .global-announcement-banner {
+        background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        font-size: 0.92rem;
+        box-shadow: 0 2px 8px rgba(255, 75, 43, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        position: relative;
+        z-index: 1010;
+        animation: pulseGradient 4s infinite alternate;
+    }
+    .announcement-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .announcement-fire-icon {
+        font-size: 1.1rem;
+        display: inline-block;
+        animation: scaleUpDown 1.2s infinite alternate;
+    }
+    .announcement-text {
+        font-weight: 500;
+        letter-spacing: 0.2px;
+    }
+    .announcement-text strong {
+        font-weight: 800;
+        background: rgba(255, 255, 255, 0.25);
+        padding: 1px 5px;
+        border-radius: 3px;
+        margin: 0 2px;
+    }
+    .announcement-link {
+        color: #fff;
+        text-decoration: underline;
+        font-weight: 700;
+        margin-left: 2px;
+        transition: opacity 0.2s ease;
+    }
+    .announcement-link:hover {
+        opacity: 0.9;
+        text-decoration: none;
+    }
+    @keyframes pulseGradient {
+        0% {
+            filter: hue-rotate(0deg);
+        }
+        100% {
+            filter: hue-rotate(15deg);
+        }
+    }
+    @keyframes scaleUpDown {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.22); }
+    }
+    @media (max-width: 768px) {
+        .global-announcement-banner {
+            padding: 8px 16px;
+            font-size: 0.82rem;
+        }
+        .announcement-content {
+            gap: 4px;
+        }
+    }
 </style>

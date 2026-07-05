@@ -16,17 +16,6 @@ const featuredPosts = sortedPosts.slice(0, 4);
     currentPath="/"
 >
     <section id="home-view" class="page-view home-page-v2">
-        <!-- Globally Exclusive Feature Banner -->
-        <div class="global-announcement-banner">
-            <div class="announcement-content">
-                <span class="announcement-fire-icon">🔥</span>
-                <span class="announcement-text">
-                    <strong>全球首创 / 独家发布</strong>：全网唯一支持 Daphile (达菲) <strong>直接播放 SACD-ISO 镜像</strong> 的智能汉化写盘方案，免解压、源码直出！
-                </span>
-                <a href="/blog/daphile-v311-release" class="announcement-link">立即下载体验 &rarr;</a>
-            </div>
-        </div>
-
         <!-- Compact Hero Section -->
         <div class="section-container compact-hero-container">
             <div class="compact-hero">
@@ -249,80 +238,3 @@ const featuredPosts = sortedPosts.slice(0, 4);
         </div>
     </section>
 </Layout>
-
-<style>
-    /* Announcement Banner */
-    .global-announcement-banner {
-        background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
-        color: white;
-        padding: 12px 24px;
-        text-align: center;
-        font-size: 0.95rem;
-        box-shadow: 0 4px 15px rgba(255, 75, 43, 0.2);
-        border-radius: 12px;
-        margin: 1.5rem auto 0 auto;
-        max-width: 1200px;
-        width: calc(100% - 48px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        animation: pulseGradient 4s infinite alternate;
-    }
-    .announcement-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-    .announcement-fire-icon {
-        font-size: 1.2rem;
-        display: inline-block;
-        animation: scaleUpDown 1.2s infinite alternate;
-    }
-    .announcement-text {
-        font-weight: 400;
-        letter-spacing: 0.3px;
-    }
-    .announcement-text strong {
-        font-weight: 800;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 2px 6px;
-        border-radius: 4px;
-    }
-    .announcement-link {
-        color: #fff;
-        text-decoration: underline;
-        font-weight: 700;
-        margin-left: 4px;
-        transition: opacity 0.2s ease;
-    }
-    .announcement-link:hover {
-        opacity: 0.9;
-        text-decoration: none;
-    }
-    @keyframes pulseGradient {
-        0% {
-            filter: hue-rotate(0deg);
-        }
-        100% {
-            filter: hue-rotate(15deg);
-        }
-    }
-    @keyframes scaleUpDown {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.25); }
-    }
-    @media (max-width: 768px) {
-        .global-announcement-banner {
-            margin: 1rem 16px 0 16px;
-            width: calc(100% - 32px);
-            padding: 10px 16px;
-            font-size: 0.85rem;
-        }
-        .announcement-content {
-            gap: 6px;
-        }
-    }
-</style>
