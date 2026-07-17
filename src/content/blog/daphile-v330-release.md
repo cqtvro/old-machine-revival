@@ -21,6 +21,10 @@ bannerGradient: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)"
 
 ![七木达菲 v3.3.0 封面](./images/daphile-v330-release/cover.png)
 
+📺 **七木达菲 v3.3.0 旗舰版实机动态 VU 指针与功能演示视频**：
+
+<iframe src="//player.bilibili.com/player.html?bvid=BV1UrKn64EdK&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; aspect-ratio: 16/9; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 24px 0;"></iframe>
+
 ---
 
 ## 🌟 亮点一：复古动态双 VU 指针表，让音乐“看得见”
