@@ -62,8 +62,12 @@ bannerGradient: "linear-gradient(135deg, #091528 0%, #102a45 50%, #050b14 100%)"
 5. 点击最下方的【开始】按钮；
 6. ⚠️ **关键步骤（特别注意）**：  
    如果弹窗提示“检测到 ISOHybrid 镜像”或询问写入模式：  
-   > **请保持默认勾选：【以 ISO 镜像模式写入（推荐）】**，直接点击【确定】！  
-   > ❌ **无需切换为 DD 模式**，使用标准 ISO 模式写入即可获得最稳定的自适应双引导体验。
+   > **请保持默认勾选：【以 ISO 镜像模式写入(推荐)】**，直接点击【确定】！  
+   > ❌ **切勿切换为 DD 模式**，使用标准 ISO 模式写入即可获得最稳定的自适应双引导体验。
+
+![Rufus 写盘设置与 ISO 模式选择](./images/qms-audio-os-install-guide/rufus-setting.png)
+*图注：在 Rufus 弹出的“检测到 ISOHybrid 镜像”提示中，务必保持默认选中的【以 ISO 镜像 模式写入(推荐)】，点击 OK 即可。*
+
 7. 再次确认格式化警告，等待进度条走完显示“准备就绪”，即可安全弹出拔下 U 盘。
 
 ---
@@ -88,7 +92,10 @@ bannerGradient: "linear-gradient(135deg, #091528 0%, #102a45 50%, #050b14 100%)"
 | **华硕 / 技嘉 / 微星台式机主板** | **`F8` / `F11` / `F12`** | 视主板型号而定 |
 | **工控机 / 软路由 / 杂牌小主机** | **`F11` / `F7` / `Esc`** | 屏幕通常有小字提示 Boot Menu |
 
-3. 在弹出的启动项列表中，使用键盘方向键选中带有 **`UEFI: [你的U盘品牌]`** 或 **`USB Storage Device`** 的选项，回车启动。
+3. 在弹出的启动项列表中，使用键盘方向键选中带有 **`USB`** 标识的启动盘项（如下图中的 `1. USB VendorCoProductCode`），回车启动：
+
+![主板 Boot Menu 启动菜单选择 U 盘](./images/qms-audio-os-install-guide/bios-boot-menu.png)
+*图注：开机按快捷键（如 F9/F12）进入 Boot Menu，选择插入的 U 盘回车引导。*
 
 ---
 
@@ -96,23 +103,27 @@ bannerGradient: "linear-gradient(135deg, #091528 0%, #102a45 50%, #050b14 100%)"
 
 数播主机开机极速载入，临时显示器屏幕上会出现如下标准字符状态看板：
 
+![数播开机字符状态看板](./images/qms-audio-os-install-guide/terminal-console.png)
+*图注：数播开机实拍看板，清晰显示后台分配的局域网 IP（例如 http://192.168.6.11/）与域名 http://qms.local/，并自动侦测接驳的 DAC 硬件。*
+
 ```text
 ================================================================================
-          QMS Audio OS v4.1.1 PRO - Audiophile Master Edition
+     QMS Audio OS v4.1.1 PRO - Audiophile Master Edition
 ================================================================================
-   Web Control : http://192.168.1.125/  or  http://qms.local/
-   Audio DAC   : USB Audio DAC / XMOS / Amanero (Bit-Perfect Ready)
-   Engine Core : Bit-Perfect Low-Latency RAM Architecture
-   System Mode : Live USB Mode (Read-Only / Ready to Install)
-   Status      : Ready (Standing by for Bit-Perfect Playback)
+  Web Control : http://192.168.6.11/  or  http://qms.local/
+  Audio DAC   : Conexant CX20756 (Bit-Perfect Ready)
+  Engine Core : Bit-Perfect Low-Latency RAM Architecture
+  System Mode : Live USB Mode (Read-Only / Ready to Install)
+  Status      : Ready (Standing by for Bit-Perfect Playback)
 ================================================================================
-   Open Web Control in your browser to manage music & installation.
+  Open Web Control in your browser to manage music & installation.
+  (c) 2026 QiMu Acoustics Technology. All Rights Reserved.
 ================================================================================
 ```
 
 ### 1. 打开黑金控制台
 拿起处于同一 Wi-Fi 局域网下的 **手机、iPad 平板或电脑**，打开任意浏览器：
-*   在地址栏直接输入看板上显示的设备 IP（例如：`http://192.168.1.125`）；
+*   在地址栏直接输入看板上显示的设备 IP（例如：`http://192.168.6.11`）；
 *   或者直接访问免记 IP 域名：👉 **`http://qms.local`** 即可秒级开启七木黑金发烧控制台！
 
 ### 2. 免盘快速试听
