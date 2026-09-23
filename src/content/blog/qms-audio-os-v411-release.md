@@ -1,8 +1,8 @@
 ---
 title: "两年磨一剑｜七木数播 QMS Audio OS ISO 4.1.1 正式版全球发布！"
 summary: "七木数播 QMS Audio OS ISO 4.1.1 纯净发烧正式版重磅发布！全 RAM-Disk 内存驻留架构、硬件独占 Direct Bit-Perfect 直通、DSD512/768kHz 顶级母带、自研 SACD ISO 闪电直读、多风格 4K 动态双 VU 表盘。老旧主机/NUC一秒蜕变高端数字转盘，首发特惠 99 元限时开启，开放 3 天全功能免费试听！"
-category: "daphile"
-categoryName: "数播教程"
+category: "qms"
+categoryName: "七木数播 QMS"
 date: "2026-09-22"
 readTime: "7 分钟阅读"
 views: 1
@@ -122,6 +122,7 @@ bannerGradient: "linear-gradient(135deg, #091528 0%, #102a45 50%, #050b14 100%)"
 👉 **[点击前往百度网盘下载：七木数播 QMS Audio OS ISO 4.1.1 官方正式版镜像](https://pan.baidu.com/s/1K6iMTY7ONZ6wlqKVrv8KOg?pwd=qmsb)**
 *   **百度网盘提取码**：`qmsb`
 *   **装机说明**：下载 ISO 镜像后，使用 Rufus 或通用写盘工具一键写入 U 盘（UEFI / Legacy 双引导），插入闲置主机/工控机即可快速启动安装。装机后在系统中可自助开启 **3 天全功能免费试听**！
+*   📖 **新手安装指南**：详见官方保姆级图文教程 👉 [《七木数播 QMS Audio OS v4.1.1 完整安装与激活保姆级教程》](/blog/qms-audio-os-install-guide)
 
 ---
 

@@ -30,6 +30,53 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
                 </div>
             </div>
 
+            <!-- ====== QMS Audio OS Series Roadmap Module ====== -->
+            <div class="series-roadmap qms-roadmap" id="qms-roadmap">
+                <div class="roadmap-header">
+                    <div class="roadmap-badge qms-badge">👑 官方纯血专题</div>
+                    <h2 class="roadmap-title">七木数播 QMS Audio OS 完全专题</h2>
+                    <p class="roadmap-subtitle">全 RAM-Disk 内存驻留架构、Direct Bit-Perfect 直通、SACD ISO 闪电直读、4K 动感双 VU 表</p>
+                </div>
+
+                <div class="roadmap-tier">
+                    <div class="tier-label">
+                        <span class="tier-icon">⚡</span>
+                        <span class="tier-name">发烧开声</span>
+                        <span class="tier-desc">开声与深度把玩</span>
+                    </div>
+                    <div class="roadmap-timeline">
+                        <a href="/blog/qms-audio-os-v411-release" class="roadmap-step">
+                            <span class="step-number">1</span>
+                            <span class="step-label">4.1.1 发布<br/><small>七大突破</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/qms-audio-os-install-guide" class="roadmap-step">
+                            <span class="step-number">2</span>
+                            <span class="step-label">安装指南<br/><small>Rufus写盘</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/qms-audio-os-install-guide#四进入-live-临时试听模式免写盘初体验" class="roadmap-step">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Live 试听<br/><small>免盘秒启</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/qms-audio-os-install-guide#五一键安装到机身固态硬盘正式落盘" class="roadmap-step">
+                            <span class="step-number">4</span>
+                            <span class="step-label">固态落盘<br/><small>独立开机</small></span>
+                        </a>
+                        <div class="step-connector"></div>
+                        <a href="/blog/qms-audio-os-install-guide#七输入券码激活永久终身版vip-授权" class="roadmap-step step-bonus">
+                            <span class="step-number">★</span>
+                            <span class="step-label">VIP 激活<br/><small>终身OTA</small></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="roadmap-cta">
+                    <span class="roadmap-cta-text">🔥 限时早鸟特惠：镜像免费下载体验 3 天，首发授权仅需 ¥99（10月8日恢复 ¥299）</span>
+                </div>
+            </div>
+
             <!-- ====== Daphile Series Roadmap Module ====== -->
             <div class="series-roadmap" id="daphile-roadmap">
                 <div class="roadmap-header">
@@ -116,11 +163,12 @@ const sortedPosts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - ne
             <!-- Category Filters -->
             <div class="categories-bar">
                 <button class="category-btn active" data-category="all">全部文章</button>
-                <button class="category-btn" data-category="notebook">笔记本</button>
-                <button class="category-btn" data-category="desktop">台式机/服务器</button>
-                <button class="category-btn" data-category="system">系统/优化</button>
-                <button class="category-btn" data-category="audio">音响发烧</button>
+                <button class="category-btn" data-category="qms">七木数播 QMS</button>
                 <button class="category-btn" data-category="daphile">数播教程</button>
+                <button class="category-btn" data-category="audio">音响发烧</button>
+                <button class="category-btn" data-category="system">系统/优化</button>
+                <button class="category-btn" data-category="desktop">台式机/服务器</button>
+                <button class="category-btn" data-category="notebook">笔记本</button>
                 <button class="category-btn" data-category="others">其他改造</button>
             </div>
 
