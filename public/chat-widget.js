@@ -50,6 +50,70 @@
         letter-spacing: 0.5px;
         pointer-events: none;
       }
+
+      /* 方案 A：左侧常驻呼吸浮动气泡 */
+      #qms-chat-bubble {
+        position: fixed;
+        bottom: 97px;
+        right: 94px;
+        background: linear-gradient(135deg, rgba(10, 25, 47, 0.95), rgba(27, 42, 69, 0.95));
+        border: 1.5px solid #00d2ff;
+        border-radius: 20px;
+        padding: 7px 14px 7px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 4px 20px rgba(0, 210, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        z-index: 999989;
+        backdrop-filter: blur(8px);
+        animation: qmsBubbleFloat 3s ease-in-out infinite;
+        transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+        user-select: none;
+      }
+      #qms-chat-bubble:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
+      }
+      @keyframes qmsBubbleFloat {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+      .qms-bubble-icon {
+        font-size: 14px;
+        animation: qmsSparkle 1.8s infinite alternate;
+        display: inline-block;
+      }
+      @keyframes qmsSparkle {
+        from { transform: scale(0.9) rotate(-5deg); opacity: 0.8; }
+        to { transform: scale(1.15) rotate(5deg); opacity: 1; }
+      }
+      .qms-bubble-text {
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        background: linear-gradient(90deg, #ffffff, #7dd3fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .qms-bubble-arrow {
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 10px;
+        height: 10px;
+        background: #1b2a45;
+        border-right: 1.5px solid #00d2ff;
+        border-top: 1.5px solid #00d2ff;
+      }
+
       #qms-chat-box {
         position: fixed;
         bottom: 155px;
@@ -247,6 +311,14 @@
           width: 50px;
           height: 50px;
         }
+        #qms-chat-bubble {
+          bottom: 98px;
+          right: 78px;
+          padding: 6px 12px 6px 10px;
+        }
+        .qms-bubble-text {
+          font-size: 12px;
+        }
         #qms-chat-box {
           width: calc(100vw - 32px);
           right: 16px;
@@ -254,11 +326,27 @@
           height: 72vh;
         }
       }
+      @media (max-width: 380px) {
+        #qms-chat-bubble {
+          display: none;
+        }
+      }
     </style>
+
+    <!-- 方案 A：左侧呼吸气泡 -->
+    <div id="qms-chat-bubble" title="点击咨询七木数播 AI 顾问">
+      <span class="qms-bubble-icon">✨</span>
+      <span class="qms-bubble-text">没有人比我更懂数播</span>
+      <div class="qms-bubble-arrow"></div>
+    </div>
+
+    <!-- 悬浮图标 -->
     <div id="qms-chat-btn" title="七木数播 AI 官方顾问">
       <span id="qms-chat-badge">AI</span>
       <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
     </div>
+
+    <!-- 聊天主窗口 -->
     <div id="qms-chat-box">
       <div id="qms-chat-header">
         <div class="title-area">
@@ -273,7 +361,7 @@
       <div id="qms-chat-body">
         <div class="qms-msg qms-msg-bot">
 您好！我是七木数播官方 AI 顾问。
-无论您是咨询 <strong>QMS 纯内存发烧系统</strong>、<strong>七木达菲系统</strong>、<strong>10月8日前限时 99 元早鸟特惠</strong>，还是遇到硬件播放疑问，都可以直接在此向我提问！😊
+无论您是咨询 <strong>QMS 纯内存发烧系统</strong>、<strong>七木达菲系统</strong>、<strong>10月8日前限时 99 元早鸟特惠</strong>，还是遇到硬件播放与网络共享疑问，都可以直接向我提问！😊
         </div>
         <div class="qms-quick-tags" id="qms-quick-tags">
           <button class="qms-tag-btn" data-query="QMS系统和达菲有什么区别？">QMS 与 达菲区别</button>
@@ -291,6 +379,7 @@
   document.body.appendChild(widgetContainer);
 
   const chatBtn = document.getElementById("qms-chat-btn");
+  const chatBubble = document.getElementById("qms-chat-bubble");
   const chatBox = document.getElementById("qms-chat-box");
   const closeBtn = document.getElementById("qms-chat-close");
   const chatBody = document.getElementById("qms-chat-body");
@@ -298,13 +387,26 @@
   const sendBtn = document.getElementById("qms-chat-send");
   const quickTags = document.getElementById("qms-quick-tags");
 
-  chatBtn.onclick = () => {
+  function toggleChat() {
     const isVisible = chatBox.style.display === "flex";
-    chatBox.style.display = isVisible ? "none" : "flex";
-    if (!isVisible) inputEl.focus();
-  };
+    if (isVisible) {
+      chatBox.style.display = "none";
+      if (chatBubble) chatBubble.style.display = "flex";
+    } else {
+      chatBox.style.display = "flex";
+      if (chatBubble) chatBubble.style.display = "none";
+      inputEl.focus();
+    }
+  }
+
+  chatBtn.onclick = toggleChat;
+  if (chatBubble) {
+    chatBubble.onclick = toggleChat;
+  }
+
   closeBtn.onclick = () => {
     chatBox.style.display = "none";
+    if (chatBubble) chatBubble.style.display = "flex";
   };
 
   // 快捷问题点击
