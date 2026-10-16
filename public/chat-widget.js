@@ -361,13 +361,13 @@
       <div id="qms-chat-body">
         <div class="qms-msg qms-msg-bot">
 您好！我是七木数播官方 AI 顾问。
-无论您是咨询 <strong>QMS 纯内存发烧系统</strong>、<strong>七木达菲系统</strong>、<strong>10月8日前限时 99 元早鸟特惠</strong>，还是遇到硬件播放与网络共享疑问，都可以直接向我提问！😊
+无论您是咨询 <strong>QMS 纯内存发烧系统（支持一键免费试用3天）</strong>、<strong>七木达菲系统</strong>，还是了解全新方案（月卡¥9.9 / 年卡¥99 / 终身¥299），或遇到硬件安装与网络共享疑问，都可以直接向我提问！😊
         </div>
         <div class="qms-quick-tags" id="qms-quick-tags">
-          <button class="qms-tag-btn" data-query="QMS系统和达菲有什么区别？">QMS 与 达菲区别</button>
-          <button class="qms-tag-btn" data-query="99元早鸟优惠活动怎么参加？">99元早鸟优惠</button>
-          <button class="qms-tag-btn" data-query="老电脑如何安装七木数播系统？">老电脑安装支持</button>
-          <button class="qms-tag-btn" data-query="人工客服微信是多少？">人工客服微信</button>
+          <button class="qms-tag-btn" data-query="QMS系统和达菲有什么区别？哪个更适合我？">QMS 与 达菲区别</button>
+          <button class="qms-tag-btn" data-query="QMS如何免费试用3天？月卡、年卡与终身VIP价格与专属权益是什么？">🎁 免费试用与价格方案</button>
+          <button class="qms-tag-btn" data-query="闲置老电脑、Mac mini或瘦客户机如何安装七木数播系统？">老电脑/主机安装</button>
+          <button class="qms-tag-btn" data-query="人工客服微信是多少？如何联系站长购买？">人工客服微信</button>
         </div>
       </div>
       <div id="qms-chat-footer">
