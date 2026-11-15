@@ -15,6 +15,12 @@ bannerGradient: "linear-gradient(135deg, #0a1726 0%, #162f4e 50%, #07101b 100%)"
 
 ---
 
+📺 **白皮书视频版，点击下方直接观看**：
+
+<iframe src="//player.bilibili.com/player.html?bvid=BV1vcsH6EEJ8&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; aspect-ratio: 16/9; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 24px 0;"></iframe>
+
+---
+
 ## 序言：为什么需要一款独立声学操作系统？
 
 在传统 PC、智能电视或通用 Android 电视盒上播放音乐时，声音往往要穿透操作系统臃肿的多任务调度器、混音器（如 Windows DirectSound、Linux PulseAudio/PipeWire、Android AudioFlinger），被强制重采样、插值抖动与数字削顶。
