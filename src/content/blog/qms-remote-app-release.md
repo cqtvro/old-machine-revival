@@ -37,6 +37,6 @@ bannerGradient: "linear-gradient(135deg, #0a1726 0%, #162f4e 50%, #07101b 100%)"
 
 ## 三、怎么装，一分钟上手
 
-下载安装包，扫码或者点链接都行；手机连上家里 Wi-Fi；打开 APP，它自动连上数播。完事，开始听。
+下载安装包：[百度网盘](https://pan.baidu.com/s/1j445htW_LeFTTpcvyGT-cQ?pwd=qmsb)，提取码：qmsb；手机连上家里 Wi-Fi；打开 APP，它自动连上数播。完事，开始听。
 
 数播终于可以彻底藏进柜子里了，手机就是遥控器。
