@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
     title="QMS 功能特点 | 七木数播 QMS Audio OS"
-    description="七木数播 QMS Audio OS 功能特点：DSD Native / DoP 双模源码直出、SACD ISO 原盘直播、全场景音源融合、6 档名胆调音与 10 段 EQ、4 款发烧主题、AirPlay / DLNA 双向投流。"
+    description="七木数播 QMS Audio OS 功能特点：PREEMPT_RT 实时内核实测最大延迟 50 微秒、SACD ISO 原盘直播、6 档名胆调音与 10 段 EQ、DSD Native / DoP 双模源码直出。Pro ¥299 终身，RT ¥599 终身，免费试用 3 天。"
     currentPath="/qms-features"
 >
     <section id="qms-features-view" class="page-view">
@@ -12,23 +12,30 @@ import Layout from '../layouts/Layout.astro';
             <div class="section-header text-center">
                 <h1 class="section-title">功能特点</h1>
                 <p class="section-subtitle">每一个功能，都为极致音质而生</p>
+                <p class="section-pricing">Pro ¥299 / 永久 · RT ¥599 / 永久 · 免费试用 3 天</p>
             </div>
 
             <div class="qms-features-grid">
                 <article class="qms-feature-card">
                     <div class="qms-feature-icon" aria-hidden="true">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <circle cx="24" cy="24" r="17" />
-                            <circle cx="24" cy="24" r="6" />
-                            <line x1="24" y1="3" x2="24" y2="11" />
-                            <line x1="24" y1="37" x2="24" y2="45" />
-                            <line x1="3" y1="24" x2="11" y2="24" />
-                            <line x1="37" y1="24" x2="45" y2="24" />
+                            <rect x="12" y="12" width="24" height="24" rx="3" />
+                            <rect x="20" y="20" width="8" height="8" />
+                            <line x1="18" y1="12" x2="18" y2="6" />
+                            <line x1="24" y1="12" x2="24" y2="6" />
+                            <line x1="30" y1="12" x2="30" y2="6" />
+                            <line x1="18" y1="42" x2="18" y2="36" />
+                            <line x1="24" y1="42" x2="24" y2="36" />
+                            <line x1="30" y1="42" x2="30" y2="36" />
+                            <line x1="12" y1="18" x2="6" y2="18" />
+                            <line x1="12" y1="30" x2="6" y2="30" />
+                            <line x1="42" y1="18" x2="36" y2="18" />
+                            <line x1="42" y1="30" x2="36" y2="30" />
                         </svg>
                     </div>
-                    <h3>DSD Native / DoP 双模源码直出</h3>
-                    <p>纯 C 语言 Zero-Copy 推流架构，Bit-Perfect 原生直通 ALSA 硬件层。完美适配 Amanero (384kHz)、XMOS (768kHz) 等异步 USB DAC，支持 Native DSD512 直解与 1-bit 智能降采样兼容。</p>
-                    <div class="qms-feature-tags"><span>DSD64 - DSD512</span><span>PCM 768kHz</span></div>
+                    <h3>PREEMPT_RT 纯血实时声学内核</h3>
+                    <p>提供专为极客发烧友打造的 Linux PREEMPT_RT 实时内核版本。同一台 Mac mini 5,000 次实测：普通内核最大延迟 1,772 微秒，RT 内核最大仅 50 微秒、平均 35 微秒，大幅压缩系统调度延迟与时间抖动（Jitter）。</p>
+                    <div class="qms-feature-tags"><span>最大延迟 50 微秒</span><span>PREEMPT_RT 实时内核</span></div>
                 </article>
 
                 <article class="qms-feature-card">
@@ -42,21 +49,6 @@ import Layout from '../layouts/Layout.astro';
                     <h3>SACD ISO / CUE 原盘免解压直播</h3>
                     <p>无需繁琐解压超大镜像文件，内存扇区级直解 SACD ISO 原盘与整轨 CUE 虚拟分轨，精准融合中文 XML 元数据与专辑封面，支持子曲目瞬时展开与毫秒级切歌。</p>
                     <div class="qms-feature-tags"><span>ISO 原盘</span><span>CUE 分轨</span></div>
-                </article>
-
-                <article class="qms-feature-card">
-                    <div class="qms-feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <path d="M12 30a12 12 0 0 1 24 0" />
-                            <path d="M18 30a6 6 0 0 1 12 0" />
-                            <circle cx="24" cy="30" r="2" fill="currentColor" stroke="none" />
-                            <line x1="24" y1="32" x2="24" y2="44" />
-                            <line x1="18" y1="44" x2="30" y2="44" />
-                        </svg>
-                    </div>
-                    <h3>全场景本地 / NAS / 云盘融合</h3>
-                    <p>支持机内 SSD/USB 即插即扫、局域网 SMB/NFS 智能发现挂载与拖拽传歌；内置百度、阿里云盘、夸克、115、WebDAV 云端直出，以及网易云音乐扫码登录。</p>
-                    <div class="qms-feature-tags"><span>本地</span><span>NAS</span><span>5大云盘</span></div>
                 </article>
 
                 <article class="qms-feature-card">
@@ -78,16 +70,32 @@ import Layout from '../layouts/Layout.astro';
                 <article class="qms-feature-card">
                     <div class="qms-feature-icon" aria-hidden="true">
                         <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <rect x="8" y="8" width="32" height="32" rx="4" />
-                            <line x1="8" y1="20" x2="40" y2="20" />
-                            <line x1="20" y1="20" x2="20" y2="40" />
-                            <circle cx="14" cy="14" r="1.5" fill="currentColor" stroke="none" />
-                            <circle cx="30" cy="30" r="4" />
+                            <circle cx="24" cy="24" r="17" />
+                            <circle cx="24" cy="24" r="6" />
+                            <line x1="24" y1="3" x2="24" y2="11" />
+                            <line x1="24" y1="37" x2="24" y2="45" />
+                            <line x1="3" y1="24" x2="11" y2="24" />
+                            <line x1="37" y1="24" x2="45" y2="24" />
                         </svg>
                     </div>
-                    <h3>4 款发烧质感主题 &amp; PC / 手机双端控台</h3>
-                    <p>内置黑曜石、黑胡桃、暖橡木、银拉丝四款精密硬件美学主题；PC 三栏专业调音台搭配实时 1024 点 FFT 频谱与麦景图双表头，手机触控端同步掌控黑胶视觉与歌单。</p>
-                    <div class="qms-feature-tags"><span>4 种主题</span><span>双端控台</span></div>
+                    <h3>DSD Native / DoP 双模源码直出</h3>
+                    <p>纯 C 语言 Zero-Copy 推流架构，Bit-Perfect 原生直通 ALSA 硬件层。完美适配 Amanero (384kHz)、XMOS (768kHz) 等异步 USB DAC，支持 Native DSD512 直解与 1-bit 智能降采样兼容。</p>
+                    <div class="qms-feature-tags"><span>DSD64 - DSD512</span><span>PCM 768kHz</span></div>
+                </article>
+
+                <article class="qms-feature-card">
+                    <div class="qms-feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M12 30a12 12 0 0 1 24 0" />
+                            <path d="M18 30a6 6 0 0 1 12 0" />
+                            <circle cx="24" cy="30" r="2" fill="currentColor" stroke="none" />
+                            <line x1="24" y1="32" x2="24" y2="44" />
+                            <line x1="18" y1="44" x2="30" y2="44" />
+                        </svg>
+                    </div>
+                    <h3>全场景本地 / NAS / 云盘融合</h3>
+                    <p>支持机内 SSD/USB 即插即扫、局域网 SMB/NFS 智能发现挂载与拖拽传歌；内置百度、阿里云盘、夸克、115、WebDAV 云端直出，以及网易云音乐扫码登录。</p>
+                    <div class="qms-feature-tags"><span>本地</span><span>NAS</span><span>5大云盘</span></div>
                 </article>
 
                 <article class="qms-feature-card">
@@ -101,28 +109,6 @@ import Layout from '../layouts/Layout.astro';
                     <h3>AirPlay / DLNA 双向投流 &amp; 音乐播不停</h3>
                     <p>既可作高清接收端无损接管手机/平板音乐投屏，也能向客厅音响与 Daphile 反向推流；搭载主机端「音乐播不停」无感续航、跨端自建歌单与 LRC 动态歌词滚动。</p>
                     <div class="qms-feature-tags"><span>双向投流</span><span>无感续播</span></div>
-                </article>
-
-                <article class="qms-feature-card">
-                    <div class="qms-feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <rect x="12" y="12" width="24" height="24" rx="3" />
-                            <rect x="20" y="20" width="8" height="8" />
-                            <line x1="18" y1="12" x2="18" y2="6" />
-                            <line x1="24" y1="12" x2="24" y2="6" />
-                            <line x1="30" y1="12" x2="30" y2="6" />
-                            <line x1="18" y1="42" x2="18" y2="36" />
-                            <line x1="24" y1="42" x2="24" y2="36" />
-                            <line x1="30" y1="42" x2="30" y2="36" />
-                            <line x1="12" y1="18" x2="6" y2="18" />
-                            <line x1="12" y1="30" x2="6" y2="30" />
-                            <line x1="42" y1="18" x2="36" y2="18" />
-                            <line x1="42" y1="30" x2="36" y2="30" />
-                        </svg>
-                    </div>
-                    <h3>PREEMPT_RT 纯血实时声学内核</h3>
-                    <p>提供专为极客发烧友打造的 Linux PREEMPT_RT 实时内核版本，大幅压缩系统调度延迟与时间抖动（Jitter）。</p>
-                    <div class="qms-feature-tags"><span>PREEMPT_RT 实时内核</span></div>
                 </article>
 
                 <article class="qms-feature-card">
@@ -147,6 +133,21 @@ import Layout from '../layouts/Layout.astro';
                     <h3>全能扩展与双槽位无感升级</h3>
                     <p>支持 Live U 盘一键无损装机至机内 NVMe/SATA 硬盘，自带无线 Wi-Fi 2.4G/5G 配网与 A/B 安全双槽位系统升级机制，持续稳定演进，守护珍贵监听系统。</p>
                     <div class="qms-feature-tags"><span>一键装机</span><span>安全升级</span></div>
+                </article>
+
+                <article class="qms-feature-card">
+                    <div class="qms-feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <rect x="8" y="8" width="32" height="32" rx="4" />
+                            <line x1="8" y1="20" x2="40" y2="20" />
+                            <line x1="20" y1="20" x2="20" y2="40" />
+                            <circle cx="14" cy="14" r="1.5" fill="currentColor" stroke="none" />
+                            <circle cx="30" cy="30" r="4" />
+                        </svg>
+                    </div>
+                    <h3>4 款发烧质感主题 &amp; PC / 手机双端控台</h3>
+                    <p>内置黑曜石、黑胡桃、暖橡木、银拉丝四款精密硬件美学主题；PC 三栏专业调音台搭配实时 1024 点 FFT 频谱与麦景图双表头，手机触控端同步掌控黑胶视觉与歌单。</p>
+                    <div class="qms-feature-tags"><span>4 种主题</span><span>双端控台</span></div>
                 </article>
             </div>
 
@@ -210,6 +211,12 @@ import Layout from '../layouts/Layout.astro';
     .qms-feature-icon svg {
         width: 30px;
         height: 30px;
+    }
+    .section-pricing {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #b08a1a;
+        margin: 12px 0 0;
     }
     .qms-feature-card h3 {
         font-size: 1.25rem;
