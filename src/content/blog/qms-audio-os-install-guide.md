@@ -45,8 +45,8 @@ bannerGradient: "linear-gradient(135deg, #091528 0%, #102a45 50%, #050b14 100%)"
 ### 2. 软件与镜像下载
 *   **系统官方镜像（GitHub，最新版安装 ISO）**：
     👉 **[点击前往 GitHub 下载安装 ISO](https://github.com/cqtvro/qms-download/releases/latest)**
-*   **系统官方镜像**：`QMS-Audio-OS-v4.1.1-PRO.iso`
-    👉 **[点击前往百度网盘下载官方系统镜像](https://pan.baidu.com/s/1K6iMTY7ONZ6wlqKVrv8KOg?pwd=qmsb)**（提取码：`qmsb`）
+*   **系统官方镜像（百度网盘，最新版安装 ISO）**：
+    👉 **[百度网盘下载最新安装 ISO](https://pan.baidu.com/s/1K6iMTY7ONZ6wlqKVrv8KOg?pwd=qmsb)**（提取码：`qmsb`）
 *   **官方写盘工具**：推荐使用 **Rufus**（Windows 平台，绿色免安装）。
 
 ---
