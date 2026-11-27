@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+    title="QMS Audio — Turn an Old PC into a High-End Music Server"
+    description="QMS Audio OS turns an old Mac mini, HP T620 thin client or laptop into a dedicated high-end music server. Real-time PREEMPT_RT kernel, measured latency: average 35 µs, max 50 µs. Free 3-day trial."
+    currentPath="/en"
+>
+    <section id="qms-en-view" class="page-view">
+        <div class="section-container">
+            <div class="section-header text-center">
+                <h1 class="section-title">QMS Audio — Turn an Old PC into a High-End Music Server</h1>
+                <p class="section-subtitle">Your old Mac mini, HP T620 thin client, or laptop doesn&rsquo;t belong in a drawer. QMS turns it into a dedicated music server &mdash; bit-perfect playback, DSD direct output, SACD ISO direct playback &mdash; with a real-time kernel built for audio.</p>
+                <p class="section-pricing">Pro $4.99/month or $49 lifetime &middot; RT $149 lifetime &middot; Free 3-day trial</p>
+                <div class="hero-buttons en-hero-buttons">
+                    <a href="https://github.com/cqtvro/qms-download/releases/latest" class="btn btn-primary" target="_blank" rel="noopener">Download &amp; Try Free for 3 Days &rarr;</a>
+                </div>
+            </div>
+
+            <div class="en-measured">
+                <h2 class="sub-section-title">Measured, not claimed</h2>
+                <p>Same Mac mini, 5,000 cyclictest runs:</p>
+                <div class="en-measured-grid">
+                    <div class="en-measured-card">
+                        <h3>Standard LTS kernel</h3>
+                        <p class="en-measured-nums">Avg 60 &micro;s &middot; Max 1,772 &micro;s</p>
+                    </div>
+                    <div class="en-measured-card en-measured-rt">
+                        <h3>QMS RT kernel (PREEMPT_RT)</h3>
+                        <p class="en-measured-nums">Avg 35 &micro;s &middot; Max 50 &micro;s &middot; Min 3 &micro;s</p>
+                    </div>
+                </div>
+                <p class="en-measured-note">That&rsquo;s the difference a real-time kernel makes. No phone-recorded comparisons, no magic &mdash; try it free for 3 days and listen for yourself.</p>
+            </div>
+
+            <div class="en-features">
+                <h2 class="sub-section-title">What it does</h2>
+                <ul class="en-feature-list">
+                    <li><strong>Bit-Perfect / Direct Passthrough</strong> &mdash; no resampling, no extra processing</li>
+                    <li><strong>Native DSD Direct, DoP 1.1</strong> (DSD over PCM)</li>
+                    <li><strong>SACD ISO direct playback</strong>, CUE/ISO track splitting</li>
+                    <li><strong>Gapless Playback</strong> (Zero-Click)</li>
+                    <li><strong>Vacuum Tube Emulation Studio</strong> &mdash; 300B, KT88, ECC83, 2A3, EL34 modes, or straight bypass</li>
+                    <li><strong>Studio VU Level Meter</strong>, dynamic and alive</li>
+                    <li><strong>Network Storage</strong> (NAS / SMB / NFS), library scan with metadata and search</li>
+                </ul>
+            </div>
+
+            <div class="en-quotes">
+                <h2 class="sub-section-title">What listeners say</h2>
+                <div class="en-quotes-grid">
+                    <blockquote>&ldquo;Sound quality far surpasses Daphile.&rdquo;<footer>&mdash; QMS test user</footer></blockquote>
+                    <blockquote>&ldquo;Hard to tell apart from an 18,000-yuan streamer.&rdquo;<footer>&mdash; QMS RT buyer, after comparing side by side</footer></blockquote>
+                    <blockquote>&ldquo;Better than the Jue Ling J25.&rdquo;<footer>&mdash; QMS RT buyer</footer></blockquote>
+                </div>
+            </div>
+
+            <div class="en-pricing">
+                <h2 class="sub-section-title">Pricing</h2>
+                <div class="en-pricing-grid">
+                    <div class="en-price-card">
+                        <h3>QMS Pro</h3>
+                        <p class="en-price">$4.99<span>/month</span> or $49 <span>lifetime</span></p>
+                        <p>LTS kernel, all core features. Monthly payments don&rsquo;t count toward lifetime.</p>
+                    </div>
+                    <div class="en-price-card en-price-rt">
+                        <h3>QMS RT</h3>
+                        <p class="en-price">$149 <span>lifetime</span></p>
+                        <p>PREEMPT_RT real-time kernel, single system. Measured latency: average 35 &micro;s, max 50 &micro;s.</p>
+                    </div>
+                    <div class="en-price-card">
+                        <h3>Pro &rarr; RT upgrade</h3>
+                        <p class="en-price">$100 <span>for lifetime Pro owners</span></p>
+                        <p>Same total as buying RT directly. Monthly subscribers pay $149 directly for RT.</p>
+                    </div>
+                </div>
+                <p class="en-trial-note">Free 3-day trial for both versions.</p>
+            </div>
+
+            <div class="en-cta">
+                <h2>Try it free for 3 days</h2>
+                <div class="hero-buttons en-cta-buttons">
+                    <a href="https://github.com/cqtvro/qms-download/releases/latest" class="btn btn-primary" target="_blank" rel="noopener">Download on GitHub &rarr;</a>
+                </div>
+                <p class="en-cta-note">Works on: Mac mini, HP T620 thin clients, old laptops and PCs.</p>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .en-hero-buttons {
+        justify-content: center;
+        margin-top: 24px;
+    }
+    .en-measured,
+    .en-features,
+    .en-quotes,
+    .en-pricing {
+        margin: 0 0 48px;
+    }
+    .en-measured > p,
+    .en-measured-note {
+        color: var(--text-muted);
+        line-height: 1.75;
+    }
+    .en-measured-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 24px 0;
+    }
+    .en-measured-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 24px;
+        text-align: center;
+    }
+    .en-measured-rt {
+        border-color: rgba(212, 160, 23, 0.5);
+    }
+    .en-measured-card h3 {
+        font-size: 1.1rem;
+        margin: 0 0 12px;
+        color: var(--text-main);
+    }
+    .en-measured-nums {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #b08a1a;
+        margin: 0;
+    }
+    .en-feature-list {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--border);
+    }
+    .en-feature-list li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-muted);
+        line-height: 1.7;
+    }
+    .en-feature-list li strong {
+        color: var(--text-main);
+    }
+    .en-quotes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 24px;
+    }
+    .en-quotes-grid blockquote {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-left: 4px solid #d4a017;
+        border-radius: 12px;
+        padding: 24px 20px;
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--text-main);
+    }
+    .en-quotes-grid blockquote footer {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+    .en-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 24px;
+    }
+    .en-price-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 24px;
+    }
+    .en-price-rt {
+        border-color: rgba(212, 160, 23, 0.5);
+    }
+    .en-price-card h3 {
+        font-size: 1.2rem;
+        margin: 0 0 12px;
+        color: var(--text-main);
+    }
+    .en-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #b08a1a;
+        margin: 0 0 12px;
+    }
+    .en-price span {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--text-muted);
+    }
+    .en-price-card p:last-child {
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin: 0;
+    }
+    .en-trial-note {
+        margin-top: 20px;
+        color: var(--text-muted);
+    }
+    .en-cta {
+        background: var(--bg-card);
+        border: 1px solid rgba(212, 160, 23, 0.4);
+        border-radius: 16px;
+        padding: 36px 28px;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    .en-cta h2 {
+        margin: 0 0 20px;
+        color: var(--text-main);
+    }
+    .en-cta-buttons {
+        justify-content: center;
+    }
+    .en-cta-note {
+        color: var(--text-muted);
+        margin: 20px 0 0;
+    }
+    @media (max-width: 900px) {
+        .en-quotes-grid,
+        .en-pricing-grid {
+            grid-template-columns: 1fr;
+        }
+        .en-measured-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
